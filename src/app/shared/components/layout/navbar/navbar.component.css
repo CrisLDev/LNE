@@ -1,5 +1,7 @@
-.logo{
-    float: left;
-    width: 150px;
-    margin-right: 1em;
+.bd-subnavbar {
+    position: relative;
+    z-index: 1020;
+    background-color: rgba(255,255,255,0.75);
+    -webkit-backdrop-filter: blur(1rem);
+    backdrop-filter: blur(1rem);
 }
