@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
-
+import { SwipperModule } from './swipper/swipper.module';
 
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule
+    SwipperModule
+  ],
+  exports:[
+    SwipperModule
   ]
 })
 export class SharedModule { }
