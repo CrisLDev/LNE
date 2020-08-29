@@ -4,7 +4,7 @@ import { SwipperModule } from './swipper/swipper.module';
 @NgModule({
   declarations: [],
   imports: [
-    SwipperModule
+    SwipperModule,
   ],
   exports:[
     SwipperModule
