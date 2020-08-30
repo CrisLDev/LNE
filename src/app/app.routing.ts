@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('@pages/home/home.module').then(m => m.HomeModule), data: {name: 'Home'}
+  },
+  {
+    path: 'user',
+    loadChildren: () => import('@pages/u-actions/u-actions.module').then(m => m.UActionsModule), data: {name: 'UserActions'}
   }
 ];
 
