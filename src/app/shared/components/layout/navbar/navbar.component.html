@@ -1,6 +1,6 @@
 <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-white">
     <div class="container">
-      <a class="navbar-brand" href="#"><img src="assets/logo.svg" class="w-10" alt=""></a>
+      <a class="navbar-brand" routerLink="/home"><img src="assets/logo.svg" class="w-10" alt=""></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -23,9 +23,16 @@
               <li><a class="dropdown-item" href="#">Something else here</a></li>
             </ul>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/user">Disabled</a>
-          </li>
+          <ng-container *ngIf="!authService.loggedIn(); else loggedUser">
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/user">Usuario</a>
+            </li>
+          </ng-container>
+          <ng-template #loggedUser>
+            <li class="nav-item">
+              <a class="nav-link" (click)="authService.logout()">LogOut</a>
+            </li>
+          </ng-template>
         </ul>
       </div>
     </div>

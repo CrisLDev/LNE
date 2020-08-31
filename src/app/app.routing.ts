@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
+import {AuthGuard} from '@core/guards/auth.guard';
+import { LoggedGuard } from '@core/guards/logged.guard';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -10,8 +11,14 @@ const routes: Routes = [
   },
   {
     path: 'user',
-    loadChildren: () => import('@pages/u-actions/u-actions.module').then(m => m.UActionsModule), data: {name: 'UserActions'}
-  }
+    loadChildren: () => import('@pages/u-actions/u-actions.module').then(m => m.UActionsModule), data: {name: 'UserActions'},
+    canActivate: [LoggedGuard]
+  },
+  {
+    path: 'patients',
+    loadChildren: () => import('@pages/patients/patients.module').then(m => m.PatientsModule), data: {name: 'Patients'},
+    canActivate: [AuthGuard]
+  },
 ];
 
 @NgModule({

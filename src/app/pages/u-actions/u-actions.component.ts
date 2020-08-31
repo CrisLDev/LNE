@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthService} from '@core/services/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-u-actions',
@@ -7,15 +9,36 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UActionsComponent implements OnInit {
 
-  user = {username: '', email: '', password: ''};
+  userRegister = {username: '', email: '', password: ''};
 
-  constructor() { }
+  userLogin = {email: '', password: ''};
+
+  constructor(private authService: AuthService,
+              private router: Router) { }
 
   ngOnInit(): void {
   }
 
   signUp(){
-    console.log(this.user)
+    this.authService.signUp(this.userRegister)
+      .subscribe(
+        res => {console.log(res)
+        localStorage.setItem('token', res.token);
+        this.router.navigate(['/home']);
+        },
+        err => {console.log(err)}
+      )
+  }
+
+  signIn(){
+    this.authService.signIn(this.userLogin)
+      .subscribe(
+        res => {
+          console.log(res)
+          localStorage.setItem('token', res.token);
+          this.router.navigate(['/home']);
+        }
+      )
   }
 
 }

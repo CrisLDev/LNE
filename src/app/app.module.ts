@@ -5,6 +5,10 @@ import { AppRoutingModule } from './app.routing';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { ComponentsModule } from './shared/components/components.module';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import {AuthGuard} from '@core/guards/auth.guard';
+import { TokenInterceptorService } from '@core/services/token-interceptor.service';
+import { LoggedGuard } from '@core/guards/logged.guard';
 
 @NgModule({
   declarations: [
@@ -14,9 +18,14 @@ import { ComponentsModule } from './shared/components/components.module';
     BrowserModule,
     AppRoutingModule,
     SharedModule,
-    ComponentsModule
+    ComponentsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [AuthGuard, LoggedGuard, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
