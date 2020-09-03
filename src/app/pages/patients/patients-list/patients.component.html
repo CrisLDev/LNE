@@ -1,0 +1,49 @@
+<div class="row mt-3">
+    <div class="col-xl-8 mb-3" style="padding-top: 70px;">
+        <div class="row">
+            <div class="col-xl-4" *ngFor="let patient of patients">
+                <div class="card shadow">
+                    <div class="card-body">
+                        <h4 class="card-title">Paciente</h4>
+                        <img src="{{patient.imgUrl}}" class="card-img-top" alt="Imagen de paciente">
+                        <div>
+                            <span class="font-weight-bold">Nombre: </span><span>{{patient.name}}</span>
+                        </div>
+                        <div>
+                            <span class="font-weight-bold">Edad: </span><span>{{patient.age}}</span>
+                        </div>
+                        <div>
+                            <span class="font-weight-bold">Email: </span><span>{{patient.email}}</span>
+                        </div>
+                        <div>
+                            <span class="font-weight-bold">Número telefónico: </span><span>{{patient.phoneNumber}}</span>
+                        </div>
+                        <div>
+                            <span class="font-weight-bold">Fecha de Registro: </span><span>{{patient.createdAt | date:'dd-MM-yyyy'}}</span>
+                        </div>
+                        <div>
+                            <span class="font-weight-bold">Fecha de Ingreso: </span><span>{{patient.entryDate | date:'dd-MM-yyyy'}}</span>
+                        </div>
+                        <div>
+                            <button class="btn btn-primary" (click)="selectedPatient(patient._id)">Seguimientos</button>
+                            <button class="btn btn-warning" (click)="editPatient(patient._id)">Editar</button>
+                            <button class="btn btn-danger" (click)="deletePatient(patient._id)">Eliminar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-4 mt-3" style="padding-top: 70px;">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">
+                    Acciones
+                </h4>
+            </div>
+            <div class="card-body">
+                <button class="btn btn-primary btn-block" routerLink="/patients/create">Nuevo Paciente</button>
+            </div>
+        </div>
+    </div>
+</div>

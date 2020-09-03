@@ -17,4 +17,8 @@ export class NavbarComponent implements OnInit {
     document.getElementById("homePart").scrollIntoView({behavior: "smooth"});
   }
 
+  toAskUs(){
+    document.getElementById("askUsPart").scrollIntoView({behavior: "smooth"});
+  }
+
 }

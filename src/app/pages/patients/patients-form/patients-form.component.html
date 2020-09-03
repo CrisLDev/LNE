@@ -1,0 +1,32 @@
+<div class="row mt-3">
+    <div class="col-xl-12" style="margin-top: 70px;">
+        <form (submit)="patientForm()">
+            <div class="mb-3">
+                <label for="namePatient" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="namePatient" [(ngModel)]="patient.name" name="name">
+            </div>
+            <div class="mb-3">
+                <label for="imgUrlPatient" class="form-label">Dirección Url de la Imagen</label>
+                <input type="text" class="form-control" id="imgUrlPatient" [(ngModel)]="patient.imgUrl" name="imgUrl">
+            </div>
+            <div class="mb-3">
+              <label for="emailPatient" class="form-label">Email</label>
+              <input type="email" class="form-control" id="emailPatient" [(ngModel)]="patient.email" name="email"  aria-describedby="emailHelp">
+              <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+            <div class="mb-3">
+                <label for="agePatient" class="form-label">Edad</label>
+                <input type="number" class="form-control" id="agePatient" [(ngModel)]="patient.age" name="age">
+            </div>
+            <div class="mb-3">
+                <label for="numberPatient" class="form-label">Número de teléfono</label>
+                <input type="number" class="form-control" id="numberPatient" [(ngModel)]="patient.phoneNumber" name="phoneNumber">
+            </div>
+            <div class="mb-3">
+                <label for="entryDatePatient" class="form-label">Fecha de Ingreso</label>
+                <input type="date" class="form-control" id="entryDatePatient" [(ngModel)]="patient.entryDate" name="entryDate">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>

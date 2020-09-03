@@ -1,6 +1,8 @@
 import {Router} from 'express';
 import { createUser, loginUser, getUsers, getProfile } from '../controllers/user';
 import { TokenValidation } from '../libs/verifyToken';
+import { createPatient, getPatients, getPatientById, editPatientById, deletePatientById } from '../controllers/patients';
+import { createTracing, getTracingsByPatientId } from '../controllers/tracing';
 
 const router = Router();
 
@@ -15,5 +17,20 @@ router.route('/users')
 
 router.route('/profile')
     .get(TokenValidation, getProfile);
+
+router.route('/patient')
+    .get(getPatients)
+    .post(createPatient);
+
+router.route('/patient/:id')
+    .get(getPatientById)
+    .put(editPatientById)
+    .delete(deletePatientById);
+
+router.route('/tracing')
+    .post(createTracing);
+    
+router.route('/tracing/:id')
+    .get(getTracingsByPatientId);
 
 export default router;
