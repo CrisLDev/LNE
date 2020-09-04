@@ -17,7 +17,7 @@ export async function createTracing(req: Request, res: Response){
 
         if(tracingExist){
             return res.status(400)
-            .json({errors: [{msg: "Tracing already exist"}]});
+            .json({errors: [{msg: "El nombre del seguimiento ya existe."}]});
         }
 
         const savedTracing = await tracing.save();
@@ -65,6 +65,14 @@ export async function getTracingById(req: Request, res: Response){
 export async function editTracingById(req: Request, res: Response){
 
     try {
+
+        // Save tracing
+        let tracingExist = await Tracing.findOne({name: req.body.name});
+
+        if(tracingExist){
+            return res.status(400)
+            .json({errors: [{msg: "El nombre del seguimiento ya existe."}]});
+        }
 
         const {name, content, patient_id} = req.body;
 

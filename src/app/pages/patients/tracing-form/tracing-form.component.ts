@@ -40,7 +40,9 @@ export class TracingFormComponent implements OnInit {
       this.tracingsService.editTracingById(this.tracing_id, this.tracing)
         .subscribe(
           res => {this.router.navigate(['/patients/view/' + this.id])},
-          err => console.log(err)
+          err => {if(err){
+            this.toastr.error(err.error.errors[0].msg)
+          }}
         );
     }else{
       this.tracing.patient_id = this.id;
@@ -50,7 +52,9 @@ export class TracingFormComponent implements OnInit {
             this.toastr.success('Hello world!', 'Toastr fun!');
           })
           },
-          err => console.log(err)
+          err => {if(err){
+            this.toastr.error(err.error.errors[0].msg)
+          }}
         );
     }
   }

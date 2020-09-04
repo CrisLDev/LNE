@@ -6,3 +6,10 @@ mgl-timeline-entry-dot{
 mgl-timeline-entry-side{
     top: 10px;
 }
+
+mgl-timeline-entry-header{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 20px;
+    padding-left: 20px;
+}
