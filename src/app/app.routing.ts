@@ -18,11 +18,6 @@ const routes: Routes = [
     path: 'patients',
     loadChildren: () => import('@pages/patients/patients.module').then(m => m.PatientsModule), data: {name: 'Patients'},
     canActivate: [AuthGuard]
-  },
-  {
-    path: 'tracings',
-    loadChildren: () => import('@pages/tracings/tracing.module').then(m => m.TracingModule), data: {name: 'Tracings'},
-    canActivate: [AuthGuard]
   }
 ];
 

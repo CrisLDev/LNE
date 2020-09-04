@@ -2,7 +2,7 @@ import {Router} from 'express';
 import { createUser, loginUser, getUsers, getProfile } from '../controllers/user';
 import { TokenValidation } from '../libs/verifyToken';
 import { createPatient, getPatients, getPatientById, editPatientById, deletePatientById } from '../controllers/patients';
-import { createTracing, getTracingsByPatientId } from '../controllers/tracing';
+import { createTracing, getTracingsByPatientId, getTracingById, editTracingById, deleteTracingById } from '../controllers/tracing';
 
 const router = Router();
 
@@ -29,8 +29,13 @@ router.route('/patient/:id')
 
 router.route('/tracing')
     .post(createTracing);
+
+router.route('/tracing/:tracing_id')
+    .get(getTracingById)
+    .put(editTracingById)
+    .delete(deleteTracingById);
     
-router.route('/tracing/:id')
+router.route('/tracings/:id')
     .get(getTracingsByPatientId);
 
 export default router;

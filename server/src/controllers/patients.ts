@@ -2,6 +2,8 @@ import {Request, Response} from 'express';
 
 import Patient, {IPatient} from '../models/Patient';
 
+import Tracing from '../models/Tracing';
+
 export async function createPatient(req: Request, res: Response){
     const {name, age, imgUrl, email, phoneNumber, entryDate} = req.body;
 
@@ -80,7 +82,8 @@ export async function editPatientById(req: Request, res: Response){
 export async function deletePatientById(req: Request, res: Response){
     try{
         const deletedPatient = await Patient.findByIdAndRemove(req.params.id);
-        return res.status(200).json(deletedPatient);
+        const deletedTracings = await Tracing.find({patient_id: req.params.id}).remove();
+        return res.status(200).json({deletedPatient, deletedTracings});
     } catch(err){
         return res.status(400).json({mgs:"Data was no founded"});
     }

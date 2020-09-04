@@ -36,9 +36,63 @@ export async function getTracingsByPatientId(req: Request, res: Response){
 
         if(tracings){
             return res.status(200).json(tracings);
+        }else{
+            return res.status(400).json({msg: "No data registered wuth this patient id."})
         }
 
     } catch (err) {
-        res.status(400).json({msg: "No data registered with this patient id."});
+        res.status(400).json({msg: "No data founded."});
+    }
+}
+
+export async function getTracingById(req: Request, res: Response){
+
+    try {
+
+        const tracing = await Tracing.findOne({_id: req.params.tracing_id});
+
+        if(tracing){
+            return res.status(200).json(tracing);
+        }else{
+            return res.status(400).json({msg: "No data registered wuth this patient id."})
+        }
+
+    } catch (err) {
+        res.status(400).json({msg: "No data founded."});
+    }
+}
+
+export async function editTracingById(req: Request, res: Response){
+
+    try {
+
+        const {name, content, patient_id} = req.body;
+
+        const tracingToEdit = {
+            name,
+            content,
+            patient_id
+        }
+
+        const tracingUpdated = await Tracing.findByIdAndUpdate(req.params.tracing_id, tracingToEdit, {new: true});
+
+        if(tracingToEdit){
+            return res.status(200).json(tracingUpdated);
+        }else{
+            return res.status(400).json({msg: "No data registered wuth this patient id."})
+        }
+
+    } catch (err) {
+        res.status(400).json({msg: "No data founded."});
+    }
+
+}
+
+export async function deleteTracingById(req: Request, res: Response){
+    try{
+        const deletedTracing = await Tracing.findByIdAndRemove(req.params.tracing_id);
+        return res.status(200).json(deletedTracing);
+    } catch(err){
+        return res.status(400).json({mgs:"Data was no founded"});
     }
 }

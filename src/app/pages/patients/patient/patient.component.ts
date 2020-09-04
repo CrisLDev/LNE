@@ -21,7 +21,7 @@ export class PatientComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
       this.id = params['id'];
-      this.tracingsService.getTracingsById(this.id)
+      this.tracingsService.getTracingsByPatientId(this.id)
         .subscribe(
           res => {this.tracings = res},
           err => console.log(err)
