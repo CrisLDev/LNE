@@ -35,10 +35,16 @@ export class PatientsComponent implements OnInit {
     this.patientService.deletePatient(id)
       .subscribe(
         res => {
-          this.patients.splice(this.patients.findIndex(e => e._id === id), 1)},
+          this.patients.splice(this.patients.findIndex(e => e._id === id), 1);
+          this.showMessage();
+        },
         err => console.log(err)
       );
     
+  }
+
+  showMessage(){
+    this.toastr.error('Eliminado correctamente.')
   }
 
 }
