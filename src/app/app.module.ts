@@ -11,6 +11,7 @@ import {AuthGuard} from '@core/guards/auth.guard';
 import { TokenInterceptorService } from '@core/services/token-interceptor.service';
 import { LoggedGuard } from '@core/guards/logged.guard';
 import { ToastrModule } from 'ngx-toastr';
+import {MglTimelineModule} from 'angular-mgl-timeline';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ToastrModule } from 'ngx-toastr';
     BrowserModule,
     AppRoutingModule,
     SharedModule,
+    MglTimelineModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       timeOut: 1000,

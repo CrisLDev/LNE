@@ -7,12 +7,14 @@ import { PatientsFormComponent } from './patients-form/patients-form.component';
 import {SharedModule} from '@shared/shared.module';
 import { TracingComponent } from './tracing/tracing.component';
 import { TracingFormComponent } from './tracing-form/tracing-form.component';
+import { MglTimelineModule } from 'angular-mgl-timeline';
 
 @NgModule({
   declarations: [PatientsComponent, PatientComponent, PatientsFormComponent, TracingComponent, TracingFormComponent],
   imports: [
     CommonModule,
     PatientsRoutingModule,
+    MglTimelineModule,
     SharedModule
   ]
 })

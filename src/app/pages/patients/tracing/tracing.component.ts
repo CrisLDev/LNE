@@ -13,6 +13,15 @@ export class TracingComponent implements OnInit {
 
   tracings = [];
 
+  alternate: boolean = true;
+  toggle: boolean = true;
+  color: boolean = false;
+  size: number = 40;
+  expandEnabled: boolean = true;
+  contentAnimation: boolean = true;
+  dotAnimation: boolean = true;
+  side = 'left';
+
   message: string;
 
   constructor(private activatedRoute: ActivatedRoute,
@@ -46,6 +55,26 @@ export class TracingComponent implements OnInit {
         res => {this.tracings.splice(this.tracings.findIndex(e => e._id === tracing_id), 1)},
         err => console.log(err)
       )
+  }
+
+  onHeaderClick(event) {
+    if (!this.expandEnabled) {
+      event.stopPropagation();
+    }
+  }
+
+  onDotClick(event) {
+    if (!this.expandEnabled) {
+      event.stopPropagation();
+    }
+  }
+
+  onExpandEntry(expanded, index) {
+    console.log(`Expand status of entry #${index} changed to ${expanded}`)
+  }
+
+  toggleSide() {
+    this.side = this.side === 'left' ? 'right' : 'left';
   }
 
 }
