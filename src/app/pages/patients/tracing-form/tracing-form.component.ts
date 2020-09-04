@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TracingsService } from '@core/services/tracings.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-tracing-form',
@@ -17,7 +18,8 @@ export class TracingFormComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute,
               private tracingsService: TracingsService,
-              private router: Router) { }
+              private router: Router,
+              private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => 
@@ -44,7 +46,10 @@ export class TracingFormComponent implements OnInit {
       this.tracing.patient_id = this.id;
       this.tracingsService.createTracing(this.tracing)
         .subscribe(
-          res => {this.router.navigate(['/patients/view/' + this.id])},
+          res => {this.router.navigate(['/patients/view/' + this.id], ).then(() => {
+            this.toastr.success('Hello world!', 'Toastr fun!');
+          })
+          },
           err => console.log(err)
         );
     }

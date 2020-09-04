@@ -6,7 +6,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms'
   declarations: [],
   imports: [
     SwipperModule,
-    FormsModule, 
+    FormsModule,
     ReactiveFormsModule
   ],
   exports:[

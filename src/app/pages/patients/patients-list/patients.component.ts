@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PatientsService } from '@core/services/patients.service';
 import { Router } from '@angular/router';
 import { Patient } from '@shared/classes/Patient';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-patients',
@@ -12,7 +13,7 @@ export class PatientsComponent implements OnInit {
 
   patients: Patient[];
 
-  constructor(private patientService: PatientsService, private router: Router) { }
+  constructor(private patientService: PatientsService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.patientService.getPatients()

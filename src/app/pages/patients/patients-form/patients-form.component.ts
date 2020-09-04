@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PatientsService } from '@core/services/patients.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-patients-form',
@@ -15,7 +16,8 @@ export class PatientsFormComponent implements OnInit {
 
   constructor(private patientsService: PatientsService,
               private activatedRoute: ActivatedRoute,
-              private router: Router) { }
+              private router: Router,
+              private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => 
@@ -38,10 +40,11 @@ export class PatientsFormComponent implements OnInit {
         );
         this.id =  '';
     }else{
-      console.log(this.patient)
       this.patientsService.createPatient(this.patient)
       .subscribe(
-        res => {this.router.navigate(['/patients'])},
+        res => {this.router.navigate(['/patients']).then(() => {
+          this.toastr.success('¡Agregado correctamente!');
+        })},
         err => console.log(err)
       )
       this.id =  '';
