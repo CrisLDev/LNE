@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TracingsService } from '@core/services/tracings.service';
+import { ToastrService } from 'ngx-toastr';
+import { element } from 'protractor';
 
 @Component({
   selector: 'app-tracing',
@@ -26,7 +28,8 @@ export class TracingComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute,
               private tracingsService: TracingsService,
-              private router: Router) { }
+              private router: Router,
+              private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
@@ -36,13 +39,18 @@ export class TracingComponent implements OnInit {
           res => {
                     if(res){
                       this.tracings = res;
-                    }else{
-                      this.message = "No hay datos para mostrar";
+                      this.showSpinner();
                     }
                 },
           err => console.log(err)
         )
     });
+  }
+  
+  showSpinner(){
+      const spinner = document.getElementById("spinnerTracing").classList.add("d-none");
+      const textNone = document.getElementById("textTracing").classList.remove("d-none");
+      const textBlock = document.getElementById("textTracing").classList.add("d-block");
   }
 
   editTracing(tracing_id){
@@ -52,7 +60,8 @@ export class TracingComponent implements OnInit {
   deleteTracing(tracing_id){
     this.tracingsService.deleteTrancingById(tracing_id)
       .subscribe(
-        res => {this.tracings.splice(this.tracings.findIndex(e => e._id === tracing_id), 1)},
+        res => {this.tracings.splice(this.tracings.findIndex(e => e._id === tracing_id), 1);
+          this.toastr.error('Seguimiento eliminado correctamente');},
         err => console.log(err)
       )
   }

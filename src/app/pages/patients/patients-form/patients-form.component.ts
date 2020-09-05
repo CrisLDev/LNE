@@ -35,7 +35,9 @@ export class PatientsFormComponent implements OnInit {
     if(this.id){
       this.patientsService.editPatient(this.id, this.patient)
         .subscribe(
-          res => {this.router.navigate(['/patients'])},
+          res => {this.router.navigate(['/patients']).then(() => {
+            this.toastr.success('Paciente editado correctamente.');
+          })},
           err => console.log(err)
         );
         this.id =  '';
@@ -43,7 +45,7 @@ export class PatientsFormComponent implements OnInit {
       this.patientsService.createPatient(this.patient)
       .subscribe(
         res => {this.router.navigate(['/patients']).then(() => {
-          this.toastr.success('¡Agregado correctamente!');
+          this.toastr.success('Paciente agregado correctamente.');
         })},
         err => console.log(err)
       )

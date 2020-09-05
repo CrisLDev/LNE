@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '@core/services/auth.service';
 import {Router} from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-u-actions',
@@ -14,7 +15,8 @@ export class UActionsComponent implements OnInit {
   userLogin = {email: '', password: ''};
 
   constructor(private authService: AuthService,
-              private router: Router) { }
+              private router: Router,
+              private toastr: ToastrService) { }
 
   ngOnInit(): void {
   }
@@ -36,7 +38,9 @@ export class UActionsComponent implements OnInit {
         res => {
           console.log(res)
           localStorage.setItem('token', res.token);
-          this.router.navigate(['/home']);
+          this.router.navigate(['/home']).then(() => {
+            this.toastr.success('Te has logeado correctamente.')
+          });
         }
       )
   }

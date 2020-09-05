@@ -36,15 +36,11 @@ export class PatientsComponent implements OnInit {
       .subscribe(
         res => {
           this.patients.splice(this.patients.findIndex(e => e._id === id), 1);
-          this.showMessage();
+          this.toastr.error('Paciente eliminado correctamente.')
         },
         err => console.log(err)
       );
     
-  }
-
-  showMessage(){
-    this.toastr.error('Eliminado correctamente.')
   }
 
 }

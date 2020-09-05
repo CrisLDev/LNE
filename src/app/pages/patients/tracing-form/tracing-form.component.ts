@@ -39,7 +39,9 @@ export class TracingFormComponent implements OnInit {
       this.tracing.patient_id = this.id;
       this.tracingsService.editTracingById(this.tracing_id, this.tracing)
         .subscribe(
-          res => {this.router.navigate(['/patients/view/' + this.id])},
+          res => {this.router.navigate(['/patients/view/' + this.id]).then(() => {
+            this.toastr.success('Seguimiento editado correctamente.');
+          })},
           err => {if(err){
             this.toastr.error(err.error.errors[0].msg)
           }}
@@ -49,7 +51,7 @@ export class TracingFormComponent implements OnInit {
       this.tracingsService.createTracing(this.tracing)
         .subscribe(
           res => {this.router.navigate(['/patients/view/' + this.id], ).then(() => {
-            this.toastr.success('Hello world!', 'Toastr fun!');
+            this.toastr.success('Seguimiento agregado correctamente.');
           })
           },
           err => {if(err){

@@ -6,7 +6,7 @@
             <a class="btn btn-primary" routerLink="create">Nuevo</a>
         </div>
     </div>
-    <ng-container *ngIf="tracings; else loading">
+    <ng-container *ngIf="tracings?.length > 0; else loading">
       <mgl-timeline class="mt-3" [toggle]="toggle" [alternate]="alternate" [side]="side">
         <mgl-timeline-entry *ngFor="let tracing of tracings;let i = index;" (expand)="onExpandEntry($event, i)">
           <mgl-timeline-entry-header (click)="onHeaderClick($event)">
@@ -42,7 +42,7 @@
   </div>
 </div>
 <ng-template #loading>
-  <div class="text-center" style="margin-top: 70px;">
+  <div class="text-center" style="margin-top: 70px;" id="spinnerTracing">
     <div
       class="spinner-border"
       style="width: 3rem; height: 3rem;"
@@ -51,24 +51,8 @@
       <span class="sr-only">Loading...</span>
     </div>
   </div>
-  {{message}}
-</ng-template>
 
-<ng-template>
-  <div class="row">
-    <div class="col-xl-3" *ngFor="let tracing of tracings">
-      <div class="card bg-primary text-white">
-        <div class="card-header d-flex">
-          <h5 class="card-title">{{tracing.name}}</h5>
-          <div class="ml-auto">
-            <button class="btn btn-sm btn-warning" (click)="editTracing(tracing._id)">Editar</button>
-            <button class="btn btn-sm btn-danger" (click)="deleteTracing(tracing._id)">Eliminar</button>
-          </div>
-        </div>
-        <div class="card-body">
-          <p>{{tracing.content}}</p>
-        </div>
-      </div>
-    </div>
+  <div class="d-none" id="textTracing">
+    No hay nada we.
   </div>
 </ng-template>
