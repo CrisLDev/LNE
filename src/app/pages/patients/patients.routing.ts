@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PatientsComponent } from './patients-list/patients.component';
-import { PatientComponent } from './patient/patient.component';
 import { PatientsFormComponent } from './patients-form/patients-form.component';
 import { TracingComponent } from '@pages/patients/tracing/tracing.component';
 import { TracingFormComponent } from '@pages/patients/tracing-form/tracing-form.component';
