@@ -37,6 +37,7 @@ export class PatientsFormComponent implements OnInit {
         .subscribe(
           res => {this.router.navigate(['/patients']).then(() => {
             this.toastr.success('Paciente editado correctamente.');
+            console.log(this.patient)
           })},
           err => console.log(err)
         );

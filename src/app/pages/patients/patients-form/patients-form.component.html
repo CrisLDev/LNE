@@ -23,8 +23,12 @@
                 <input type="number" class="form-control" id="numberPatient" [(ngModel)]="patient.phoneNumber" name="phoneNumber">
             </div>
             <div class="mb-3">
-                <label for="entryDatePatient" class="form-label">Fecha de Ingreso</label>
-                <input type="date" class="form-control" id="entryDatePatient" [(ngModel)]="patient.entryDate" name="entryDate">
+                <label for="entryDatePatient" class="form-label">Fecha de Ingreso
+                    <label for="entryDatePatient" class="form-label" *ngIf="patient.entryDate">anterior <span class="font-weight-bold">
+                        {{patient.entryDate | date}}
+                    </span></label>
+                </label><br>
+                <input type="datetime-local" class="form-control" id="entryDatePatient" [(ngModel)]="patient.entryDate" name="entryDate">
             </div>
             <button type="submit" class="btn btn-primary btn-block">Guardar</button>
         </form>
