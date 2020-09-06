@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { TracingsService } from '@core/services/tracings.service';
 import { ToastrService } from 'ngx-toastr';
 import { element } from 'protractor';
+import { PatientsService } from '@core/services/patients.service';
 
 @Component({
   selector: 'app-tracing',
@@ -26,8 +27,11 @@ export class TracingComponent implements OnInit {
 
   message: string;
 
+  patient = {_id: '',name: '', age: '', imgUrl: '', phoneNumber: '', email: '', createdAt: '', entryDate: ''};
+
   constructor(private activatedRoute: ActivatedRoute,
               private tracingsService: TracingsService,
+              private patientsService: PatientsService,
               private router: Router,
               private toastr: ToastrService) { }
 
@@ -43,7 +47,13 @@ export class TracingComponent implements OnInit {
                     }
                 },
           err => console.log(err)
-        )
+        );
+
+        this.patientsService.getPatient(this.id)
+        .subscribe(
+          res => {this.patient = res},
+          err => console.log(err)
+        );
     });
   }
   
@@ -84,6 +94,10 @@ export class TracingComponent implements OnInit {
 
   toggleSide() {
     this.side = this.side === 'left' ? 'right' : 'left';
+  }
+
+  editPatient(id){
+    this.router.navigate(['/patients/edit', id]);
   }
 
 }

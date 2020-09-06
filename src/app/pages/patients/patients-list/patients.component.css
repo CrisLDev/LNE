@@ -1,0 +1,13 @@
+@media (max-width: 575.98px) { 
+    .actions{
+        padding-top: 0!important;
+    }
+
+    .w-75 {
+        width: 100%!important;
+    }
+}
+
+.actions{
+    padding-top: 70px;
+}
