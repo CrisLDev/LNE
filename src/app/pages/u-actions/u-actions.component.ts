@@ -27,6 +27,7 @@ export class UActionsComponent implements OnInit {
         res => {console.log(res)
         localStorage.setItem('token', res.token);
         this.router.navigate(['/home']);
+        this.toastr.success('Te has registrado correctamente.')
         },
         err => {console.log(err)}
       )
