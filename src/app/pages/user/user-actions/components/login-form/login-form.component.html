@@ -1,0 +1,21 @@
+<div class="card">
+    <div class="card-body">
+        <h3 class="card-title">Logeate</h3>
+        <form (submit)="signIn()">
+            <div class="mb-3">
+              <label for="loginEmail" class="form-label">Email</label>
+              <input type="email" class="form-control" id="loginEmail" [(ngModel)]="userLogin.email" name="email"  aria-describedby="emailHelp" placeholder="tuemail@host.com" required>
+              <div id="emailHelp" class="form-text">No compartiremos tu email con nadie.</div>
+            </div>
+            <div class="mb-3">
+              <label for="loginPassword" class="form-label">Contraseña</label>
+              <input type="password" class="form-control" id="loginPassword" [(ngModel)]="userLogin.password" name="password" placeholder="Contraseña" required>
+            </div>
+            <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+              <label class="form-check-label" for="exampleCheck1">Recuerdame</label>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Enviar</button>
+          </form>
+    </div>
+</div>

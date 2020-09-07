@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PatientsComponent } from './patients-list/patients.component';
+import { PatientsListComponent } from './patients-list/patients-list.component';
 import { PatientsFormComponent } from './patients-form/patients-form.component';
 import { TracingComponent } from '@pages/patients/tracing/tracing.component';
 import { TracingFormComponent } from '@pages/patients/tracing-form/tracing-form.component';
@@ -8,7 +8,7 @@ import { TracingFormComponent } from '@pages/patients/tracing-form/tracing-form.
 const routes: Routes = [
   {
     path: '',
-    component: PatientsComponent
+    component: PatientsListComponent
   },
   {
     path: 'view/:id',

@@ -11,7 +11,7 @@ const routes: Routes = [
   },
   {
     path: 'user',
-    loadChildren: () => import('@pages/u-actions/u-actions.module').then(m => m.UActionsModule), data: {name: 'UserActions'},
+    loadChildren: () => import('@pages/user//user.module').then(m => m.UserModule), data: {name: 'UserActions'},
     canActivate: [LoggedGuard]
   },
   {

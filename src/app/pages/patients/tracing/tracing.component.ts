@@ -43,7 +43,7 @@ export class TracingComponent implements OnInit {
           res => {
                     if(res){
                       this.tracings = res;
-                      this.showSpinner();
+                      this.dismissSpinner();
                     }
                 },
           err => console.log(err)
@@ -57,7 +57,7 @@ export class TracingComponent implements OnInit {
     });
   }
   
-  showSpinner(){
+  dismissSpinner(){
       const spinner = document.getElementById("spinnerTracing").classList.add("d-none");
       const textNone = document.getElementById("textTracing").classList.remove("d-none");
       const textBlock = document.getElementById("textTracing").classList.add("d-block");

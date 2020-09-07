@@ -19,7 +19,7 @@ export async function createUser(req: Request, res: Response){
 
         if(userExist){
             return res.status(400)
-            .json({errors: [{msg : "Email already exist"}]});
+            .json({errors: [{msg : "El email ya existe."}]});
         }
 
         user.password = await user.encryptPassword(user.password);
@@ -43,11 +43,11 @@ export async function loginUser(req: Request, res: Response){
 
     const user = await User.findOne({email});
 
-    if(!user) return res.status(401).send("Email doesn't exist");
+    if(!user) return res.status(401).json({errors: [{msg : "El email no existe."}]});
 
     const correctPassword: boolean = await user.validatePassword(req.body.password);
 
-    if(!correctPassword) return res.status(401).send("Invalid Password");
+    if(!correctPassword) return res.status(401).json({errors: [{msg : "La contraseña es incorrecta."}]});
 
     const token = jwt.sign({_id: user._id},process.env.SECRET || 'parangaricutirimicuarosence',{
         expiresIn: 60 * 60 * 24

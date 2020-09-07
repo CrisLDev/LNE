@@ -22,7 +22,7 @@ export async function createTracing(req: Request, res: Response){
 
         const savedTracing = await tracing.save();
 
-        return res.status(200).json({msg: "Tracing successfully saved"});
+        return res.status(200).json({errors: [{msg: "Seguimiento guardado correctamente."}]});
     } catch (err) {
         res.status(400).send(err);
     }
@@ -37,11 +37,11 @@ export async function getTracingsByPatientId(req: Request, res: Response){
         if(tracings){
             return res.status(200).json(tracings);
         }else{
-            return res.status(400).json({msg: "No data registered wuth this patient id."})
+            return res.status(400).json({errors: [{msg: "No hay seguimientos relacionados con este paciente."}]});
         }
 
     } catch (err) {
-        res.status(400).json({msg: "No data founded."});
+        res.status(400).json({msg: "No hay datos para mostrar."});
     }
 }
 
@@ -54,11 +54,11 @@ export async function getTracingById(req: Request, res: Response){
         if(tracing){
             return res.status(200).json(tracing);
         }else{
-            return res.status(400).json({msg: "No data registered wuth this patient id."})
+            return res.status(400).json({errors: [{msg: "No hay seguimientos relacionados con este paciente."}]});
         }
 
     } catch (err) {
-        res.status(400).json({msg: "No data founded."});
+        res.status(400).json({msg: "No hay datos para mostrar."});
     }
 }
 
@@ -87,11 +87,11 @@ export async function editTracingById(req: Request, res: Response){
         if(tracingToEdit){
             return res.status(200).json(tracingUpdated);
         }else{
-            return res.status(400).json({msg: "No data registered wuth this patient id."})
+            return res.status(400).json({errors: [{msg: "No hay seguimientos relacionados con este paciente."}]});
         }
 
     } catch (err) {
-        res.status(400).json({msg: "No data founded."});
+        res.status(400).json({msg: "No hay datos para mostrar."});
     }
 
 }
@@ -101,6 +101,6 @@ export async function deleteTracingById(req: Request, res: Response){
         const deletedTracing = await Tracing.findByIdAndRemove(req.params.tracing_id);
         return res.status(200).json(deletedTracing);
     } catch(err){
-        return res.status(400).json({mgs:"Data was no founded"});
+        return res.status(400).json({msg: "No hay datos para mostrar."});
     }
 }

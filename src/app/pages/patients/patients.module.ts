@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PatientsComponent } from './patients-list/patients.component';
+import { PatientsListComponent } from './patients-list/patients-list.component';
 import { PatientsRoutingModule } from './patients.routing';
 import { PatientsFormComponent } from './patients-form/patients-form.component';
 import {SharedModule} from '@shared/shared.module';
@@ -9,7 +9,7 @@ import { TracingFormComponent } from './tracing-form/tracing-form.component';
 import { MglTimelineModule } from 'angular-mgl-timeline';
 
 @NgModule({
-  declarations: [PatientsComponent, PatientsFormComponent, TracingComponent, TracingFormComponent],
+  declarations: [PatientsListComponent, PatientsFormComponent, TracingComponent, TracingFormComponent],
   imports: [
     CommonModule,
     PatientsRoutingModule,

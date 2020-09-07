@@ -22,12 +22,12 @@ export async function createPatient(req: Request, res: Response){
 
         if(patientExist){
             return res.status(400)
-            .json({errors: [{msg : "Email already exist"}]});
+            .json({errors: [{msg : "El email ya existe."}]});
         }
 
         const savedPatient = await patient.save();
 
-        return res.status(200).json({msg: "Successfully saved"})
+        return res.status(200).json({msg: "Paciente guardado correctamente."})
     }catch(err){
         res.status(400).send(err);
     }
@@ -55,7 +55,7 @@ export async function getPatientById(req: Request, res: Response){
             return res.status(200).json(patient);
         }
     }catch (err){
-        res.status(400).json({msg: "Without Data to Show"})
+        res.status(400).json({msg: "No hay datos para mostrar."})
     }
 }
 
@@ -75,7 +75,7 @@ export async function editPatientById(req: Request, res: Response){
 
         return res.status(200).json(updatedPatient);
     }catch{
-        return res.status(400).json({msg: "No data to show"})
+        return res.status(400).json({msg: "No hay datos para mostrar."})
     }
 }
 
@@ -85,6 +85,6 @@ export async function deletePatientById(req: Request, res: Response){
         const deletedTracings = await Tracing.find({patient_id: req.params.id}).remove();
         return res.status(200).json({deletedPatient, deletedTracings});
     } catch(err){
-        return res.status(400).json({mgs:"Data was no founded"});
+        return res.status(400).json({mgs:"No hay datos para mostrar."});
     }
 }

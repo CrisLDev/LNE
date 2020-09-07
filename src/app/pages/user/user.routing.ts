@@ -1,11 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { UActionsComponent } from './u-actions.component';
+import { UserActionsComponent } from './user-actions/user-actions.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: UActionsComponent
+    component: UserActionsComponent
+  },
+  {
+    path: ':id/profile'
   }
 ]
 
@@ -14,4 +17,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 
-export class UActionsRoutingModule { }
+export class UserRoutingModule { }

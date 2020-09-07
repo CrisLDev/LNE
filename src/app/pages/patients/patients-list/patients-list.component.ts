@@ -5,11 +5,11 @@ import { Patient } from '@shared/classes/Patient';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-patients',
-  templateUrl: './patients.component.html',
-  styleUrls: ['./patients.component.css']
+  selector: 'app-patients-list',
+  templateUrl: './patients-list.component.html',
+  styleUrls: ['./patients-list.component.css']
 })
-export class PatientsComponent implements OnInit {
+export class PatientsListComponent implements OnInit {
 
   patients: Patient[];
 
@@ -18,7 +18,7 @@ export class PatientsComponent implements OnInit {
   ngOnInit(): void {
     this.patientService.getPatients()
       .subscribe(
-        res => {this.patients = res},
+        res => {this.patients = res; this.dismissSpinner(); if(this.patients.length <= 0)this.dismissSpinner()},
         err => console.log(err)
       );
   }
@@ -35,12 +35,16 @@ export class PatientsComponent implements OnInit {
     this.patientService.deletePatient(id)
       .subscribe(
         res => {
-          this.patients.splice(this.patients.findIndex(e => e._id === id), 1);
-          this.toastr.error('Paciente eliminado correctamente.')
+          this.patients.splice(this.patients.findIndex(e => e._id === id), 1); this.toastr.error('Paciente eliminado correctamente.');
         },
         err => console.log(err)
       );
-    
+  }
+
+  dismissSpinner(){
+    const spinner = document.getElementById("spinnerTracing").classList.add("d-none");
+    const textNone = document.getElementById("textTracing").classList.remove("d-none");
+    const textBlock = document.getElementById("textTracing").classList.add("d-block");
   }
 
 }

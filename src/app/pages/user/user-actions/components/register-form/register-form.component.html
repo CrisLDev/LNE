@@ -1,0 +1,33 @@
+<div class="card">
+    <div class="card-body">
+        <h3 class="card-title">Registrate</h3>
+        <form (submit)="signUp()">
+            <div class="mb-3">
+                <label for="registerUsername" class="form-label">Nombre de usuario</label>
+                <input type="text" class="form-control" [(ngModel)]="userRegister.username" name="username" id="registerUsername" aria-describedby="Username" placeholder="Usuario" required>
+              </div>
+            <div class="mb-3">
+              <label for="registerEmail1" class="form-label">Email</label>
+              <input type="email" class="form-control" name="email" [(ngModel)]="userRegister.email" id="registerEmail1" aria-describedby="emailHelp" placeholder="tuemail@host.com" required>
+              <div id="emailHelp" class="form-text">No compartiremos tu email con nadie.</div>
+            </div>
+            <div class="mb-3">
+                <label for="registerEmail2" class="form-label">Repite tu email</label>
+                <input type="email" class="form-control" id="registerEmail2" aria-describedby="emailHelp" placeholder="tuemail@host.com" required>
+              </div>
+            <div class="mb-3">
+              <label for="registerPassword1" class="form-label">Contraseña</label>
+              <input type="password" class="form-control" name="password" [(ngModel)]="userRegister.password" id="registerPassword1" placeholder="Contraseña" required>
+            </div>
+            <div class="mb-3">
+                <label for="registerPassword2" class="form-label">Repite tu contraseña</label>
+                <input type="password" class="form-control" id="registerPassword2" placeholder="Repite tu contraseña" required>
+              </div>
+            <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+              <label class="form-check-label" for="exampleCheck1">Recuerdame</label>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Enviar</button>
+          </form>
+    </div>
+</div>
