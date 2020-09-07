@@ -5,6 +5,10 @@ import User, {IUser} from '../models/User';
 import jwt from 'jsonwebtoken';
 
 export async function createUser(req: Request, res: Response){
+
+    console.log(req.body)
+
+    /*
     const {username, email, password} = req.body;
 
     const user: IUser = new User({
@@ -35,6 +39,7 @@ export async function createUser(req: Request, res: Response){
     } catch (err){
         res.status(400).send(err);
     }
+    */
 
 }
 

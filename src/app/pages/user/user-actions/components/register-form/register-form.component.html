@@ -1,33 +1,99 @@
 <div class="card">
     <div class="card-body">
         <h3 class="card-title">Registrate</h3>
-        <form (submit)="signUp()">
+        <form [formGroup]="registerForm" (ngSubmit)="signUp()" novalidate appIdentityRevealed>
+          <div class="cross-validation" [class.cross-validation-error]="registerForm.errors?.identityRevealed && (registerForm.touched || registerForm.dirty)">
             <div class="mb-3">
                 <label for="registerUsername" class="form-label">Nombre de usuario</label>
-                <input type="text" class="form-control" [(ngModel)]="userRegister.username" name="username" id="registerUsername" aria-describedby="Username" placeholder="Usuario" required>
+                <input type="text" class="form-control" formControlName="username" id="registerUsername" aria-describedby="Username" placeholder="Usuario" minlength="4" maxlength="20" required>
+
+                <div *ngIf="f.username.invalid && (f.username.dirty || f.username.touched)"
+              class="alert alert-danger">
+
+                  <div *ngIf="f.username.errors.required">
+                    Información requerida.
+                  </div>
+                  <div *ngIf="f.username.errors.minlength">
+                    El nombre debe contener más de 4 caracteres.
+                  </div>
+                  <div *ngIf="f.username.errors.maxlength">
+                    El nombre debe contener menos de 4 caracteres.
+                  </div>
+                  <div *ngIf="f.username.pending">Validando...</div>
+
               </div>
+            </div>
             <div class="mb-3">
               <label for="registerEmail1" class="form-label">Email</label>
-              <input type="email" class="form-control" name="email" [(ngModel)]="userRegister.email" id="registerEmail1" aria-describedby="emailHelp" placeholder="tuemail@host.com" required>
+              <input type="email" class="form-control" formControlName="email" id="registerEmail1" aria-describedby="emailHelp" placeholder="tuemail@host.com" minlength="15" maxlength="50" required>
               <div id="emailHelp" class="form-text">No compartiremos tu email con nadie.</div>
+              <div *ngIf="f.email.invalid && (f.email.dirty || f.email.touched)"
+              class="alert alert-danger">
+
+                  <div *ngIf="f.email.errors.required">
+                    Información requerida.
+                  </div>
+                  <div *ngIf="f.email.errors.minlength">
+                    El email debe contener más de 15 caracteres.
+                  </div>
+                  <div *ngIf="f.email.pending">Validando...</div>
+
+              </div>
             </div>
             <div class="mb-3">
                 <label for="registerEmail2" class="form-label">Repite tu email</label>
-                <input type="email" class="form-control" id="registerEmail2" aria-describedby="emailHelp" placeholder="tuemail@host.com" required>
+                <input type="email" class="form-control" id="registerEmail2" aria-describedby="emailHelp" placeholder="tuemail@host.com" minlength="15" maxlength="50" formControlName="email2" required>
+                <div *ngIf="f.email2.invalid && (f.email2.dirty || f.email2.touched)"
+              class="alert alert-danger">
+
+                  <div *ngIf="f.email2.errors.required">
+                    Información requerida.
+                  </div>
+                  <div *ngIf="f.email2.errors.minlength">
+                    El email debe contener más de 8 caracteres.
+                  </div>
+                  <div *ngIf="f.email2.pending">Validando...</div>
+
               </div>
+            </div>
             <div class="mb-3">
               <label for="registerPassword1" class="form-label">Contraseña</label>
-              <input type="password" class="form-control" name="password" [(ngModel)]="userRegister.password" id="registerPassword1" placeholder="Contraseña" required>
+              <input type="password" class="form-control" formControlName="password" id="registerPassword1" placeholder="Contraseña" minlength="6" maxlength="20" required>
+              <div *ngIf="f.password.invalid && (f.password.dirty || f.password.touched)"
+              class="alert alert-danger">
+
+                  <div *ngIf="f.password.errors.required">
+                    Información requerida.
+                  </div>
+                  <div *ngIf="f.password.errors.minlength">
+                    La contraseña debe contener más de 6 caracteres.
+                  </div>
+                  <div *ngIf="f.password.pending">Validando...</div>
+
+              </div>
             </div>
             <div class="mb-3">
                 <label for="registerPassword2" class="form-label">Repite tu contraseña</label>
-                <input type="password" class="form-control" id="registerPassword2" placeholder="Repite tu contraseña" required>
+                <input type="password" class="form-control" id="registerPassword2" formControlName="password2" placeholder="Repite tu contraseña" minlength="6" maxlength="20" required>
+                <div *ngIf="f.password2.invalid && (f.password2.dirty || f.password2.touched)"
+              class="alert alert-danger">
+
+                  <div *ngIf="f.password2.errors.required">
+                    Información requerida.
+                  </div>
+                  <div *ngIf="f.password2.errors.minlength">
+                    La contraseña debe contener más de 6 caracteres.
+                  </div>
+                  <div *ngIf="f.password2.pending">Validando...</div>
+
               </div>
+            </div>
             <div class="mb-3 form-check">
               <input type="checkbox" class="form-check-input" id="exampleCheck1">
               <label class="form-check-label" for="exampleCheck1">Recuerdame</label>
             </div>
-            <button type="submit" class="btn btn-primary btn-block">Enviar</button>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block" id="registerButton" [disabled]="registerForm.invalid">Enviar</button>
           </form>
     </div>
 </div>
