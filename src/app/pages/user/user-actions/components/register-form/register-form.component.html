@@ -36,6 +36,9 @@
                   <div *ngIf="f.email.errors.minlength">
                     El email debe contener más de 15 caracteres.
                   </div>
+                  <div *ngIf="f.email.errors.email">
+                    El email debe contener una estructura común.
+                  </div>
                   <div *ngIf="f.email.pending">Validando...</div>
 
               </div>
@@ -51,6 +54,9 @@
                   </div>
                   <div *ngIf="f.email2.errors.minlength">
                     El email debe contener más de 8 caracteres.
+                  </div>
+                  <div *ngIf="f.email2.errors.email">
+                    El email debe contener una estructura común.
                   </div>
                   <div *ngIf="f.email2.pending">Validando...</div>
 
@@ -73,9 +79,9 @@
               </div>
             </div>
             <div class="mb-3">
-                <label for="registerPassword2" class="form-label">Repite tu contraseña</label>
-                <input type="password" class="form-control" id="registerPassword2" formControlName="password2" placeholder="Repite tu contraseña" minlength="6" maxlength="20" required>
-                <div *ngIf="f.password2.invalid && (f.password2.dirty || f.password2.touched)"
+              <label for="registerPassword2" class="form-label">Contraseña</label>
+              <input type="password" class="form-control" formControlName="password2" id="registerPassword2" placeholder="Contraseña" minlength="6" maxlength="20" required>
+              <div *ngIf="f.password2.invalid && (f.password2.dirty || f.password2.touched)"
               class="alert alert-danger">
 
                   <div *ngIf="f.password2.errors.required">

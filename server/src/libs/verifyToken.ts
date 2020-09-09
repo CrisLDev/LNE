@@ -10,7 +10,7 @@ interface IPayload {
 
 export const TokenValidation =  (req: Request,res: Response, next: NextFunction) => {
 
-    const token = req.header('authorization');
+    const token = req.header('authorization')?.split(' ')[1];
 
     if(!token) return res.status(401).json('Acces denied');
 

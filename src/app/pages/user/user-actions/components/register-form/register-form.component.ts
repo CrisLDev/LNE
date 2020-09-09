@@ -11,8 +11,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class RegisterFormComponent implements OnInit {
 
-  userRegister = {username: '', email: '', email2: '', password: '', password2: ''};
-
   registerForm: FormGroup;
 
   constructor(private authService: AuthService,
@@ -26,11 +24,11 @@ export class RegisterFormComponent implements OnInit {
 
   private createForm(){
     this.registerForm = this.fb.group({
-      username: ['', Validators.required],
-      email: ['', Validators.compose([Validators.email, Validators.required])],
-      email2: [''],
-      password: [''],
-      password2: [''],
+      username: ['', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(20)])],
+      email: ['', Validators.compose([Validators.email, Validators.required, Validators.minLength(4), Validators.maxLength(50)])],
+      email2: ['', Validators.compose([Validators.email, Validators.required, Validators.minLength(4), Validators.maxLength(50)])],
+      password: ['', Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(20)])],
+      password2: ['', Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(20)])],
     })
   }
 
@@ -45,7 +43,10 @@ export class RegisterFormComponent implements OnInit {
         this.router.navigate(['/home']);
         this.toastr.success('Te has registrado correctamente.');
         },
-        err => {this.toastr.error(err.error.errors[0].msg)}
+        err => {
+                this.toastr.error(err.error.errors[0].msg);
+                this.retriveErrorsSoEnableButton()
+                }
       )
   }
 
@@ -53,6 +54,12 @@ export class RegisterFormComponent implements OnInit {
     const disableButton = document.getElementById("registerButton").setAttribute("disabled", "true");
     const disableButton2 = document.getElementById("loginButton").setAttribute("disabled", "true");
     const changeButttonText = document.getElementById("registerButton").innerHTML = 'Enviando';
+  }
+
+  retriveErrorsSoEnableButton(){
+    const disableButton = document.getElementById("registerButton").removeAttribute("disabled");
+    const disableButton2 = document.getElementById("loginButton").removeAttribute("disabled");
+    const changeButttonText = document.getElementById("registerButton").innerHTML = 'Enviar';
   }
 
 }

@@ -3,7 +3,6 @@ import morgan from 'morgan';
 import indexRoutes from './routes/index';
 import path from 'path';
 import cors from 'cors';
-
 const app = express();
 
 // Setting

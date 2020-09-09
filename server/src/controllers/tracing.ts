@@ -69,9 +69,11 @@ export async function editTracingById(req: Request, res: Response){
         // Save tracing
         let tracingExist = await Tracing.findOne({name: req.body.name});
 
-        if(tracingExist?._id != req.params.tracing_id){
-            return res.status(400)
-            .json({errors: [{msg: "El nombre del seguimiento ya existe."}]});
+        if(tracingExist){
+            if(tracingExist?._id != req.params.tracing_id){
+                return res.status(400)
+                .json({errors: [{msg: "El nombre del seguimiento ya existe."}]});
+            }
         }
 
         const {name, content, patient_id} = req.body;

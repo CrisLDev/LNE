@@ -30,6 +30,10 @@ export class AuthService {
     return localStorage.getItem('token');
   }
 
+  getProfile(){
+    return this.http.get<any>(this.URL + '/profile');
+  }
+
   logout(){
     localStorage.removeItem('token');
     this.router.navigate(['/user']);

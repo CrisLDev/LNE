@@ -4,12 +4,16 @@ import User, {IUser} from '../models/User';
 
 import jwt from 'jsonwebtoken';
 
+import {validationResult} from 'express-validator';
+
 export async function createUser(req: Request, res: Response){
 
-    console.log(req.body)
+    const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({errors: [{msg : "Los datos contienen una estructura incorrecta."}]});
+        }
 
-    /*
-    const {username, email, password} = req.body;
+    const {username, email, email2, password, password2} = req.body;
 
     const user: IUser = new User({
         username,
@@ -18,6 +22,11 @@ export async function createUser(req: Request, res: Response){
     });
 
     try{
+
+        if(req.body.email != req.body.email2 || req.body.password != req.body.password2){
+            return res.status(400).json({errors: [{msg: "Los emails o las contraseñas no coinciden."}]})
+        }
+
         // Save User
         let userExist = await User.findOne({email});
 
@@ -39,7 +48,6 @@ export async function createUser(req: Request, res: Response){
     } catch (err){
         res.status(400).send(err);
     }
-    */
 
 }
 
@@ -90,7 +98,5 @@ export async function getProfile(req:Request, res: Response){
     
     if(!user) return res.status(401).send("User not found");
 
-    return res.json({user,
-        message: 'hola'
-    })
+    return res.status(200).json(user);
 }
