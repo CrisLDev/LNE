@@ -15,6 +15,11 @@ const schema = new Schema({
     password: {
         type: String,
         required: true
+    },
+    role: {
+        type: String,
+        required: true,
+        default: 'user'
     }
 },{
     timestamps: true
@@ -24,6 +29,7 @@ export interface IUser extends Document{
     username: string;
     email: string;
     password: string;
+    role: string,
     encryptPassword(password: string): Promise<string>;
     validatePassword(password: string): Promise<boolean>;
 }

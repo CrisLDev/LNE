@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {AuthGuard} from '@core/guards/auth.guard';
+import { RoleGuard } from '@core/guards/role.guard';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -15,7 +16,7 @@ const routes: Routes = [
   {
     path: 'patients',
     loadChildren: () => import('@pages/patients/patients.module').then(m => m.PatientsModule), data: {name: 'Patients'},
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard, RoleGuard]
   }
 ];
 
