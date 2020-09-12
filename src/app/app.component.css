@@ -1,0 +1,4 @@
+.ngx-bar-color{
+    background: rgb(34,193,195);
+    background: radial-gradient(circle, rgba(34,193,195,1) 0%, rgba(253,45,248,1) 100%);
+}

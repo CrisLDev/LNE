@@ -66,30 +66,13 @@ export async function loginUser(req: Request, res: Response){
         expiresIn: 60 * 60 * 24
     });
 
-    return res.status(200).header('authorization', token).json({auth: true, token});
+    return res.status(200).header('authorization', token).json({auth: true, token, user});
 }
 
 export async function getUsers(req: Request, res: Response){
-    res.json([
-        {
-            _id: 1,
-            name: 'task one',
-            description: 'lorem ipsun',
-            date: "202020"
-        },
-        {
-            _id: 2,
-            name: 'task two',
-            description: 'lorem ipsun',
-            date: "202020"
-        },
-        {
-            _id: 3,
-            name: 'task three',
-            description: 'lorem ipsun',
-            date: "202020"
-        }
-    ])
+    const users = await User.find();
+
+    return res.status(200).json({users});
 }
 
 export async function getProfile(req:Request, res: Response){
@@ -98,5 +81,5 @@ export async function getProfile(req:Request, res: Response){
     
     if(!user) return res.status(401).send("User not found");
 
-    return res.status(200).json(user);
+    return res.status(200).json({user});
 }

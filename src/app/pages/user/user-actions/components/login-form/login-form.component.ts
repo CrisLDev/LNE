@@ -17,15 +17,14 @@ export class LoginFormComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit(): void {
-
   }
 
   signIn(){
     this.authService.signIn(this.userLogin)
       .subscribe(
         res => {
-          console.log(res)
           localStorage.setItem('token', res.token);
+          this.authService.userLogged.role = res.user.role;
           this.router.navigate(['/home']).then(() => {
             this.toastr.success('Te has logeado correctamente.')
           });

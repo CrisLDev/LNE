@@ -10,6 +10,8 @@ export class AuthService {
 
   private URL = 'http://localhost:4000/api';
 
+  userLogged = {role:''};
+
   constructor(private http: HttpClient,
               private router: Router,
               private toastr: ToastrService) { }
