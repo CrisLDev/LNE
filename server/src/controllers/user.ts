@@ -41,7 +41,13 @@ export async function createUser(req: Request, res: Response){
 
         // Generatig Token
 
-        const token: string = jwt.sign({_id: user._id}, process.env.SECRET || 'parangaricutirimicuarosence');
+        if(req.body.rememberme){
+            var token: string = jwt.sign({_id: user._id}, process.env.SECRET || 'parangaricutirimicuarosence');
+        }else{
+            var token = jwt.sign({_id: user._id},process.env.SECRET || 'parangaricutirimicuarosence',{
+                expiresIn: 60 * 60 * 24
+            });
+        }
 
         return res.status(200).header('authorization', token).json({auth: true, token});
 
@@ -52,6 +58,12 @@ export async function createUser(req: Request, res: Response){
 }
 
 export async function loginUser(req: Request, res: Response){
+
+    const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({errors: [{msg : "Los datos contienen una estructura incorrecta."}]});
+    }
+
     const {email, password} = req.body;
 
     const user = await User.findOne({email});
@@ -62,9 +74,13 @@ export async function loginUser(req: Request, res: Response){
 
     if(!correctPassword) return res.status(401).json({errors: [{msg : "La contraseña es incorrecta."}]});
 
-    const token = jwt.sign({_id: user._id},process.env.SECRET || 'parangaricutirimicuarosence',{
-        expiresIn: 60 * 60 * 24
-    });
+    if(req.body.rememberme){
+        var token = jwt.sign({_id: user._id},process.env.SECRET || 'parangaricutirimicuarosence');
+    }else{
+        var token = jwt.sign({_id: user._id},process.env.SECRET || 'parangaricutirimicuarosence',{
+            expiresIn: 60 * 60 * 24
+        });
+    }
 
     return res.status(200).header('authorization', token).json({auth: true, token, user});
 }

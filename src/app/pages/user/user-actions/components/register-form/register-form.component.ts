@@ -29,12 +29,13 @@ export class RegisterFormComponent implements OnInit {
       email2: ['', Validators.compose([Validators.email, Validators.required, Validators.minLength(4), Validators.maxLength(50)])],
       password: ['', Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(20)])],
       password2: ['', Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(20)])],
+      rememberme: []
     })
   }
 
   get f() { return this.registerForm.controls; }
 
-  signUp(){
+  submit(){
     this.onButtonClicked();
     this.authService.signUp(this.registerForm.value)
       .subscribe(

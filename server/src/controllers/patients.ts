@@ -70,6 +70,12 @@ export async function getPatientById(req: Request, res: Response){
 }
 
 export async function editPatientById(req: Request, res: Response){
+
+    const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({errors: [{msg : "Los datos contienen una estructura incorrecta."}]});
+        }
+
     try{
         const {name, age, email, imgUrl, phoneNumber, entryDate} = req.body;
         const editPatient = {

@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-body">
         <h3 class="card-title">Registrate</h3>
-        <form [formGroup]="registerForm" (ngSubmit)="signUp()" novalidate appIdentityRevealed>
+        <form [formGroup]="registerForm" (ngSubmit)="submit()" novalidate appIdentityRevealed>
           <div class="cross-validation" [class.cross-validation-error]="registerForm.errors?.identityRevealed && (registerForm.touched || registerForm.dirty)">
             <div class="mb-3">
                 <label for="registerUsername" class="form-label">Nombre de usuario</label>
@@ -25,7 +25,7 @@
             </div>
             <div class="mb-3">
               <label for="registerEmail1" class="form-label">Email</label>
-              <input type="email" class="form-control" formControlName="email" id="registerEmail1" aria-describedby="emailHelp" placeholder="tuemail@host.com" minlength="15" maxlength="50" required>
+              <input type="email" class="form-control" formControlName="email" id="registerEmail1" aria-describedby="emailHelp" placeholder="tuemail@host.com" minlength="15" maxlength="50" autocomplete="username" required>
               <div id="emailHelp" class="form-text">No compartiremos tu email con nadie.</div>
               <div *ngIf="f.email.invalid && (f.email.dirty || f.email.touched)"
               class="alert alert-danger">
@@ -64,7 +64,7 @@
             </div>
             <div class="mb-3">
               <label for="registerPassword1" class="form-label">Contraseña</label>
-              <input type="password" class="form-control" formControlName="password" id="registerPassword1" placeholder="Contraseña" minlength="6" maxlength="20" required>
+              <input type="password" class="form-control" formControlName="password" id="registerPassword1" placeholder="Contraseña" minlength="6" maxlength="20" autocomplete="new-password" required>
               <div *ngIf="f.password.invalid && (f.password.dirty || f.password.touched)"
               class="alert alert-danger">
 
@@ -80,7 +80,7 @@
             </div>
             <div class="mb-3">
               <label for="registerPassword2" class="form-label">Contraseña</label>
-              <input type="password" class="form-control" formControlName="password2" id="registerPassword2" placeholder="Contraseña" minlength="6" maxlength="20" required>
+              <input type="password" class="form-control" formControlName="password2" id="registerPassword2" placeholder="Contraseña" minlength="6" maxlength="20" autocomplete="new-password" required>
               <div *ngIf="f.password2.invalid && (f.password2.dirty || f.password2.touched)"
               class="alert alert-danger">
 
@@ -95,8 +95,8 @@
               </div>
             </div>
             <div class="mb-3 form-check">
-              <input type="checkbox" class="form-check-input" id="exampleCheck1">
-              <label class="form-check-label" for="exampleCheck1">Recuerdame</label>
+              <input type="checkbox" class="form-check-input" formControlName="rememberme" id="registerCheck">
+              <label class="form-check-label" for="registerCheck">Recuerdame</label>
             </div>
             </div>
             <button type="submit" class="btn btn-primary btn-block" id="registerButton" [disabled]="registerForm.invalid">Enviar</button>

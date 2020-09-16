@@ -1,19 +1,38 @@
 <div class="card">
     <div class="card-body">
         <h3 class="card-title">Logeate</h3>
-        <form (submit)="signIn()">
+        <form [formGroup]="loginForm" (ngSubmit)="submit()" novalidate>
             <div class="mb-3">
               <label for="loginEmail" class="form-label">Email</label>
-              <input type="email" class="form-control" id="loginEmail" [(ngModel)]="userLogin.email" name="email"  aria-describedby="emailHelp" placeholder="tuemail@host.com" required>
+              <input type="email" class="form-control" id="loginEmail" formControlName="email"  aria-describedby="emailHelp" placeholder="tuemail@host.com" autocomplete="country-name" required>
+              <div *ngIf="f.email.invalid && (f.email.dirty || f.email.touched)"
+              class="alert alert-danger">
+
+                  <div *ngIf="f.email.errors.required">
+                    Información requerida.
+                  </div>
+                  <div *ngIf="f.email.errors.email">
+                    El email debe contener una estructura común.
+                  </div>
+
+              </div>
               <div id="emailHelp" class="form-text">No compartiremos tu email con nadie.</div>
             </div>
             <div class="mb-3">
               <label for="loginPassword" class="form-label">Contraseña</label>
-              <input type="password" class="form-control" id="loginPassword" [(ngModel)]="userLogin.password" name="password" placeholder="Contraseña" required>
+              <input type="password" class="form-control" id="loginPassword" formControlName="password" placeholder="Contraseña" autocomplete="current-password" required>
+              <div *ngIf="f.password.invalid && (f.password.dirty || f.password.touched)"
+              class="alert alert-danger">
+
+                  <div *ngIf="f.password.errors.required">
+                    Información requerida.
+                  </div>
+
+              </div>
             </div>
             <div class="mb-3 form-check">
-              <input type="checkbox" class="form-check-input" id="exampleCheck1">
-              <label class="form-check-label" for="exampleCheck1">Recuerdame</label>
+              <input type="checkbox" class="form-check-input" formControlName="rememberme" id="loginCheck">
+              <label class="form-check-label" for="loginCheck">Recuerdame</label>
             </div>
             <button type="submit" class="btn btn-primary btn-block" id="loginButton">Enviar</button>
           </form>

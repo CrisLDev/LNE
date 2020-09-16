@@ -16,7 +16,9 @@ router.route('/signup')
     check('password2').not().isEmpty().isLength({min:6, max: 20})], createUser);
 
 router.route('/signin')
-    .post(loginUser);
+    .post([ 
+        check('email').not().isEmpty().isEmail().isLength({min: 8, max: 50}).matches(/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i),
+        check('password').not().isEmpty().isLength({min:6, max: 20})],loginUser);
 
 router.route('/users')
     .get(getUsers);
@@ -40,7 +42,7 @@ router.route('/patient/:id')
         check('name').isLength({min:4, max: 40}).not().isEmpty().withMessage('El campo no puede estar vacio'),
         check('age').isLength({min:1, max: 2}).not().isEmpty().withMessage('El campo no puede estar vacio'),
         check('imgUrl').isLength({min:10}).not().isEmpty().withMessage('El campo no puede estar vacio'),
-        check('phoneNumber').isLength({min:10, max: 10}).not().isEmpty().withMessage('El campo no puede estar vacio'),
+        check('phoneNumber').isLength({min:9, max: 10}).not().isEmpty().withMessage('El campo no puede estar vacio'),
         check('email').not().isEmpty().isEmail().isLength({min: 8, max: 50}).matches(/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i)],editPatientById)
     .delete(deletePatientById);
 

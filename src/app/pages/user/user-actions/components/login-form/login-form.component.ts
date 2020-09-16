@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@core/services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login-form',
@@ -12,15 +13,31 @@ export class LoginFormComponent implements OnInit {
 
   userLogin = {email: '', password: ''};
 
+  loginForm: FormGroup;
+
   constructor(private authService: AuthService,
               private toastr: ToastrService,
-              private router: Router) { }
+              private router: Router,
+              private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this.createForm();
   }
 
-  signIn(){
-    this.authService.signIn(this.userLogin)
+  get f() { return this.loginForm.controls; }
+
+  private createForm(){
+    this.loginForm = this.fb.group({
+      email: ['', Validators.compose([Validators.email, Validators.required])],
+      password: ['', Validators.compose([Validators.required])],
+      rememberme: []
+    })
+  }
+
+
+  submit(){
+    document.getElementById("loginButton").setAttribute("disabled", "true");
+      this.authService.signIn(this.loginForm.value)
       .subscribe(
         res => {
           localStorage.setItem('token', res.token);
@@ -29,7 +46,8 @@ export class LoginFormComponent implements OnInit {
             this.toastr.success('Te has logeado correctamente.')
           });
         },
-        err => {this.toastr.error(err.error.errors[0].msg)}
+        err => {this.toastr.error(err.error.errors[0].msg);
+          document.getElementById("loginButton").removeAttribute("disabled");}
       )
   }
 
