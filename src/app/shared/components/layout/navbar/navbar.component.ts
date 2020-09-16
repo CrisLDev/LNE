@@ -11,10 +11,12 @@ export class NavbarComponent implements OnInit {
   constructor(public authService: AuthService) { }
 
   ngOnInit(): void {
-    if(this.authService.userLogged.role === ''){
-      this.authService.getProfile().subscribe(
-        res => {this.authService.userLogged.role = res.user.role;}
-      )
+    if(this.authService.loggedIn()){
+      if(this.authService.userLogged.role === ''){
+        this.authService.getProfile().subscribe(
+          res => {this.authService.userLogged.role = res.user.role;}
+        )
+      }
     }
   }
 

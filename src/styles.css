@@ -4,6 +4,13 @@
     border-radius: 5px;
 }
 
+.alert{
+    padding: 1px;
+    padding-left: 5px;
+    margin-top: 5px;
+    margin-bottom: 3px;
+}
+
 .h-10{
     height: 60px;
     max-height: 60px;

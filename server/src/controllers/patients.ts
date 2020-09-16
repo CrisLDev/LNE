@@ -4,7 +4,17 @@ import Patient, {IPatient} from '../models/Patient';
 
 import Tracing from '../models/Tracing';
 
+import {validationResult} from 'express-validator';
+
 export async function createPatient(req: Request, res: Response){
+
+    console.log(req.body);
+
+    const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({errors: [{msg : "Los datos contienen una estructura incorrecta."}]});
+        }
+
     const {name, age, imgUrl, email, phoneNumber, entryDate} = req.body;
 
     const patient: IPatient = new Patient({

@@ -2,7 +2,15 @@ import {Request, Response} from 'express';
 
 import Tracing, {ITracing} from '../models/Tracing';
 
+import {validationResult} from 'express-validator';
+
 export async function createTracing(req: Request, res: Response){
+
+    const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({errors: [{msg : "Los datos contienen una estructura incorrecta."}]});
+        }
+
     const {name, content, patient_id} = req.body;
 
     const tracing: ITracing = new Tracing({
@@ -63,6 +71,11 @@ export async function getTracingById(req: Request, res: Response){
 }
 
 export async function editTracingById(req: Request, res: Response){
+
+    const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({errors: [{msg : "Los datos contienen una estructura incorrecta."}]});
+        }
 
     try {
 

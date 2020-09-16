@@ -11,3 +11,7 @@
 .actions{
     padding-top: 70px;
 }
+
+.img-patient-max{
+    max-height: 192px;
+}

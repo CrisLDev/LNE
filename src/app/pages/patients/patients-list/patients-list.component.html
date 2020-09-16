@@ -9,7 +9,9 @@
                             <div class="text-nowrap text-truncate mb-2" [title]="patient.name">
                                 <span>{{patient.name}}</span>
                             </div>
-                            <img src="{{patient.imgUrl}}" class="card-img-top w-75" alt="Imagen de paciente">
+                            <div class="overflow-hidden img-patient-max">
+                                <img src="{{patient.imgUrl}}" class="card-img-top w-75" alt="Imagen de paciente">
+                            </div>
                             <div class="p-2 mt-2 mb-2 d-flex justify-content-between">
                                 <button class="btn btn-light shadow-sm" id="normalButton" (click)="selectedPatient(patient._id)" [title]="'Más información'">
                                     <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-patch-plus-fll" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

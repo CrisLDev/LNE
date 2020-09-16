@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TracingsService } from '@core/services/tracings.service';
 import { ToastrService } from 'ngx-toastr';
@@ -16,47 +17,71 @@ export class TracingFormComponent implements OnInit {
 
   tracing = {name: '', content: '', patient_id: ''};
 
+  tracingForm: FormGroup;
+
   constructor(private activatedRoute: ActivatedRoute,
               private tracingsService: TracingsService,
               private router: Router,
-              private toastr: ToastrService) { }
+              private toastr: ToastrService,
+              private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => 
       this.tracing_id = params['tracing_id']);
     if(this.tracing_id){
+      document.getElementById("formTracing").classList.add("d-none");
+      document.getElementById("spinnerTracing").classList.remove("d-none");
         this.tracingsService.getTracingById(this.tracing_id)
         .subscribe(
-          res => {this.tracing = res},
+          res => {this.tracing = res;
+                  document.getElementById("formTracing").classList.remove("d-none");
+                  document.getElementById("spinnerTracing").classList.add("d-none"); this.createForm();},
           err => console.log(err)
         );
     }
     this.activatedRoute.params.subscribe(params => this.id = params['id']);
+    this.createForm();
   }
 
-  tracingForm(){
+  get f() { return this.tracingForm.controls; }
+
+  private createForm(){
+    this.tracingForm = this.fb.group({
+      name: [this.tracing.name || '', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(20)])],
+      content: [this.tracing.content||'', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(50)])],
+      patient_id: [this.tracing.patient_id || '']
+    })
+  }
+
+  submit(){
+    document.getElementById("tracingButton").setAttribute("disabled", "true");
+    document.getElementById("tracingButton").innerHTML = 'Enviando';
     if(this.tracing_id){
       this.tracing.patient_id = this.id;
-      this.tracingsService.editTracingById(this.tracing_id, this.tracing)
+      this.tracingsService.editTracingById(this.tracing_id, this.tracingForm.value)
         .subscribe(
           res => {this.router.navigate(['/patients/view/' + this.id]).then(() => {
             this.toastr.success('Seguimiento editado correctamente.');
           })},
-          err => {if(err){
-            this.toastr.error(err.error.errors[0].msg)
-          }}
+          err => {
+            this.toastr.error(err.error.errors[0].msg);
+            document.getElementById("tracingButton").removeAttribute("disabled");
+            document.getElementById("tracingButton").innerHTML = 'Guardar';
+          }
         );
     }else{
-      this.tracing.patient_id = this.id;
-      this.tracingsService.createTracing(this.tracing)
+      this.tracingForm.value.patient_id = this.id;
+      this.tracingsService.createTracing(this.tracingForm.value)
         .subscribe(
           res => {this.router.navigate(['/patients/view/' + this.id], ).then(() => {
             this.toastr.success('Seguimiento agregado correctamente.');
           })
           },
-          err => {if(err){
+          err => {
             this.toastr.error(err.error.errors[0].msg)
-          }}
+            document.getElementById("tracingButton").removeAttribute("disabled");
+            document.getElementById("tracingButton").innerHTML = 'Guardar';
+          }
         );
     }
   }

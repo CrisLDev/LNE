@@ -1,26 +1,98 @@
 <div class="row mt-3 mb-4 justify-content-center">
     <div class="col-xl-5" style="margin-top: 70px;">
-        <form (submit)="patientForm()">
+        <div class="text-center" style="margin-top: 70px;" id="spinnerPatient">
+            <div
+              class="spinner-border"
+              style="width: 3rem; height: 3rem;"
+              role="status"
+            >
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
+        <form [formGroup]="patientForm" (submit)="submit()" id="formPatient" novalidate>
             <div class="mb-3">
                 <label for="namePatient" class="form-label">Nombre</label>
-                <input type="text" class="form-control" id="namePatient" [(ngModel)]="patient.name" name="name">
+                <input type="text" class="form-control" id="namePatient" placeholder="Ingresa un nombre" formControlName="name" minlength="4" required>
+                <div *ngIf="f.name.invalid && (f.name.dirty || f.name.touched)"
+              class="alert alert-danger">
+
+                  <div *ngIf="f.name.errors.required">
+                    Información requerida.
+                  </div>
+                  <div *ngIf="f.name.errors.minlength">
+                    El nombre debe contener más de 6 caracteres.
+                  </div>
+                  <div *ngIf="f.name.pending">Validando...</div>
+
+              </div>
             </div>
             <div class="mb-3">
                 <label for="imgUrlPatient" class="form-label">Dirección Url de la Imagen</label>
-                <input type="text" class="form-control" id="imgUrlPatient" [(ngModel)]="patient.imgUrl" name="imgUrl">
+                <input type="text" class="form-control" id="imgUrlPatient" formControlName="imgUrl" placeholder="Ingresa una Url para la imagen" minlength="10" required>
+                <div *ngIf="f.imgUrl.invalid && (f.imgUrl.dirty || f.imgUrl.touched)"
+              class="alert alert-danger">
+
+                  <div *ngIf="f.imgUrl.errors.required">
+                    Información requerida.
+                  </div>
+                  <div *ngIf="f.imgUrl.errors.minlength">
+                    La url de la imagen debe contener más de 6 caracteres.
+                  </div>
+                  <div *ngIf="f.imgUrl.pending">Validando...</div>
+
+              </div>
             </div>
             <div class="mb-3">
               <label for="emailPatient" class="form-label">Email</label>
-              <input type="email" class="form-control" id="emailPatient" [(ngModel)]="patient.email" name="email"  aria-describedby="emailHelp">
+              <input type="email" class="form-control" id="emailPatient" formControlName="email" placeholder="Ingresa un email" minlength="10" aria-describedby="emailHelp" required>
+              <div *ngIf="f.email.invalid && (f.email.dirty || f.email.touched)"
+              class="alert alert-danger">
+
+                  <div *ngIf="f.email.errors.required">
+                    Información requerida.
+                  </div>
+                  <div *ngIf="f.email.errors.minlength">
+                    El email debe contener más de 6 caracteres.
+                  </div>
+                  <div *ngIf="f.email.errors.email">
+                    El email debe contener una estructura común.
+                  </div>
+                  <div *ngIf="f.email.pending">Validando...</div>
+
+              </div>
               <div id="emailHelp" class="form-text">No compartiremos tu email con nadie.</div>
             </div>
             <div class="mb-3">
                 <label for="agePatient" class="form-label">Edad</label>
-                <input type="number" class="form-control" id="agePatient" [(ngModel)]="patient.age" name="age">
+                <input type="number" class="form-control" id="agePatient" formControlName="age" placeholder="Ingresa una edad" minlength="1" required>
+                <div *ngIf="f.age.invalid && (f.age.dirty || f.age.touched)"
+              class="alert alert-danger">
+
+                  <div *ngIf="f.age.errors.required">
+                    Información requerida.
+                  </div>
+                  <div *ngIf="f.age.errors.minlength">
+                    La edad no debe contener más de 2 caracteres.
+                  </div>
+                  <div *ngIf="f.age.pending">Validando...</div>
+
+              </div>
             </div>
             <div class="mb-3">
                 <label for="numberPatient" class="form-label">Número de teléfono</label>
-                <input type="number" class="form-control" id="numberPatient" [(ngModel)]="patient.phoneNumber" name="phoneNumber">
+                <input type="number" class="form-control" id="numberPatient" formControlName="phoneNumber" placeholder="Ingresa un número de teléfono" minlength="10" required>
+                <div *ngIf="f.phoneNumber.invalid && (f.phoneNumber.dirty || f.phoneNumber.touched)"
+              class="alert alert-danger">
+
+                  <div *ngIf="f.phoneNumber.errors.required">
+                    Información requerida.
+                  </div>
+                  <div *ngIf="f.phoneNumber.errors.minlength">
+                    El número de telefono debe contener más de 6 caracteres.
+                  </div>
+                  <div *ngIf="f.phoneNumber.pending">Validando...</div>
+
+              </div>
             </div>
             <div class="mb-3">
                 <label for="entryDatePatient" class="form-label">Fecha de Ingreso
@@ -28,9 +100,18 @@
                         {{patient.entryDate | date}}
                     </span></label>
                 </label><br>
-                <input type="datetime-local" class="form-control" id="entryDatePatient" [(ngModel)]="patient.entryDate" name="entryDate">
+                <input type="datetime-local" class="form-control" id="entryDatePatient" formControlName="entryDate" required>
+                <div *ngIf="f.entryDate.invalid && (f.entryDate.dirty || f.entryDate.touched)"
+              class="alert alert-danger">
+
+                  <div *ngIf="f.entryDate.errors.required">
+                    Información requerida.
+                  </div>
+                  <div *ngIf="f.entryDate.pending">Validando...</div>
+
+              </div>
             </div>
-            <button type="submit" class="btn btn-primary btn-block">Guardar</button>
+            <button type="submit" class="btn btn-primary btn-block" id="patientButton" [disabled]="patientForm.invalid">Guardar</button>
         </form>
     </div>
 </div>
