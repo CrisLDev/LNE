@@ -1,0 +1,21 @@
+<nav class="ml-auto navbar fixed-bottom navbar-dark bg-lne n-w pt-1 pb-0" id="navTask">
+    <div class="container-fluid border-bottom shadow pb-2 d-flex align-items-center">
+      <a class="navbar-brand">Agregar Tarea</a>
+      <a id="showTaskButton" (click)="showTask()" class="text-white" style="max-height: 16px;"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chevron-double-up" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M7.646 2.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 3.707 2.354 9.354a.5.5 0 1 1-.708-.708l6-6z"/>
+        <path fill-rule="evenodd" d="M7.646 6.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 7.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z"/>
+      </svg></a>
+    </div>
+    <div class="container bg-light">
+        <form class="mt-2 w-100">
+            <div class="mb-3">
+                <label for="taskName" class="form-label">Nombre de la tarea</label>
+                <input type="email" class="form-control" id="taskName" placeholder="tuemail@host.com">
+            </div>
+            <div class="mb-3">
+                <label for="timeDateTime" class="form-label">Fecha y hora</label>
+                <input type="datetime" class="form-control" id="timeDateTime">
+            </div>
+        </form>
+    </div>
+</nav>

@@ -1,0 +1,33 @@
+nav{
+    bottom: -180px;
+    -webkit-transition: bottom 0.50s;
+}
+
+.n-w{
+    max-width: 400px;
+}
+
+.border-bottom{
+    border-bottom: 1px solid gray!important;
+}
+
+@media (max-width: 503.98px) { 
+    .n-w{
+        max-width: 100%;
+    }
+}
+
+.show-task{
+    bottom: 0!important;
+    -webkit-transition: bottom 0.50s;
+}
+
+.turning{
+    margin-top: 15px;
+    transform: rotate(180deg);
+    -webkit-transition: transform 0.50s;
+}
+
+.bg-lne{
+    background-color: #17a2b8;
+}

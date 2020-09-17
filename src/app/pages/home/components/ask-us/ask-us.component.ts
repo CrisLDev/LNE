@@ -36,7 +36,9 @@ export class AskUsComponent implements OnInit {
     this.askUsService.createQuestion(this.askUsForm.value).subscribe(
       res => {this.toastr.success('Pregunta enviada correctamente.');
               document.getElementById("askUsButton").removeAttribute("disabled");
-              document.getElementById("askUsButton").innerHTML = "Enviar";},
+              document.getElementById("askUsButton").innerHTML = "Enviar";
+              this.askUsForm.reset();
+              this.askUsForm.markAsUntouched()},
       err => {this.toastr.error(err.error.errors[0].msg);
               document.getElementById("askUsButton").removeAttribute("disabled");
               document.getElementById("askUsButton").innerHTML = "Enviar";}
