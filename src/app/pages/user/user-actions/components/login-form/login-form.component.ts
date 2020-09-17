@@ -42,6 +42,7 @@ export class LoginFormComponent implements OnInit {
         res => {
           localStorage.setItem('token', res.token);
           this.authService.userLogged.role = res.user.role;
+          this.authService.userLogged.id = res.user._id;
           this.router.navigate(['/home']).then(() => {
             this.toastr.success('Te has logeado correctamente.')
           });

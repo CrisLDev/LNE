@@ -11,10 +11,7 @@ export async function createNewletter(req: Request, res: Response) {
     try {
         const emailExist = await Newletter.findOne({email});
 
-        if(emailExist){
-            return res.status(401).json({msg: "El email ya existe."})
-
-        }
+        if(emailExist) return res.status(401).json({errors: [{msg : "El email ya existe."}]});
 
         const newletter: INewletter = new Newletter({
             email

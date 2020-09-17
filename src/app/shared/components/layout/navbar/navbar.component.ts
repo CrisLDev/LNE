@@ -16,7 +16,8 @@ export class NavbarComponent implements OnInit {
     if(this.authService.loggedIn()){
       if(this.authService.userLogged.role === ''){
         this.authService.getProfile().subscribe(
-          res => {this.authService.userLogged.role = res.user.role;},
+          res => {this.authService.userLogged.role = res.user.role;
+                  this.authService.userLogged.id = res.user._id;},
           err => {this.authService.logout()}
         )
       }

@@ -37,7 +37,7 @@ export class NewsletterComponent implements OnInit {
               localStorage.setItem('newsletter', 'true');
               document.getElementById("newsletter").classList.add("d-none");
             },
-      err => {this.toastr.error('el Email ya existe');
+      err => {this.toastr.error(err.error.errors[0].msg);
               document.getElementById("newsletterButton").removeAttribute("disabled")}
     )
   }

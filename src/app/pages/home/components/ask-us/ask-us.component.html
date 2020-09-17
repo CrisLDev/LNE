@@ -1,1 +1,33 @@
-<p>ask-us works!</p>
+<form [formGroup]="askUsForm" (submit)="submit()" novalidate>
+    <div class="mb-3">
+          <label for="titleQuestion" class="form-label">Título</label>
+          <input type="text" class="form-control" id="titleQuestion" placeholder="Nombre de tu consulta" formControlName="title" required minlength="6">
+          <div *ngIf="f.title.invalid && (f.title.dirty || f.title.touched)"
+              class="alert alert-danger">
+
+                  <div *ngIf="f.title.errors.required">
+                    Información requerida.
+                  </div>
+                  <div *ngIf="f.title.errors.minlength">
+                    El titulo debe contener más de 6 caracteres.
+                  </div>
+
+            </div>
+    </div>
+    <div class="mb-3">
+          <label for="contentAsk" class="form-label">Tú comentario</label>
+          <textarea class="form-control" id="contentAsk" rows="3" placeholder="Contenido de tu consulta" formControlName="content" required minlength="6"></textarea>
+          <div *ngIf="f.content.invalid && (f.content.dirty || f.content.touched)"
+              class="alert alert-danger">
+
+                  <div *ngIf="f.content.errors.required">
+                    Información requerida.
+                  </div>
+                  <div *ngIf="f.content.errors.minlength">
+                    El titulo debe contener más de 6 caracteres.
+                  </div>
+
+            </div>
+    </div>
+    <button type="submit" class="btn btn-primary btn-block" id="askUsButton" [disabled]="askUsForm.invalid">Enviar</button>
+</form>

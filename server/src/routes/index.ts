@@ -6,6 +6,7 @@ import { createTracing, getTracingsByPatientId, getTracingById, editTracingById,
 
 import {check} from 'express-validator';
 import { createNewletter } from '../controllers/newletter';
+import { createQuestion } from '../controllers/askus';
 
 const router = Router();
 
@@ -66,5 +67,8 @@ router.route('/tracings/:id')
 
 router.route('/newletter')
     .post(createNewletter);
+
+router.route('/askus')
+    .post(createQuestion);
 
 export default router;
