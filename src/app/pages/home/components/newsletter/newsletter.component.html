@@ -1,0 +1,25 @@
+<form (submit)="submit()" [formGroup]="newsletterForm" novalidate>
+    <div class="mb-3">
+        <label for="FeedBack" class="form-label">Obtener FeedBack</label>
+        <input type="email" class="form-control" id="FeedBack" formControlName="email" aria-describedby="FeedBackHelp" placeholder="tuemail@host.com" required minlength="10">
+        <div *ngIf="f.email.invalid && (f.email.dirty || f.email.touched)"
+              class="alert alert-danger">
+
+                  <div *ngIf="f.email.errors.required">
+                    Información requerida.
+                  </div>
+                  <div *ngIf="f.email.errors.minlength">
+                    El email debe contener más de 6 caracteres.
+                  </div>
+                  <div *ngIf="f.email.errors.email">
+                    El email debe contener una estructura común.
+                  </div>
+                  <div *ngIf="f.email.pending">Validando...</div>
+
+              </div>
+        <div id="FeedBackHelp" class="form-text mb-1">No compartiremos tu email con nadie.</div>
+        <div class="mb-3"><button class="btn btn-primary btn-block" id="newsletterButton" [disabled]="newsletterForm.invalid">
+            Enviar
+        </button></div>
+    </div>
+</form>

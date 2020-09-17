@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {AuthGuard} from '@core/guards/auth.guard';
 import { RoleGuard } from '@core/guards/role.guard';
+import { StaffGuard } from '@core/guards/staff.guard';
 
 const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -11,11 +12,16 @@ const routes: Routes = [
   },
   {
     path: 'user',
-    loadChildren: () => import('@pages/user//user.module').then(m => m.UserModule), data: {name: 'UserActions'}
+    loadChildren: () => import('@pages/user/user.module').then(m => m.UserModule), data: {name: 'UserActions'}
   },
   {
     path: 'patients',
     loadChildren: () => import('@pages/patients/patients.module').then(m => m.PatientsModule), data: {name: 'Patients'},
+    canActivate: [AuthGuard, StaffGuard]
+  },
+  {
+    path: 'staff',
+    loadChildren: () => import('@pages/staff/staff.module').then(m => m.StaffModule), data: {name: 'Staff'},
     canActivate: [AuthGuard, RoleGuard]
   }
 ];

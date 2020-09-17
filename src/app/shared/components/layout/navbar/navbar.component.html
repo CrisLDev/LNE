@@ -18,11 +18,11 @@
             </li>
           </ng-container>
           <ng-template #loggedUser>
-            <li class="nav-item" *ngIf="authService.userLogged.role === 'admin'">
+            <li class="nav-item" *ngIf="authService.userLogged.role === 'admin' || authService.userLogged.role === 'staff'">
               <a class="nav-link" routerLink="/patients">Pacientes</a>
             </li>
             <li class="nav-item" *ngIf="authService.userLogged.role === 'admin'">
-              <a class="nav-link" routerLink="/patients">Usuarios</a>
+              <a class="nav-link" routerLink="/staff">Personal</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" routerLink="/user/profile">Perfil</a>

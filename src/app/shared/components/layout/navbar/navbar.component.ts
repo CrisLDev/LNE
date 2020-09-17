@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@core/services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-navbar',
@@ -8,13 +9,15 @@ import { AuthService } from '@core/services/auth.service';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(public authService: AuthService) { }
+  constructor(public authService: AuthService,
+              private toastr: ToastrService) { }
 
   ngOnInit(): void {
     if(this.authService.loggedIn()){
       if(this.authService.userLogged.role === ''){
         this.authService.getProfile().subscribe(
-          res => {this.authService.userLogged.role = res.user.role;}
+          res => {this.authService.userLogged.role = res.user.role;},
+          err => {this.authService.logout()}
         )
       }
     }

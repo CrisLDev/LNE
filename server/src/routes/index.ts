@@ -5,6 +5,7 @@ import { createPatient, getPatients, getPatientById, editPatientById, deletePati
 import { createTracing, getTracingsByPatientId, getTracingById, editTracingById, deleteTracingById } from '../controllers/tracing';
 
 import {check} from 'express-validator';
+import { createNewletter } from '../controllers/newletter';
 
 const router = Router();
 
@@ -62,5 +63,8 @@ router.route('/tracing/:tracing_id')
     
 router.route('/tracings/:id')
     .get(getTracingsByPatientId);
+
+router.route('/newletter')
+    .post(createNewletter);
 
 export default router;
