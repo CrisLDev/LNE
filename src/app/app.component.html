@@ -6,7 +6,7 @@
     <div class="container-fluid">
         <router-outlet></router-outlet>
     </div>
-    <app-schedule></app-schedule>
+    <app-schedule *ngIf="authService.loggedIn() && authService.userLogged.role === 'admin' || authService.loggedIn() && authService.userLogged.role === 'staff'"></app-schedule>
 </main>
 <footer>
     <app-footer></app-footer>

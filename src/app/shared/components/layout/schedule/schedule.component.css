@@ -1,6 +1,7 @@
 nav{
-    bottom: -180px;
+    bottom: -235px;
     -webkit-transition: bottom 0.50s;
+    border-radius: 5px;
 }
 
 .n-w{

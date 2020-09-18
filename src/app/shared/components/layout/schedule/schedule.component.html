@@ -7,15 +7,37 @@
       </svg></a>
     </div>
     <div class="container bg-light">
-        <form class="mt-2 w-100">
+        <form class="mt-2 w-100" [formGroup]="scheduleForm" (submit)="submit()" novalidate>
             <div class="mb-3">
                 <label for="taskName" class="form-label">Nombre de la tarea</label>
-                <input type="email" class="form-control" id="taskName" placeholder="tuemail@host.com">
+                <input type="text" class="form-control" id="taskName" formControlName="title" placeholder="Nombre de la tarea">
+                <div *ngIf="f.title.invalid && (f.title.dirty || f.title.touched)"
+              class="alert alert-danger">
+
+                  <div *ngIf="f.title.errors.required">
+                    Información requerida.
+                  </div>
+                  <div *ngIf="f.title.errors.minlength">
+                    El titulo debe contener más de 10 caracteres.
+                  </div>
+
+            </div>
             </div>
             <div class="mb-3">
                 <label for="timeDateTime" class="form-label">Fecha y hora</label>
-                <input type="datetime" class="form-control" id="timeDateTime">
+                <input type="datetime-local" class="form-control" id="timeDateTime" formControlName="date">
+                <div *ngIf="f.date.invalid && (f.date.dirty || f.date.touched)"
+              class="alert alert-danger">
+
+                  <div *ngIf="f.date.errors.required">
+                    Información requerida.
+                  </div>
+
             </div>
+            </div>
+            <button class="btn btn-block btn-primary mb-3" id="scheduleButton" [disabled]="scheduleForm.invalid">
+                Enviar
+            </button>
         </form>
     </div>
 </nav>
