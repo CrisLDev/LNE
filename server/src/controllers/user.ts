@@ -91,7 +91,7 @@ export async function getUsers(req: Request, res: Response){
     return res.status(200).json({users});
 }
 
-export async function getProfile(req:Request, res: Response){
+export async function getUser(req:Request, res: Response){
     
     const user = await User.findById(req.userId);
     

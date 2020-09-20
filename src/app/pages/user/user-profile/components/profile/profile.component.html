@@ -1,0 +1,120 @@
+<div class="card" *ngIf="profile; else noProfile">
+    <div class="card-body">
+        <h3 class="card-title"></h3>
+        <a class="nav-link" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Editar aquí</a>
+        <div class="row">
+            <div class="col-xl-3">
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="collapse" id="collapseExample">
+  <div class="card card-body">
+    <form [formGroup]="profileForm" (submit)="submit()" novalidate>
+      <div class="mb-3">
+        <label for="cedulaProfile" class="form-label">Cédula</label>
+        <input
+          type="text"
+          class="form-control"
+          id="cedulaProfile"
+          formControlName="cedula"
+          required
+          placeholder="Ingresa tu cédula"
+        />
+        <div
+          *ngIf="f.cedula.invalid && (f.cedula.dirty || f.cedula.touched)"
+          class="alert alert-danger"
+        >
+          <div *ngIf="f.cedula.errors.required">
+            Información requerida.
+          </div>
+          <div *ngIf="f.cedula.errors.minlength">
+            El número de cedula debe contener más de 9 caracteres.
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="ageProfile" class="form-label">Edad</label>
+        <input
+          type="text"
+          class="form-control"
+          id="ageProfile"
+          formControlName="age"
+          required
+          placeholder="Ingresa tu edad"
+        />
+        <div
+          *ngIf="f.age.invalid && (f.age.dirty || f.age.touched)"
+          class="alert alert-danger"
+        >
+          <div *ngIf="f.age.errors.required">
+            Información requerida.
+          </div>
+          <div *ngIf="f.age.errors.minlength">
+            El número de cedila debe contener al menos 1 caracter.
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="areaProfile" class="form-label"
+          >Area de especailización</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="areaProfile"
+          formControlName="area"
+          required
+          placeholder="Ingresa tu area"
+        />
+        <div
+          *ngIf="f.area.invalid && (f.area.dirty || f.area.touched)"
+          class="alert alert-danger"
+        >
+          <div *ngIf="f.area.errors.required">
+            Información requerida.
+          </div>
+          <div *ngIf="f.area.errors.minlength">
+            El número de cedila debe contener más de 4 caracteres.
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="numberProfile" class="form-label">Número de teléfono</label>
+        <input
+          type="text"
+          class="form-control"
+          id="numberProfile"
+          formControlName="phoneNumber"
+          required
+          placeholder="Ingresa tu número de telefono"
+        />
+        <div
+          *ngIf="f.phoneNumber.invalid && (f.phoneNumber.dirty || f.phoneNumber.touched)"
+          class="alert alert-danger"
+        >
+          <div *ngIf="f.phoneNumber.errors.required">
+            Información requerida.
+          </div>
+          <div *ngIf="f.phoneNumber.errors.minlength">
+            El número de telefono debe contener más de 9 caracteres.
+          </div>
+        </div>
+      </div>
+      <button
+        class="btn btn-block btn-primary"
+        [disabled]="profileForm.invalid"
+      >
+        Enviar
+      </button>
+    </form>
+  </div>
+</div>
+
+<ng-template #noProfile>
+    <div class="card-body text-center">
+        Aún no has creado un perfil. <a class="nav-link" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Créalo aquí</a>
+    </div>
+</ng-template>

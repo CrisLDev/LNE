@@ -32,8 +32,8 @@ export class AuthService {
     return localStorage.getItem('token');
   }
 
-  getProfile(){
-    return this.http.get<any>(this.URL + '/profile');
+  getUser(){
+    return this.http.get<any>(this.URL + '/user');
   }
 
   logout(){

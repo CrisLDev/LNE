@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '@core/services/auth.service';
-import { ScheduleService } from '@core/services/schedule.service';
+import { TaskService } from '@core/services/task.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-schedule',
-  templateUrl: './schedule.component.html',
-  styleUrls: ['./schedule.component.css']
+  selector: 'app-task',
+  templateUrl: './task.component.html',
+  styleUrls: ['./task.component.css']
 })
-export class ScheduleComponent implements OnInit {
+export class TaskComponent implements OnInit {
 
   scheduleForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private scheduleService: ScheduleService, private authService: AuthService, private toastr: ToastrService) { }
+  constructor(private fb: FormBuilder, private taskService: TaskService, private authService: AuthService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.createForm();
@@ -39,7 +39,7 @@ export class ScheduleComponent implements OnInit {
     this.scheduleForm.value.user_id = this.authService.userLogged.id;
     document.getElementById("scheduleButton").setAttribute("disabled", "true");
     document.getElementById("scheduleButton").innerHTML = "Enviando";
-    this.scheduleService.createSchedule(this.scheduleForm.value).subscribe(
+    this.taskService.createTask(this.scheduleForm.value).subscribe(
       res => {this.toastr.success('Horario agregado correctamente.');
               document.getElementById("scheduleButton").removeAttribute("disabled");
               document.getElementById("scheduleButton").innerHTML = "Enviar";

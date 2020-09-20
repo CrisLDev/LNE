@@ -40,7 +40,7 @@ import { LoadingBarModule } from '@ngx-loading-bar/core';
     ComponentsModule,
     HttpClientModule,
     LoadingBarRouterModule,
-    LoadingBarModule,
+    LoadingBarModule
   ],
   providers: [AuthGuard, LoggedGuard, {
     provide: HTTP_INTERCEPTORS,
