@@ -7,8 +7,9 @@ import { createTracing, getTracingsByPatientId, getTracingById, editTracingById,
 import {check} from 'express-validator';
 import { createNewletter } from '../controllers/newletter';
 import { createQuestion } from '../controllers/askus';
-import { createSchedule } from '../controllers/schedule';
+import { createTask } from '../controllers/task';
 import { createProfile, getProfile } from '../controllers/profile';
+import { createSchedule } from '../controllers/schedule';
 
 const router = Router();
 
@@ -76,6 +77,9 @@ router.route('/newletter')
 
 router.route('/askus')
     .post(createQuestion);
+
+router.route('/task')
+    .post(createTask);
 
 router.route('/schedule')
     .post(createSchedule);
