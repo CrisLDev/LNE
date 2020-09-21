@@ -14,6 +14,10 @@ export class ProfileService {
     return this.http.get<any>(this.URL + '/profile');
   }
 
+  getProfileById(id){
+    return this.http.get<any>(this.URL + '/profile/' + id);
+  }
+
   createProfile(data){
     return this.http.post<any>(this.URL + '/profile', data)
   }

@@ -20,6 +20,9 @@ const schema = new Schema({
         type: String,
         required: true,
         default: 'user'
+    },
+    imgUrl: {
+        type: String
     }
 },{
     timestamps: true
@@ -29,7 +32,8 @@ export interface IUser extends Document{
     username: string;
     email: string;
     password: string;
-    role: string,
+    role: string;
+    imgUrl: string;
     encryptPassword(password: string): Promise<string>;
     validatePassword(password: string): Promise<boolean>;
 }

@@ -1,0 +1,186 @@
+<div class="row mt-3 mb-4 justify-content-center">
+    <div class="col-xl-5" style="margin-top: 70px;">
+        <div class="text-center" style="margin-top: 70px;" id="spinnerStaff">
+            <div
+              class="spinner-border"
+              style="width: 3rem; height: 3rem;"
+              role="status"
+            >
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
+          <form [formGroup]="staffForm1" (submit)="submit()" novalidate id="formStaff">
+              <div class="mb-3">
+                  <label for="staffUsername" class="form-label">Nombre de usuario</label>
+                  <input type="text" class="form-control" formControlName="username" id="staffUsername" aria-describedby="Username" placeholder="Usuario" minlength="4" maxlength="20" required>
+  
+                  <div *ngIf="f.username.invalid && (f.username.dirty || f.username.touched)"
+                class="alert alert-danger">
+  
+                    <div *ngIf="f.username.errors.required">
+                      Información requerida.
+                    </div>
+                    <div *ngIf="f.username.errors.minlength">
+                      El nombre debe contener más de 4 caracteres.
+                    </div>
+                    <div *ngIf="f.username.errors.maxlength">
+                      El nombre debe contener menos de 4 caracteres.
+                    </div>
+                    <div *ngIf="f.username.pending">Validando...</div>
+  
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="registerEmail1" class="form-label">Email</label>
+                <input type="email" class="form-control" formControlName="email" id="registerEmail1" aria-describedby="emailHelp" placeholder="tuemail@host.com" minlength="15" maxlength="50" autocomplete="username" required>
+                <div id="emailHelp" class="form-text">No compartiremos tu email con nadie.</div>
+                <div *ngIf="f.email.invalid && (f.email.dirty || f.email.touched)"
+                class="alert alert-danger">
+  
+                    <div *ngIf="f.email.errors.required">
+                      Información requerida.
+                    </div>
+                    <div *ngIf="f.email.errors.minlength">
+                      El email debe contener más de 15 caracteres.
+                    </div>
+                    <div *ngIf="f.email.errors.email">
+                      El email debe contener una estructura común.
+                    </div>
+                    <div *ngIf="f.email.pending">Validando...</div>
+  
+                </div>
+              </div>
+              <div class="mb-3">
+                  <label for="registerEmail2" class="form-label">Repite tu email</label>
+                  <input type="email" class="form-control" id="registerEmail2" aria-describedby="emailHelp" placeholder="tuemail@host.com" minlength="15" maxlength="50" formControlName="email2" required>
+                  <div *ngIf="f.email2.invalid && (f.email2.dirty || f.email2.touched)"
+                class="alert alert-danger">
+  
+                    <div *ngIf="f.email2.errors.required">
+                      Información requerida.
+                    </div>
+                    <div *ngIf="f.email2.errors.minlength">
+                      El email debe contener más de 8 caracteres.
+                    </div>
+                    <div *ngIf="f.email2.errors.email">
+                      El email debe contener una estructura común.
+                    </div>
+                    <div *ngIf="f.email2.pending">Validando...</div>
+  
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="registerPassword1" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" formControlName="password" id="registerPassword1" placeholder="Contraseña" autocomplete="new-password">
+              </div>
+              <div class="mb-3">
+                <label for="registerPassword2" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" formControlName="password2" id="registerPassword2" placeholder="Contraseña" autocomplete="new-password">
+              </div>
+              <button type="submit" class="btn btn-primary btn-block" id="staffButton" [disabled]="staffForm1.invalid">Enviar</button>
+            </form>
+            <div *ngIf="profile.cedula !== null">
+                <div class="pt-3 pb-3">
+                    <hr>
+                </div>
+                <form [formGroup]="staffForm2" (submit)="submit()" novalidate id="formStaff">
+                    <div class="mb-3">
+                        <label for="cedulaProfile" class="form-label">Cédula</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="cedulaProfile"
+                          formControlName="cedula"
+                          required
+                          placeholder="Ingresa tu cédula"
+                        />
+                        <div
+                          *ngIf="g.cedula.invalid && (g.cedula.dirty || g.cedula.touched)"
+                          class="alert alert-danger"
+                        >
+                          <div *ngIf="g.cedula.errors.required">
+                            Información requerida.
+                          </div>
+                          <div *ngIf="g.cedula.errors.minlength">
+                            El número de cedula debe contener más de 9 caracteres.
+                          </div>
+                        </div>
+                      </div>
+                      <div class="mb-3">
+                        <label for="ageProfile" class="form-label">Edad</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="ageProfile"
+                          formControlName="age"
+                          required
+                          placeholder="Ingresa tu edad"
+                        />
+                        <div
+                          *ngIf="g.age.invalid && (g.age.dirty || g.age.touched)"
+                          class="alert alert-danger"
+                        >
+                          <div *ngIf="g.age.errors.required">
+                            Información requerida.
+                          </div>
+                          <div *ngIf="g.age.errors.minlength">
+                            El número de cedila debe contener al menos 1 caracter.
+                          </div>
+                        </div>
+                      </div>
+                      <div class="mb-3">
+                        <label for="areaProfile" class="form-label"
+                          >Area de especailización</label
+                        >
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="areaProfile"
+                          formControlName="area"
+                          required
+                          placeholder="Ingresa tu area"
+                        />
+                        <div
+                          *ngIf="g.area.invalid && (g.area.dirty || g.area.touched)"
+                          class="alert alert-danger"
+                        >
+                          <div *ngIf="g.area.errors.required">
+                            Información requerida.
+                          </div>
+                          <div *ngIf="g.area.errors.minlength">
+                            El número de cedila debe contener más de 4 caracteres.
+                          </div>
+                        </div>
+                      </div>
+                      <div class="mb-3">
+                        <label for="numberProfile" class="form-label">Número de teléfono</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="numberProfile"
+                          formControlName="phoneNumber"
+                          required
+                          placeholder="Ingresa tu número de telefono"
+                        />
+                        <div
+                          *ngIf="g.phoneNumber.invalid && (g.phoneNumber.dirty || g.phoneNumber.touched)"
+                          class="alert alert-danger"
+                        >
+                          <div *ngIf="g.phoneNumber.errors.required">
+                            Información requerida.
+                          </div>
+                          <div *ngIf="g.phoneNumber.errors.minlength">
+                            El número de telefono debe contener más de 9 caracteres.
+                          </div>
+                        </div>
+                      </div>
+                      <button
+                        class="btn btn-block btn-primary"
+                        [disabled]="staffForm2.invalid"
+                      >
+                        Enviar
+                      </button>
+                  </form>
+            </div>
+    </div>
+</div>

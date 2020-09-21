@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { UsersService } from '@core/services/users.service';
 import { User } from '@shared/classes/User';
 
@@ -11,12 +12,16 @@ export class StaffListComponent implements OnInit {
 
   users: User[];
 
-  constructor(private usersService: UsersService) { }
+  constructor(private usersService: UsersService, private router: Router) { }
 
   ngOnInit(): void {
     this.usersService.getAllUsers().subscribe(
-      res => {this.users = res.users}
+      res => {this.users = res.users;}
     )
+  }
+
+  editUser(id){
+    this.router.navigate(['/staff/edit', id]);
   }
 
 }

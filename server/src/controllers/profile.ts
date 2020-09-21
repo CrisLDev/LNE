@@ -45,3 +45,15 @@ export async function getProfile(req:Request, res: Response){
     return res.status(200).json({profileExist});
 
 }
+
+export async function getProfileById(req:Request, res: Response){
+
+    const profileExist = await Profile.findOne({user_id: req.params.id});
+
+    if(!profileExist){
+        return res.status(401).json({errors: {mag: "No tienes un perfil."}})
+    }
+
+    return res.status(200).json({profileExist});
+
+}

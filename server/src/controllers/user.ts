@@ -99,3 +99,12 @@ export async function getUser(req:Request, res: Response){
 
     return res.status(200).json({user});
 }
+
+export async function getUserById(req:Request, res: Response){
+    
+    const user = await User.findById(req.params.id);
+    
+    if(!user) return res.status(401).send("User not found");
+
+    return res.status(200).json({user});
+}

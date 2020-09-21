@@ -3,7 +3,9 @@ export class User {
     role: string;
     username: string;
     email: string;
+    email2?: string;
     password: string;
+    password2?: string;
     createdAt: Date;
     updatedAt: Date;
 }
