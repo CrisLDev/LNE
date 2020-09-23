@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ApplicationRef, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '@core/services/auth.service';
 import { ProfileService } from '@core/services/profile.service';
@@ -12,13 +12,13 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ProfileComponent implements OnInit {
 
-  profile: Profile = {cedula: null, user_id: '', phoneNumber: null, age: null, area: ''};
+  profile = {cedula: null, user_id: '', phoneNumber: null, age: null, area: ''};
 
   profileForm: FormGroup;
 
   id: string;
 
-  constructor(private authService: AuthService, private profileService: ProfileService, private fb: FormBuilder, private toastr: ToastrService) { }
+  constructor(private authService: AuthService, private profileService: ProfileService, private fb: FormBuilder, private toastr: ToastrService, private cd: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.profileService.getProfile().subscribe(
@@ -50,6 +50,7 @@ export class ProfileComponent implements OnInit {
       res => {this.profile = res;
         document.getElementById("collapseExample").classList.remove("show");
               this.toastr.success('Perfil creado correctamente.');
+              this.cd.detectChanges();
       },
       err => {this.toastr.error(err.error.errors.msg);}
     )
