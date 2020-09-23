@@ -18,4 +18,8 @@ export class UsersService {
     return this.http.get<any>(this.URL + '/user/' + id);
   }
 
+  editUserById(id, changes){
+    return this.http.put<any>(this.URL + '/user/' + id, changes);
+  }
+
 }

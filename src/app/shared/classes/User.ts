@@ -8,4 +8,5 @@ export class User {
     password2?: string;
     createdAt: Date;
     updatedAt: Date;
+    imgUrl?: string;
 }

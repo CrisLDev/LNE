@@ -2,7 +2,7 @@
     <div class="card-body" *ngIf="user">
         <div class="d-flex justify-content-between">
             <h3 class="card-title">Información de registro</h3>
-            <a class="nav-link" data-toggle="collapse" href="#collapseUser" role="button" aria-expanded="false" aria-controls="collapseUser">Editar aquí</a>
+            <a class="nav-link" (click)="editUser()">Editar aquí</a>
         </div>
         <div class="row">
             <div class="col-xl-12">
@@ -26,78 +26,3 @@
         </div>
     </div>
 </div>
-
-<div class="collapse user" id="collapseUser">
-    <div class="card card-body">
-        <form [formGroup]="userForm" (submit)="submit()" novalidate id="userForm">
-            <div class="mb-3">
-                <label for="userUsername" class="form-label">Nombre de usuario</label>
-                <input type="text" class="form-control" formControlName="username" id="userUsername" aria-describedby="Username" placeholder="Usuario" minlength="4" maxlength="20" required>
-
-                <div *ngIf="f.username.invalid && (f.username.dirty || f.username.touched)"
-              class="alert alert-danger">
-
-                  <div *ngIf="f.username.errors.required">
-                    Información requerida.
-                  </div>
-                  <div *ngIf="f.username.errors.minlength">
-                    El nombre debe contener más de 4 caracteres.
-                  </div>
-                  <div *ngIf="f.username.errors.maxlength">
-                    El nombre debe contener menos de 4 caracteres.
-                  </div>
-                  <div *ngIf="f.username.pending">Validando...</div>
-
-              </div>
-            </div>
-            <div class="mb-3">
-              <label for="userEmail" class="form-label">Email</label>
-              <input type="email" class="form-control" formControlName="email" id="userEmail" aria-describedby="emailHelp" placeholder="tuemail@host.com" minlength="15" maxlength="50" autocomplete="username" required>
-              <div id="emailHelp" class="form-text">No compartiremos tu email con nadie.</div>
-              <div *ngIf="f.email.invalid && (f.email.dirty || f.email.touched)"
-              class="alert alert-danger">
-
-                  <div *ngIf="f.email.errors.required">
-                    Información requerida.
-                  </div>
-                  <div *ngIf="f.email.errors.minlength">
-                    El email debe contener más de 15 caracteres.
-                  </div>
-                  <div *ngIf="f.email.errors.email">
-                    El email debe contener una estructura común.
-                  </div>
-                  <div *ngIf="f.email.pending">Validando...</div>
-
-              </div>
-            </div>
-            <div class="mb-3">
-                <label for="userEmail2" class="form-label">Repite tu email</label>
-                <input type="email" class="form-control" id="userEmail2" aria-describedby="emailHelp" placeholder="tuemail@host.com" minlength="15" maxlength="50" formControlName="email2" required>
-                <div *ngIf="f.email2.invalid && (f.email2.dirty || f.email2.touched)"
-              class="alert alert-danger">
-
-                  <div *ngIf="f.email2.errors.required">
-                    Información requerida.
-                  </div>
-                  <div *ngIf="f.email2.errors.minlength">
-                    El email debe contener más de 8 caracteres.
-                  </div>
-                  <div *ngIf="f.email2.errors.email">
-                    El email debe contener una estructura común.
-                  </div>
-                  <div *ngIf="f.email2.pending">Validando...</div>
-
-              </div>
-            </div>
-            <div class="mb-3">
-              <label for="userPassword" class="form-label">Contraseña</label>
-              <input type="password" class="form-control" formControlName="password" id="userPassword" placeholder="Contraseña" autocomplete="new-password">
-            </div>
-            <div class="mb-3">
-              <label for="userPassword2" class="form-label">Contraseña</label>
-              <input type="password" class="form-control" formControlName="password2" id="userPassword2" placeholder="Contraseña" autocomplete="new-password">
-            </div>
-            <button type="submit" class="btn btn-primary btn-block" id="staffButton" [disabled]="userForm.invalid">Enviar</button>
-          </form>
-    </div>
-  </div>

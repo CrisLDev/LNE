@@ -6,6 +6,8 @@ import jwt from 'jsonwebtoken';
 
 import {validationResult} from 'express-validator';
 
+import bcrypt from 'bcryptjs';
+
 export async function createUser(req: Request, res: Response){
 
     const errors = validationResult(req);
@@ -107,4 +109,49 @@ export async function getUserById(req:Request, res: Response){
     if(!user) return res.status(401).send("User not found");
 
     return res.status(200).json({user});
+}
+
+export async function editUserById(req:Request, res: Response){
+
+    const {username, email, email2, imgUrl, password, password2, role} = req.body;
+    
+    try {
+        const userExist = await User.findById(req.params.id);
+    
+        if(!userExist) return res.status(401).send("User not found");
+
+        if(req.body.email != req.body.email2){
+            return res.status(400).json({errors: [{msg: "Los emails  no coinciden."}]})
+        }
+
+        if(userExist.email == email && userExist._id != req.params.id) return res.status(401).send("El email ya está en uso.");
+
+        const userToEdit = ({
+            username,
+            email,
+            role
+        });
+
+        if(password !== ''){
+            if(req.body.password != req.body.password2){
+                return res.status(400).json({errors: [{msg: "Las contraseñas no coinciden."}]})
+            }
+            const salt = await bcrypt.genSalt(10);
+
+            const passwordHashed = await bcrypt.hash(password, salt);
+
+            Object.assign(userToEdit, {password: passwordHashed});
+        }
+
+        if(imgUrl !== ''){
+            Object.assign(userToEdit, {imgUrl: imgUrl});
+        }
+
+        const userEdited = await User.findByIdAndUpdate(req.params.id, userToEdit, {new: true});
+
+        return res.status(200).json({userEdited});
+
+    } catch (err) {
+        return res.status(400).json({err});
+    }
 }

@@ -22,4 +22,12 @@ export class ProfileService {
     return this.http.post<any>(this.URL + '/profile', data)
   }
 
+  editProfileById(id, changes){
+    return this.http.put<any>(this.URL + '/profile/' + id, changes)
+  }
+
+  deleteProfileById(id){
+    return this.http.delete<any>(this.URL + '/profile/' + id);
+  }
+
 }

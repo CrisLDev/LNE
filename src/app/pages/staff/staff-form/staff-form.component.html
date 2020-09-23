@@ -9,7 +9,7 @@
               <span class="sr-only">Loading...</span>
             </div>
           </div>
-          <form [formGroup]="staffForm1" (submit)="submit()" novalidate id="formStaff">
+          <form [formGroup]="staffForm1" (submit)="submitUser()" novalidate id="formStaff">
               <div class="mb-3">
                   <label for="staffUsername" class="form-label">Nombre de usuario</label>
                   <input type="text" class="form-control" formControlName="username" id="staffUsername" aria-describedby="Username" placeholder="Usuario" minlength="4" maxlength="20" required>
@@ -30,6 +30,43 @@
   
                 </div>
               </div>
+              <div class="mb-3">
+                <label for="staffRol" class="form-label">Rol de usuario</label>
+                <input type="text" class="form-control" formControlName="role" id="staffRol" placeholder="Rol del usuario" minlength="4" maxlength="20" required>
+
+                <div *ngIf="f.role.invalid && (f.role.dirty || f.role.touched)"
+              class="alert alert-danger">
+
+                  <div *ngIf="f.role.errors.required">
+                    Información requerida.
+                  </div>
+                  <div *ngIf="f.role.errors.minlength">
+                    El rol debe contener más de 4 caracteres.
+                  </div>
+                  <div *ngIf="f.role.errors.maxlength">
+                    El rol debe contener menos de 4 caracteres.
+                  </div>
+                  <div *ngIf="f.role.pending">Validando...</div>
+
+              </div>
+            </div>
+              <div class="mb-3">
+                <label for="staffimgUrl" class="form-label">Url de la imagen</label>
+                <input type="text" class="form-control" formControlName="imgUrl" id="staffimgUrl" aria-describedby="imgUrl" placeholder="Url de la imagen" minlength="4">
+
+                <div *ngIf="f.imgUrl.invalid && (f.imgUrl.dirty || f.imgUrl.touched)"
+              class="alert alert-danger">
+
+                  <div *ngIf="f.imgUrl.errors.required">
+                    Información requerida.
+                  </div>
+                  <div *ngIf="f.imgUrl.errors.minlength">
+                    El nombre debe contener más de 4 caracteres.
+                  </div>
+                  <div *ngIf="f.imgUrl.pending">Validando...</div>
+
+              </div>
+            </div>
               <div class="mb-3">
                 <label for="registerEmail1" class="form-label">Email</label>
                 <input type="email" class="form-control" formControlName="email" id="registerEmail1" aria-describedby="emailHelp" placeholder="tuemail@host.com" minlength="15" maxlength="50" autocomplete="username" required>
@@ -78,12 +115,13 @@
                 <input type="password" class="form-control" formControlName="password2" id="registerPassword2" placeholder="Contraseña" autocomplete="new-password">
               </div>
               <button type="submit" class="btn btn-primary btn-block" id="staffButton" [disabled]="staffForm1.invalid">Enviar</button>
-            </form>
-            <div *ngIf="profile.cedula !== null">
-                <div class="pt-3 pb-3">
+          </form>
+          <button class="btn btn-danger btn-block mt-3">Eliminar Usuario</button>
+          <div class="pt-3 pb-3" id="divisor">
                     <hr>
-                </div>
-                <form [formGroup]="staffForm2" (submit)="submit()" novalidate id="formStaff">
+                    <h4>Información de perfil</h4>
+          </div>
+          <form [formGroup]="staffForm2" (submit)="submitProfile()" novalidate id="formStaff2">
                     <div class="mb-3">
                         <label for="cedulaProfile" class="form-label">Cédula</label>
                         <input
@@ -180,7 +218,8 @@
                       >
                         Enviar
                       </button>
-                  </form>
-            </div>
-    </div>
+          </form>
+          <button class="btn btn-danger btn-block mt-3" (click)="deleteProfile()">Eliminar Perfil</button>
+          <div class="pt-3 pb-3" id="divisor">
+        </div>
 </div>
