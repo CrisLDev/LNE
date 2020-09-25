@@ -155,3 +155,14 @@ export async function editUserById(req:Request, res: Response){
         return res.status(400).json({err});
     }
 }
+
+export async function deleteUserById(req:Request, res: Response){
+
+    try{
+        const userEliminated = await User.findByIdAndRemove(req.params.id);
+        return res.status(200).json(userEliminated);
+    } catch(err){
+        return res.status(400).json({msg: "No hay datos para mostrar."});
+    }
+
+}

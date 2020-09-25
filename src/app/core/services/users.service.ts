@@ -22,4 +22,8 @@ export class UsersService {
     return this.http.put<any>(this.URL + '/user/' + id, changes);
   }
 
+  deleteUserById(id){
+    return this.http.delete<any>(this.URL + '/user/' + id);
+  }
+
 }

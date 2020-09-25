@@ -1,5 +1,5 @@
 import {Router} from 'express';
-import { createUser, loginUser, getUsers, getUser, getUserById, editUserById} from '../controllers/user';
+import { createUser, loginUser, getUsers, getUser, getUserById, editUserById, deleteUserById} from '../controllers/user';
 import { TokenValidation } from '../libs/verifyToken';
 import { createPatient, getPatients, getPatientById, editPatientById, deletePatientById } from '../controllers/patients';
 import { createTracing, getTracingsByPatientId, getTracingById, editTracingById, deleteTracingById } from '../controllers/tracing';
@@ -33,7 +33,8 @@ router.route('/user')
 
 router.route('/user/:id')
     .get(TokenValidation, getUserById)
-    .put(editUserById);
+    .put(editUserById)
+    .delete(deleteUserById);
     
 router.route('/profile')
     .post(createProfile)
