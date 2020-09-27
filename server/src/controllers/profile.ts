@@ -2,7 +2,14 @@ import {Request, Response} from 'express';
 
 import Profile, {IProfile} from '../models/Profile';
 
+import {validationResult} from 'express-validator';
+
 export async function createProfile(req: Request, res: Response){
+
+    const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({errors: [{msg : "Los datos contienen una estructura incorrecta."}]});
+    }
 
     const {user_id, age, cedula, phoneNumber, area} = req.body;
 
@@ -11,7 +18,7 @@ export async function createProfile(req: Request, res: Response){
         const profileExist = await Profile.findOne({cedula});        
 
         if(profileExist){
-            return res.status(400).json({errors : {msg: "Ya tienes un perfil."}})
+            return res.status(400).json({errors : {msg: "Ya existe un perfil con este número de cedula."}})
         }
 
         const profile: IProfile = new Profile({

@@ -2,6 +2,7 @@
     <div class="card-body">
         <div class="d-flex justify-content-between">
           <h3 class="card-title">Más datos</h3>
+          <a class="nav-link" data-toggle="collapse" href="#collapseProfile" role="button" aria-expanded="false" aria-controls="collapseProfile">Editar aquí</a>
         </div>
         <div class="row">
             <div class="col-xl-12">
@@ -28,6 +29,109 @@
 
 <ng-template #noProfile>
     <div class="card-body text-center">
-        Aún no has creado un perfil. <a class="nav-link" (click)="editUser()" role="button">Créalo aquí</a>
+        Aún no has creado un perfil. <a class="nav-link" data-toggle="collapse" href="#collapseProfile" role="button" aria-expanded="false" aria-controls="collapseProfile">Crealo aquí</a>
     </div>
 </ng-template>
+
+<div class="collapse" id="collapseProfile">
+  <div class="card card-body">
+    <form [formGroup]="profileForm" (submit)="submitProfile()" novalidate id="profileForm">
+      <div class="mb-3">
+          <label for="cedulaProfile" class="form-label">Cédula</label>
+          <input
+            type="text"
+            class="form-control"
+            id="cedulaProfile"
+            formControlName="cedula"
+            required
+            placeholder="Ingresa tu cédula"
+          />
+          <div
+            *ngIf="g.cedula.invalid && (g.cedula.dirty || g.cedula.touched)"
+            class="alert alert-danger"
+          >
+            <div *ngIf="g.cedula.errors.required">
+              Información requerida.
+            </div>
+            <div *ngIf="g.cedula.errors.minlength">
+              El número de cedula debe contener más de 9 caracteres.
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="ageProfile" class="form-label">Edad</label>
+          <input
+            type="text"
+            class="form-control"
+            id="ageProfile"
+            formControlName="age"
+            required
+            placeholder="Ingresa tu edad"
+          />
+          <div
+            *ngIf="g.age.invalid && (g.age.dirty || g.age.touched)"
+            class="alert alert-danger"
+          >
+            <div *ngIf="g.age.errors.required">
+              Información requerida.
+            </div>
+            <div *ngIf="g.age.errors.minlength">
+              El número de cedila debe contener al menos 1 caracter.
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="areaProfile" class="form-label"
+            >Area de especailización</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="areaProfile"
+            formControlName="area"
+            required
+            placeholder="Ingresa tu area"
+          />
+          <div
+            *ngIf="g.area.invalid && (g.area.dirty || g.area.touched)"
+            class="alert alert-danger"
+          >
+            <div *ngIf="g.area.errors.required">
+              Información requerida.
+            </div>
+            <div *ngIf="g.area.errors.minlength">
+              El número de cedila debe contener más de 4 caracteres.
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="numberProfile" class="form-label">Número de teléfono</label>
+          <input
+            type="text"
+            class="form-control"
+            id="numberProfile"
+            formControlName="phoneNumber"
+            required
+            placeholder="Ingresa tu número de telefono"
+          />
+          <div
+            *ngIf="g.phoneNumber.invalid && (g.phoneNumber.dirty || g.phoneNumber.touched)"
+            class="alert alert-danger"
+          >
+            <div *ngIf="g.phoneNumber.errors.required">
+              Información requerida.
+            </div>
+            <div *ngIf="g.phoneNumber.errors.minlength">
+              El número de telefono debe contener más de 9 caracteres.
+            </div>
+          </div>
+        </div>
+        <button
+          class="btn btn-block btn-primary"
+          [disabled]="profileForm.invalid"
+        >
+          Enviar
+        </button>
+</form>
+  </div>
+</div> 

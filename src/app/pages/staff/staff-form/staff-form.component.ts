@@ -93,7 +93,7 @@ export class StaffFormComponent implements OnInit {
         this.router.navigate(['/staff']).then(() => {
           this.toastr.success('Información editada correctamente.')})
       }},
-      err => {console.log(err)}
+      err => {this.toastr.error(err.error.errors[0].msg);}
     )
   }
 
@@ -109,10 +109,10 @@ export class StaffFormComponent implements OnInit {
               this.toastr.success('Información editada correctamente.')})
           }
       },
-        err => {this.toastr.error(err.error)}
+      err => {this.toastr.error(err.error.errors[0].msg);}
       )
     }else{
-      this.staffForm2.value.user_id = this.authService.userLogged.id;
+      this.staffForm2.value.user_id = this.id;
     this.profileService.createProfile(this.staffForm2.value).subscribe(
       res => {if(this.authService.userLogged.id == this.id){
         this.router.navigate(['/user/profile']).then(() => {
@@ -136,7 +136,7 @@ export class StaffFormComponent implements OnInit {
         this.router.navigate(['/staff']).then(() => {
           this.toastr.success('Información eliminada correctamente.')})
       }},
-      err => {}
+      err => {this.toastr.error(err.error.errors[0].msg);}
     )
   }
   

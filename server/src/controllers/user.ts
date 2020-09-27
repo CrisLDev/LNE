@@ -113,6 +113,11 @@ export async function getUserById(req:Request, res: Response){
 
 export async function editUserById(req:Request, res: Response){
 
+    const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({errors: [{msg : "Los datos contienen una estructura incorrecta."}]});
+    }
+
     const {username, email, email2, imgUrl, password, password2, role} = req.body;
     
     try {

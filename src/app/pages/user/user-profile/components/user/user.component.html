@@ -2,7 +2,6 @@
     <div class="card-body" *ngIf="user">
         <div class="d-flex justify-content-between">
             <h3 class="card-title">Información de registro</h3>
-            <a class="nav-link" (click)="editUser()">Editar aquí</a>
             <a class="nav-link" data-toggle="collapse" href="#collapseUser" role="button" aria-expanded="false" aria-controls="collapseUser">Editar aquí</a>
         </div>
         <div class="row">
@@ -28,7 +27,7 @@
     </div>
 </div>
 
-<div class="collapse user" id="collapseUser">
+<div class="collapse" id="collapseUser">
     <div class="card card-body">
         <form [formGroup]="userForm" (submit)="submitUser()" novalidate id="userForm">
             <div class="mb-3">

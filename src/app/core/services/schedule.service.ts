@@ -13,5 +13,9 @@ export class ScheduleService {
   createSchedule(data){
     return this.http.post(this.URL + '/schedule', data);
   }
+
+  getSchedules(){
+    return this.http.get<any>(this.URL + '/schedule');
+  }
   
 }

@@ -28,3 +28,9 @@ export async function createSchedule(req:Request, res: Response) {
     }
 
 }
+
+export async function getSchedules(req: Request, res: Response){
+    const schedules = await Schedule.find();
+
+    return res.status(200).json({schedules});
+}

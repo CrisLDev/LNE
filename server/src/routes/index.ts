@@ -9,7 +9,7 @@ import { createNewletter } from '../controllers/newletter';
 import { createQuestion } from '../controllers/askus';
 import { createTask } from '../controllers/task';
 import { createProfile, deleteProfileById, editProfileById, getProfile, getProfileById } from '../controllers/profile';
-import { createSchedule } from '../controllers/schedule';
+import { createSchedule, getSchedules } from '../controllers/schedule';
 
 const router = Router();
 
@@ -33,11 +33,18 @@ router.route('/user')
 
 router.route('/user/:id')
     .get(TokenValidation, getUserById)
-    .put(editUserById)
+    .put([check('username').not().isEmpty().isLength({min:4, max: 20}),
+    check('email').not().isEmpty().isEmail().isLength({min: 8, max: 50}).matches(/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i),
+    check('email2').not().isEmpty().isEmail().isLength({min: 8, max: 50}).matches(/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i),
+    check('password').isLength({max: 20}),
+    check('password2').isLength({max: 20})], TokenValidation, editUserById)
     .delete(deleteUserById);
     
 router.route('/profile')
-    .post(createProfile)
+    .post([check('cedula').not().isEmpty().isLength({min:9, max: 11}),
+    check('age').not().isEmpty().isLength({min:1, max: 2}),
+    check('area').not().isEmpty().isLength({min:4, max: 15}),
+    check('phoneNumber').not().isEmpty().isLength({min:9, max: 11})], TokenValidation, createProfile)
     .get(TokenValidation, getProfile);
 
 router.route('/profile/:id')
@@ -92,6 +99,7 @@ router.route('/task')
     .post(createTask);
 
 router.route('/schedule')
+    .get(getSchedules)
     .post(createSchedule);
 
 export default router;
