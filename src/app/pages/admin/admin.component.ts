@@ -19,10 +19,16 @@ export class AdminComponent implements OnInit {
 
   ngOnInit(): void {
     this.testimonialsService.getTestimonials().subscribe(
-      res => {this.testimonials = res}
+      res => {this.testimonials = res; 
+        document.getElementById("spinnerTestimonials").classList.add("d-none");
+        document.getElementById("noTestimonialsdiv").classList.remove("d-none");
+        document.getElementById("noTestimonialsdiv").classList.add("d-block");}
     );
     this.qaskusService.getQuestions().subscribe(
-      res => {this.questions = res;}
+      res => {this.questions = res;
+        document.getElementById("spinnerQuestions").classList.add("d-none");
+        document.getElementById("noQuestionsdiv").classList.remove("d-none");
+        document.getElementById("noQuestionsdiv").classList.add("d-block");}
     );
   }
 
