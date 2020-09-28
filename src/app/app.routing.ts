@@ -27,6 +27,11 @@ const routes: Routes = [
   {
     path: 'schedule',
     loadChildren: () => import('@pages/schedule/schedule.module').then(m => m.ScheduleModule), data: {name: 'Schedule'},
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'admin',
+    loadChildren: () => import('@pages/admin/admin.module').then(m => m.AdminModule), data: {name: 'Admin'},
     canActivate: [AuthGuard, RoleGuard]
   }
 ];

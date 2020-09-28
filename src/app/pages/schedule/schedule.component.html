@@ -10,17 +10,42 @@
                 </div>
         </div>
     </div>
-    <div class="col-xl-8">
+    <div class="col-xl-8"  *ngIf="authService.userLogged.role === 'admin'">
         <form [formGroup]="scheduleForm" (submit)="submit()">
             <div class="mb-3">
                 <label for="nameEvent" class="form-label">Nombre del evento</label>
-                <input type="text" class="form-control" id="nameEvent" formControlName="title">
+                <input type="text" class="form-control" id="nameEvent" placeholder="Nombre de la tarea" formControlName="title" minlength="4" maxlength="40" required>
+                <div *ngIf="f.title.invalid && (f.title.dirty || f.title.touched)"
+              class="alert alert-danger">
+
+                  <div *ngIf="f.title.errors.required">
+                    Información requerida.
+                  </div>
+                  <div *ngIf="f.title.errors.minlength">
+                    El titulo debe contener más de 4 caracteres.
+                  </div>
+                  <div *ngIf="f.title.errors.maxlength">
+                    El titulo no debe contener más de 40 caracteres.
+                  </div>
+                  <div *ngIf="f.title.pending">Validando...</div>
+
+              </div>
             </div>
             <div class="mb-3">
                 <label for="dateEvent" class="form-label">Fecha del evento</label>
-                <input type="datetime-local" class="form-control" id="dateEvent" formControlName="date">
+                <input type="datetime-local" class="form-control" id="dateEvent" formControlName="date" required>
+                <div *ngIf="f.date.invalid && (f.date.dirty || f.date.touched)"
+              class="alert alert-danger">
+
+                  <div *ngIf="f.date.errors.required">
+                    Información requerida.
+                  </div>
+                  <div *ngIf="f.date.pending">Validando...</div>
+
+              </div>
             </div>
-            <button class="btn btn-block btn-primary">Enviar</button>
+            <button class="btn btn-block btn-primary" [disabled]="scheduleForm.invalid">Enviar</button>
         </form>
+        <button class="btn btn-block btn-danger mt-2" *ngIf="idSchedule" (click)="deleteSchedule()">Eliminar</button>
     </div>
 </div>

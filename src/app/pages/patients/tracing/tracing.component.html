@@ -3,10 +3,10 @@
     <div class="card border-0">
       <div class="card-body d-flex justify-content-between">
           <div class="row justify-content-center">
-            <div class="col-xl-2 text-center" *ngIf="patient.name != ''">
+            <div class="col-xl-2 clo-lg-2 col-md-2 col-sm-2 text-center" *ngIf="patient.name != ''">
               <img src="{{patient.imgUrl}}" class="img-fluid rounded-circle mw-75 mb-1" alt="Imagen de usuario">
             </div>
-            <div class="col-xl-8">
+            <div class="col-xl-8 col-lg-8 col-lg-10 col-sm-10">
               <div class="row">
                 <ng-container *ngIf="patient.name != ''; else patientLoading">
                   <div class="col-xl-12">

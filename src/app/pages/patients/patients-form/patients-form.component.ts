@@ -38,7 +38,7 @@ export class PatientsFormComponent implements OnInit {
                   document.getElementById("formPatient").classList.remove("d-none");
                   document.getElementById("spinnerPatient").classList.add("d-none");
                   this.createForm();},
-          err => console.log(err)
+          err => {this.router.navigate(['/home'])}
         );
     }
     this.createForm();
@@ -65,7 +65,6 @@ export class PatientsFormComponent implements OnInit {
         .subscribe(
           res => {this.router.navigate(['/patients']).then(() => {
             this.toastr.success('Paciente editado correctamente.');
-            console.log(this.patient)
           })},
           err => {
             this.toastr.error(err.error.errors[0].msg)

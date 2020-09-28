@@ -46,7 +46,7 @@ export class StaffFormComponent implements OnInit {
                       document.getElementById("spinnerStaff").classList.add("d-none");
                       this.createForm();
                 },
-          err => console.log(err)
+          err => {this.router.navigate(['/home'])}
         );
     });
     this.profileService.getProfileById(this.id).subscribe(
@@ -122,20 +122,27 @@ export class StaffFormComponent implements OnInit {
           this.toastr.success('Información editada correctamente.')})
       }
       },
-      err => {this.toastr.error(err.error.errors.msg);}
+      err => {this.toastr.error(err.error.errors[0].msg);}
     )
     }
   }
 
+  deleteUser(){
+    if (confirm("Esta acción es irreversible")) {
+      this.usersService.deleteUserById(this.user._id).subscribe(
+        res => {
+          this.router.navigate(['/staff']).then(() => {
+            this.toastr.success('Información eliminada correctamente.')})
+        }
+      )
+  }}
+
   deleteProfile(){
     this.profileService.deleteProfileById(this.id).subscribe(
-      res => {if(this.authService.userLogged.id == this.id){
-        this.router.navigate(['/user/profile']).then(() => {
-          this.toastr.success('Información eliminada correctamente.')})
-      }else{
+      res => {
         this.router.navigate(['/staff']).then(() => {
           this.toastr.success('Información eliminada correctamente.')})
-      }},
+      },
       err => {this.toastr.error(err.error.errors[0].msg);}
     )
   }

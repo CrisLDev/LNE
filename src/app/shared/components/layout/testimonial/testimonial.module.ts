@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TaskComponent } from './task.component';
+import { TestimonialComponent } from './testimonial.component';
 import { SharedModule } from '@shared/shared.module';
 
 @NgModule({
-  declarations: [TaskComponent],
+  declarations: [TestimonialComponent],
   imports: [
     CommonModule,
     SharedModule
   ],
   exports: [
-    TaskComponent
+    TestimonialComponent
   ]
 })
-export class TaskModule { }
+export class TestimonialModule { }

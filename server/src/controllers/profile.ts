@@ -18,7 +18,7 @@ export async function createProfile(req: Request, res: Response){
         const profileExist = await Profile.findOne({cedula});        
 
         if(profileExist){
-            return res.status(400).json({errors : {msg: "Ya existe un perfil con este número de cedula."}})
+            return res.status(400).json({errors : [{msg: "Ya existe un perfil con este número de cedula."}]})
         }
 
         const profile: IProfile = new Profile({
@@ -73,7 +73,7 @@ export async function editProfileById(req:Request, res: Response){
         const profileExist = await Profile.findOne({user_id: req.params.id});
 
         if(!profileExist){
-            return res.status(401).json({errors: {mag: "No tienes un perfil."}})
+            return res.status(401).json({errors: [{msg: "No tienes un perfil."}]})
         }
 
         if(profileExist.cedula == cedula && profileExist.user_id != req.params.id) return res.status(401).send("La cedula ya está en uso.");

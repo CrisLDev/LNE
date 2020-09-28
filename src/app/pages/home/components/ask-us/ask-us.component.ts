@@ -39,9 +39,10 @@ export class AskUsComponent implements OnInit {
               document.getElementById("askUsButton").innerHTML = "Enviar";
               this.askUsForm.reset();
               this.askUsForm.markAsUntouched()},
-      err => {this.toastr.error(err.error.errors[0].msg);
+      err => {
               document.getElementById("askUsButton").removeAttribute("disabled");
-              document.getElementById("askUsButton").innerHTML = "Enviar";}
+              document.getElementById("askUsButton").innerHTML = "Enviar";
+              this.toastr.error(err.error.errors[0].msg);}
     )
   }
 

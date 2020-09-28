@@ -5,6 +5,11 @@ import AskUs, {IAskUs} from '../models/AskUs';
 import {validationResult} from 'express-validator';
 
 export async function createQuestion(req: Request, res: Response) {
+
+    const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({errors: [{msg : "Los datos contienen una estructura incorrecta."}]});
+        }
     
     const {user_id, title, content} = req.body;
 
@@ -30,4 +35,18 @@ export async function createQuestion(req: Request, res: Response) {
         
     }
 
+}
+
+export async function getQuestions(req:Request, res: Response) {
+    const questions = await AskUs.find().populate('user_id');
+
+    console.log(questions)
+
+    return res.status(200).json(questions)
+}
+
+export async function deleteQuestionById(req:Request, res: Response) {
+    const questionEliminated = await AskUs.findByIdAndRemove(req.params.id);
+
+    return res.status(200).json({questionEliminated})
 }

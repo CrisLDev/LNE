@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SharedModule } from 'app/shared/shared.module';
 import { NavbarModule } from './navbar/navbar.module';
 import { FooterModule } from './footer/footer.module';
-import { TaskModule } from './task/task.module';
+import { TestimonialModule } from './testimonial/testimonial.module';
 
 @NgModule({
   declarations: [],
@@ -12,12 +12,12 @@ import { TaskModule } from './task/task.module';
     SharedModule,
     NavbarModule,
     FooterModule,
-    TaskModule
+    TestimonialModule
   ],
   exports: [
     NavbarModule,
     FooterModule,
-    TaskModule
+    TestimonialModule
   ]
 })
 export class LayoutModule { }

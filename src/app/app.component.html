@@ -6,7 +6,7 @@
     <div class="container-fluid">
         <router-outlet></router-outlet>
     </div>
-    <app-task *ngIf="authService.loggedIn() && authService.userLogged.role === 'admin' || authService.loggedIn() && authService.userLogged.role === 'staff'"></app-task>
+    <app-testimonial *ngIf="authService.loggedIn() && authService.userLogged.role === 'user'"></app-testimonial>
 </main>
 <footer>
     <app-footer></app-footer>

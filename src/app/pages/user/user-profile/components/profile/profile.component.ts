@@ -31,7 +31,7 @@ export class ProfileComponent implements OnInit {
 
   private createForm(){
     this.profileForm = this.fb.group({
-      cedula: [this.profile.cedula || '', Validators.compose([Validators.required, Validators.minLength(9)])],
+      cedula: [this.profile.cedula || '', Validators.compose([Validators.required, Validators.minLength(9), Validators.maxLength(10)])],
       age: [this.profile.age || '', Validators.compose([Validators.required, Validators.minLength(1)])],
       area: [this.profile.area || '', Validators.compose([Validators.required, Validators.minLength(4)])],
       phoneNumber: [this.profile.phoneNumber || '', Validators.compose([Validators.required, Validators.minLength(9)])],
@@ -47,7 +47,7 @@ export class ProfileComponent implements OnInit {
         res => {
           this.profile = res.profileEdited;
               this.toastr.success('Información editada correctamente.')},
-        err => {this.toastr.error(err.error)}
+        err => {this.toastr.error(err.error.errros[0].msg)}
       )
     }else{
       this.profileForm.value.user_id = this.authService.userLogged.id;
@@ -55,13 +55,25 @@ export class ProfileComponent implements OnInit {
       res => {this.profile = res.profileSaved;
               this.id = res.profileSaved._id;
               this.toastr.success('Perfil creado correctamente.')},
-      err => {this.toastr.error(err.error.errors.msg);}
+      err => {this.toastr.error(err.error.errors[0].msg);}
     )
     }
   }
 
   editUser(){
     this.router.navigate(['/staff/edit', this.authService.userLogged.id]);
+  }
+
+  deleteProfile(){
+    this.profileService.deleteProfileById(this.authService.userLogged.id).subscribe(
+      res => {
+        this.id = '';
+        this.profile = {cedula: null, user_id: '', phoneNumber: null, age: null, area: ''};
+        this.profileForm.reset();
+        this.profileForm.markAsUntouched();
+          this.toastr.success('Información eliminada correctamente.')},
+      err => {this.toastr.error(err.error.errors[0].msg);}
+    )
   }
 
 }

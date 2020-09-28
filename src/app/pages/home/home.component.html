@@ -63,7 +63,21 @@
                   </svg>Testimoniales</h3>
             </div>
             <div class="card-body">
-                <div class="row justify-content-center">
+                <ng-container *ngIf="testimonial; else noTestimoniall">
+                    <div class="row justify-content-center">
+                    <div class="col-xl-3 col-5 d-flex justify-content-center">
+                        <img [src]="testimonial.user_id.imgUrl || 'assets/no-photo.jpg'" alt="{{testimonial.user_id.username}}"  class="img-fluid w-50">
+                    </div>
+                    <div class="col-xl-9 pt-3">
+                        <p>
+                            "{{testimonial.content}}"
+                        </p>
+                        <p>By {{testimonial.user_id.username}} - {{testimonial.createdAt | date:'medium'}}</p>
+                    </div>
+                </div>
+                </ng-container>
+                <ng-template #noTestimoniall>
+                    <div class="row justify-content-center">
                     <div class="col-xl-3 col-5 d-flex justify-content-center">
                         <img src="assets/no-photo.jpg" class="img-fluid w-50" alt="">
                     </div>
@@ -75,6 +89,7 @@
                         <p>By Anonimo - 20/08/2019</p>
                     </div>
                 </div>
+                </ng-template>
             </div>
         </div>
     </div>

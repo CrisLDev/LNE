@@ -46,13 +46,13 @@ export class TracingComponent implements OnInit {
                       this.dismissSpinner();
                     }
                 },
-          err => console.log(err)
+          err => {this.router.navigate(['/home'])}
         );
 
         this.patientsService.getPatient(this.id)
         .subscribe(
           res => {this.patient = res},
-          err => console.log(err)
+          err => {this.router.navigate(['/home'])}
         );
     });
   }

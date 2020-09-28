@@ -8,7 +8,7 @@ export async function createTracing(req: Request, res: Response){
 
     const errors = validationResult(req);
         if (!errors.isEmpty()) {
-            return res.status(400).json({errors: [{msg : "Los datos contienen una estructura incorrecta."}]});
+            return res.status(400).json({errors: {msg : "Los datos contienen una estructura incorrecta."}});
         }
 
     const {name, content, patient_id} = req.body;
@@ -30,7 +30,7 @@ export async function createTracing(req: Request, res: Response){
 
         const savedTracing = await tracing.save();
 
-        return res.status(200).json({errors: [{msg: "Seguimiento guardado correctamente."}]});
+        return res.status(200).json({msg: "Seguimiento guardado correctamente."});
     } catch (err) {
         res.status(400).send(err);
     }
@@ -106,7 +106,7 @@ export async function editTracingById(req: Request, res: Response){
         }
 
     } catch (err) {
-        res.status(400).json({msg: "No hay datos para mostrar."});
+        res.status(400).json({errors: [{msg: "No hay datos para mostrar."}]});
     }
 
 }

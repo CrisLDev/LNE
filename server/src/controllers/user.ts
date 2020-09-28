@@ -7,6 +7,7 @@ import jwt from 'jsonwebtoken';
 import {validationResult} from 'express-validator';
 
 import bcrypt from 'bcryptjs';
+import { isValidObjectId } from 'mongoose';
 
 export async function createUser(req: Request, res: Response){
 
@@ -103,6 +104,8 @@ export async function getUser(req:Request, res: Response){
 }
 
 export async function getUserById(req:Request, res: Response){
+
+    if(!isValidObjectId(req.params.id))return res.status(401).json({erros: [{msg: "Usuario no existe."}]});
     
     const user = await User.findById(req.params.id);
     

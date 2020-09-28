@@ -1,0 +1,43 @@
+<div class="row mt-5 mb-5 justify-content-center">
+    <div class="col-xl-8 col-lg-9 col-md-8 col-sm-9 col-12 mb-3" style="padding-top: 70px;">
+            <div class="row">
+                <ng-container *ngIf="testimonials?.length > 0; else notestimonilas">
+                    <div class="col-xl-12 mt-2" *ngFor="let testimonial of testimonials">
+                        <h3 class="mt-2 mb-2">Testimoniales</h3>
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">{{testimonial.name}}</h5>
+                                <p>{{testimonial.content}}</p>
+                                <p>Usuario: <span class="font-weight-bold">{{testimonial.user_id.username}}</span></p>
+                                <button class="btn btn-block btn-danger" (click)="deleteTestimonial(testimonial._id)">Eliminar</button>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="questions?.length > 0; else noQuestions">
+                    <div class="col-xl-12 mt-2" *ngFor="let question of questions">
+                        <h3 class="mt-2 mb-2">Preguntas</h3>
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">{{question.title}}</h5>
+                                <p>{{question.content}}</p>
+                                <button class="btn btn-block btn-danger" (click)="deleteQuestion(question._id)">Eliminar</button>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+        </div>
+    </div>
+</div>
+
+<ng-template #notestimonilas>
+    <div class="mt-5 mb-5 text-center">
+        <h3>No hay testimoniales</h3>
+    </div>
+</ng-template>
+
+<ng-template #noQuestions>
+    <div class="mt-5 mb-5 text-center">
+        <h3>No hay Preguntas</h3>
+    </div>
+</ng-template>

@@ -56,4 +56,15 @@ export class UserComponent implements OnInit {
     this.router.navigate(['/staff/edit', this.authService.userLogged.id]);
   }
 
+  deleteUser(){
+    if (confirm("Esta acción es irreversible")) {
+      this.usersService.deleteUserById(this.user._id).subscribe(
+        res => {
+          this.authService.logout()
+          this.router.navigate(['/staff']).then(() => {
+            this.toastr.success('Información eliminada correctamente.')});
+        }
+      )
+  }}
+
 }

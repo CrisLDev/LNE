@@ -37,6 +37,7 @@ export class AuthService {
   }
 
   logout(){
+    this.userLogged.role = '';
     localStorage.removeItem('token');
     this.router.navigate(['/user']);
     this.toastr.success('Te has deslogeado correctamente.')

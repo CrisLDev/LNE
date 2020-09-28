@@ -6,10 +6,10 @@ import { createTracing, getTracingsByPatientId, getTracingById, editTracingById,
 
 import {check} from 'express-validator';
 import { createNewletter } from '../controllers/newletter';
-import { createQuestion } from '../controllers/askus';
-import { createTask } from '../controllers/task';
+import { createQuestion, deleteQuestionById, getQuestions } from '../controllers/askus';
 import { createProfile, deleteProfileById, editProfileById, getProfile, getProfileById } from '../controllers/profile';
-import { createSchedule, getSchedules } from '../controllers/schedule';
+import { createSchedule, deleteScheduleById, editScheduleById, getSchedules } from '../controllers/schedule';
+import { createTestimonial, deleteTestimonialById, getTestimonial, getTestimonials } from '../controllers/testimonial';
 
 const router = Router();
 
@@ -49,7 +49,10 @@ router.route('/profile')
 
 router.route('/profile/:id')
     .get(TokenValidation, getProfileById)
-    .put(editProfileById)
+    .put([check('cedula').not().isEmpty().isLength({min:9, max: 11}),
+    check('age').not().isEmpty().isLength({min:1, max: 2}),
+    check('area').not().isEmpty().isLength({min:4, max: 15}),
+    check('phoneNumber').not().isEmpty().isLength({min:9, max: 11})], editProfileById)
     .delete(deleteProfileById);
 
 router.route('/patient')
@@ -90,16 +93,40 @@ router.route('/tracings/:id')
     .get(getTracingsByPatientId);
 
 router.route('/newletter')
-    .post(createNewletter);
+    .post([check('email').not().isEmpty().isEmail().isLength({min: 10, max: 40}).matches(/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i)],createNewletter);
 
 router.route('/askus')
-    .post(createQuestion);
+    .post([ 
+        check('title').isLength({min:6, max: 60}).not().isEmpty().withMessage('El campo no puede estar vacio'),
+        check('content').isLength({min:6}).not().isEmpty().withMessage('El campo no puede estar vacio')],createQuestion)
+    .get(getQuestions);
 
-router.route('/task')
-    .post(createTask);
+router.route('/askus/:id')
+        .delete(deleteQuestionById)
+
+router.route('/testimonial')
+    .post([check('name').isLength({min:4, max: 40}).not().isEmpty().withMessage('El campo no puede estar vacio'),
+    check('content').isLength({min:4}).not().isEmpty().withMessage('El campo no puede estar vacio')],createTestimonial)
+    .get(getTestimonial);
+
+router.route('/testimonials')
+    .get(getTestimonials);
+
+router.route('/testimonial/:id')
+    .delete(deleteTestimonialById);
 
 router.route('/schedule')
     .get(getSchedules)
-    .post(createSchedule);
+    .post([ 
+        check('title').isLength({min:4, max: 40}).not().isEmpty().withMessage('El campo no puede estar vacio'),
+        check('date').not().isEmpty().withMessage('El campo no puede estar vacio')], createSchedule);
+
+router.route('/schedule/:id')
+    .put([ 
+        check('title').isLength({min:4, max: 40}).not().isEmpty().withMessage('El campo no puede estar vacio'),
+        check('date').not().isEmpty().withMessage('El campo no puede estar vacio'),
+        check('_id').not().isEmpty().withMessage('El campo no puede estar vacio')],editScheduleById)
+    .delete(deleteScheduleById);
+
 
 export default router;

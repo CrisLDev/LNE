@@ -17,5 +17,13 @@ export class ScheduleService {
   getSchedules(){
     return this.http.get<any>(this.URL + '/schedule');
   }
+
+  editScheduleById(id,changes){
+    return this.http.put(this.URL + '/schedule/' + id, changes);
+  }
+
+  deleteScheduleById(id){
+    return this.http.delete(this.URL + '/schedule/' +id);
+  }
   
 }

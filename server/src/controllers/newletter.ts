@@ -6,6 +6,11 @@ import Newletter, {INewletter} from '../models/Newletter';
 
 export async function createNewletter(req: Request, res: Response) {
 
+    const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({errors: [{msg : "Los datos contienen una estructura incorrecta."}]});
+        }
+
     const {email} = req.body;
 
     try {

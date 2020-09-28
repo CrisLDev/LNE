@@ -89,7 +89,7 @@ export async function editPatientById(req: Request, res: Response){
 
         return res.status(200).json(updatedPatient);
     }catch{
-        return res.status(400).json({msg: "No hay datos para mostrar."})
+        return res.status(400).json({errors: [{msg: "No hay datos para mostrar."}]})
     }
 }
 
@@ -99,6 +99,6 @@ export async function deletePatientById(req: Request, res: Response){
         const deletedTracings = await Tracing.find({patient_id: req.params.id}).remove();
         return res.status(200).json({deletedPatient, deletedTracings});
     } catch(err){
-        return res.status(400).json({mgs:"No hay datos para mostrar."});
+        return res.status(400).json({errors:[{mgs:"No hay datos para mostrar."}]});
     }
 }

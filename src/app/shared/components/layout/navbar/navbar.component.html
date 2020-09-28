@@ -25,6 +25,9 @@
               <a class="nav-link" routerLink="/staff">Personal</a>
             </li>
             <li class="nav-item" *ngIf="authService.userLogged.role === 'admin'">
+              <a class="nav-link" routerLink="/admin">Admin</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" routerLink="/schedule">Horarios</a>
             </li>
             <li class="nav-item">

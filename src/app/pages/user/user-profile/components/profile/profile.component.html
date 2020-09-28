@@ -45,6 +45,8 @@
             formControlName="cedula"
             required
             placeholder="Ingresa tu cédula"
+            minlength="9"
+            maxlength="10"
           />
           <div
             *ngIf="g.cedula.invalid && (g.cedula.dirty || g.cedula.touched)"
@@ -55,6 +57,9 @@
             </div>
             <div *ngIf="g.cedula.errors.minlength">
               El número de cedula debe contener más de 9 caracteres.
+            </div>
+            <div *ngIf="g.cedula.errors.maxlength">
+              El número de cedula no debe contener más de 10 caracteres.
             </div>
           </div>
         </div>
@@ -133,5 +138,6 @@
           Enviar
         </button>
 </form>
+<button class="btn btn-danger btn-block mt-3" (click)="deleteProfile()" *ngIf="id">Eliminar Perfil</button>
   </div>
 </div> 
