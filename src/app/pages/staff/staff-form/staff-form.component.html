@@ -137,7 +137,7 @@
               <div class="mb-3">
                   <label for="cedulaProfile" class="form-label">Cédula</label>
                   <input
-                    type="text"
+                    type="number"
                     class="form-control"
                     id="cedulaProfile"
                     formControlName="cedula"
@@ -164,12 +164,14 @@
                 <div class="mb-3">
                   <label for="ageProfile" class="form-label">Edad</label>
                   <input
-                    type="text"
+                    type="number"
                     class="form-control"
                     id="ageProfile"
                     formControlName="age"
                     required
                     placeholder="Ingresa tu edad"
+                    minlength="1"
+                    maxlength="2"
                   />
                   <div
                     *ngIf="g.age.invalid && (g.age.dirty || g.age.touched)"
@@ -179,7 +181,10 @@
                       Información requerida.
                     </div>
                     <div *ngIf="g.age.errors.minlength">
-                      El número de cedila debe contener al menos 1 caracter.
+                      El número de cedula debe contener al menos 1 caracter.
+                    </div>
+                    <div *ngIf="g.age.errors.maxlength">
+                      El número de cedula no debe contener mas de 2 caracteres.
                     </div>
                   </div>
                 </div>
@@ -210,12 +215,14 @@
                 <div class="mb-3">
                   <label for="numberProfile" class="form-label">Número de teléfono</label>
                   <input
-                    type="text"
+                    type="number"
                     class="form-control"
                     id="numberProfile"
                     formControlName="phoneNumber"
                     required
                     placeholder="Ingresa tu número de telefono"
+                    minlength="4"
+                    maxlength="15"
                   />
                   <div
                     *ngIf="g.phoneNumber.invalid && (g.phoneNumber.dirty || g.phoneNumber.touched)"
@@ -226,6 +233,9 @@
                     </div>
                     <div *ngIf="g.phoneNumber.errors.minlength">
                       El número de telefono debe contener más de 9 caracteres.
+                    </div>
+                    <div *ngIf="g.phoneNumber.errors.maxlength">
+                      El número de telefono debe no contener más de 10 caracteres.
                     </div>
                   </div>
                 </div>

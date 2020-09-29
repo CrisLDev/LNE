@@ -58,31 +58,43 @@ export class PatientsFormComponent implements OnInit {
   }
 
   submit(){
+    document.getElementById("spinnerPatient").classList.add("d-block");
+    document.getElementById("formPatient").classList.add("d-none");
     document.getElementById("patientButton").setAttribute("disabled", "true");
     document.getElementById("patientButton").innerHTML = 'Enviando';
     if(this.id){
       this.patientsService.editPatient(this.id, this.patientForm.value)
         .subscribe(
-          res => {this.router.navigate(['/patients']).then(() => {
+          res => {
+            document.getElementById("spinnerPatient").classList.remove("d-block");
+    document.getElementById("formPatient").classList.remove("d-none");
+            this.router.navigate(['/patients']).then(() => {
             this.toastr.success('Paciente editado correctamente.');
           })},
           err => {
             this.toastr.error(err.error.errors[0].msg)
             document.getElementById("patientButton").removeAttribute("disabled");
             document.getElementById("patientButton").innerHTML = 'Guardar';
+            document.getElementById("spinnerPatient").classList.remove("d-block");
+    document.getElementById("formPatient").classList.remove("d-none");
           }
         );
         this.id =  '';
     }else{
       this.patientsService.createPatient(this.patientForm.value)
       .subscribe(
-        res => {this.router.navigate(['/patients']).then(() => {
+        res => {
+          document.getElementById("spinnerPatient").classList.remove("d-block");
+    document.getElementById("formPatient").classList.remove("d-none");
+          this.router.navigate(['/patients']).then(() => {
           this.toastr.success('Paciente agregado correctamente.');
         })},
         err => {
           this.toastr.error(err.error.errors[0].msg)
           document.getElementById("patientButton").removeAttribute("disabled");
           document.getElementById("patientButton").innerHTML = 'Guardar';
+          document.getElementById("spinnerPatient").classList.remove("d-block");
+    document.getElementById("formPatient").classList.remove("d-none");
         }
       )
       this.id =  '';

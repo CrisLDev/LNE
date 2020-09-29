@@ -44,7 +44,16 @@
                     </div>
                 </div>
                 <ng-container *ngIf="tracings?.length > 0; else loading">
-                  <mgl-timeline class="mt-5" [toggle]="toggle" [alternate]="alternate" [side]="side">
+                  <div class="text-center d-none" style="margin-top: 70px;" id="spinner">
+                    <div
+                      class="spinner-border"
+                      style="width: 3rem; height: 3rem;"
+                      role="status"
+                    >
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                  </div>
+                  <mgl-timeline id="tracingListS" class="mt-5" [toggle]="toggle" [alternate]="alternate" [side]="side">
                     <mgl-timeline-entry *ngFor="let tracing of tracings;let i = index;" (expand)="onExpandEntry($event, i)">
                       <mgl-timeline-entry-header (click)="onHeaderClick($event)">
                         <div class="d-flex justify-content-between">

@@ -68,9 +68,14 @@ export class TracingComponent implements OnInit {
   }
 
   deleteTracing(tracing_id){
+    document.getElementById("tracingListS").classList.add("d-none");
+    document.getElementById("spinner").classList.replace("d-none", "d-block");
     this.tracingsService.deleteTrancingById(tracing_id)
       .subscribe(
-        res => {this.tracings.splice(this.tracings.findIndex(e => e._id === tracing_id), 1);
+        res => {
+          document.getElementById("tracingListS").classList.remove("d-none");
+    document.getElementById("spinner").classList.replace("d-block","d-none");
+          this.tracings.splice(this.tracings.findIndex(e => e._id === tracing_id), 1);
           this.toastr.error('Seguimiento eliminado correctamente');},
         err => console.log(err)
       )

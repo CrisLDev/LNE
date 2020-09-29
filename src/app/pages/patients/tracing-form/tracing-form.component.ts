@@ -36,7 +36,7 @@ export class TracingFormComponent implements OnInit {
           res => {this.tracing = res;
                   document.getElementById("formTracing").classList.remove("d-none");
                   document.getElementById("spinnerTracing").classList.add("d-none"); this.createForm();},
-          err => console.log(err)
+          err => {this.router.navigate(['/home'])}
         );
     }
     this.activatedRoute.params.subscribe(params => this.id = params['id']);
@@ -54,26 +54,35 @@ export class TracingFormComponent implements OnInit {
   }
 
   submit(){
+    document.getElementById("spinnerTracing").classList.remove("d-none");
+    document.getElementById("formTracing").classList.add("d-none");
     document.getElementById("tracingButton").setAttribute("disabled", "true");
     document.getElementById("tracingButton").innerHTML = 'Enviando';
     if(this.tracing_id){
       this.tracing.patient_id = this.id;
       this.tracingsService.editTracingById(this.tracing_id, this.tracingForm.value)
         .subscribe(
-          res => {this.router.navigate(['/patients/view/' + this.id]).then(() => {
+          res => {
+            document.getElementById("spinnerTracing").classList.add("d-none");
+            document.getElementById("formTracing").classList.remove("d-none");  
+            this.router.navigate(['/patients/view/' + this.id]).then(() => {
             this.toastr.success('Seguimiento editado correctamente.');
           })},
           err => {
             this.toastr.error(err.error.errors[0].msg);
             document.getElementById("tracingButton").removeAttribute("disabled");
             document.getElementById("tracingButton").innerHTML = 'Guardar';
+            document.getElementById("formTracing").classList.remove("d-none");
+            document.getElementById("spinnerTracing").classList.add("d-none");
           }
         );
     }else{
       this.tracingForm.value.patient_id = this.id;
       this.tracingsService.createTracing(this.tracingForm.value)
         .subscribe(
-          res => {this.router.navigate(['/patients/view/' + this.id], ).then(() => {
+          res => {document.getElementById("formTracing").classList.remove("d-none");
+          document.getElementById("spinnerTracing").classList.add("d-none");
+          this.router.navigate(['/patients/view/' + this.id], ).then(() => {
             this.toastr.success('Seguimiento agregado correctamente.');
           })
           },
@@ -81,6 +90,8 @@ export class TracingFormComponent implements OnInit {
             this.toastr.error(err.error.errors[0].msg)
             document.getElementById("tracingButton").removeAttribute("disabled");
             document.getElementById("tracingButton").innerHTML = 'Guardar';
+            document.getElementById("formTracing").classList.remove("d-none");
+            document.getElementById("spinnerTracing").classList.add("d-none");
           }
         );
     }

@@ -32,10 +32,17 @@ export class PatientsListComponent implements OnInit {
   }
 
   deletePatient(id){
+    document.getElementById("patientLists").classList.add("d-none");
+    document.getElementById("spinner").classList.remove("d-none");
     this.patientService.deletePatient(id)
       .subscribe(
         res => {
-          this.patients.splice(this.patients.findIndex(e => e._id === id), 1); this.toastr.error('Paciente eliminado correctamente.');
+          this.patients.splice(this.patients.findIndex(e => e._id === id), 1); 
+          this.toastr.error('Paciente eliminado correctamente.');
+          if(res){
+            document.getElementById("patientLists").classList.replace("d-none", "d-flex");
+          document.getElementById("spinner").classList.add("d-none");
+          }
         },
         err => console.log(err)
       );

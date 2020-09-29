@@ -14,7 +14,7 @@ export class ScheduleComponent implements OnInit {
 
   event: {};
 
-  eventToEdit: any = {title: '', date: '', _id:''};
+  eventToEdit: any = {title: '', date: null, _id:''};
 
   idSchedule: string;
 
@@ -65,11 +65,15 @@ export class ScheduleComponent implements OnInit {
   }
 
   submit(){
+    document.getElementById("spinner").classList.replace("d-none", "d-block");
+    document.getElementById("scheduleDiv").classList.add("d-none");
     if(this.idSchedule){
       this.calendarOptions.events = [];
       this.scheduleForm.value._id = this.idSchedule;
       this.scheduleService.editScheduleById(this.idSchedule, this.scheduleForm.value).subscribe(
         res => {
+          document.getElementById("spinner").classList.replace("d-block", "d-none" );
+          document.getElementById("scheduleDiv").classList.remove("d-none");
           const eventClicked = this.events.findIndex(e => e._id === this.idSchedule);
           this.events[eventClicked]= res;
           this.calendarOptions.events = this.events;
@@ -78,16 +82,21 @@ export class ScheduleComponent implements OnInit {
           this.idSchedule = ''; 
           this.toastr.success('Horario editado correctamente.');
         },
-        err => {this.calendarOptions.events = this.events; console.log(err); this.toastr.error(err.error.errors[0].msg);}
+        err => {document.getElementById("spinner").classList.replace("d-block", "d-none" );
+        document.getElementById("scheduleDiv").classList.remove("d-none");
+        this.calendarOptions.events = this.events; console.log(err); this.toastr.error(err.error.errors[0].msg);}
       )
     }else{
       this.calendarOptions.events = [];
     this.scheduleService.createSchedule(this.scheduleForm.value).subscribe(
       res => {this.event = res; this.events.push(this.event); this.calendarOptions.events = this.events;
         this.scheduleForm.reset();
+        document.getElementById("spinner").classList.replace("d-block", "d-none" );
+          document.getElementById("scheduleDiv").classList.remove("d-none");
         this.scheduleForm.markAsUntouched();
         this.toastr.success('Horario creado correctamente.');},
-      err => {this.calendarOptions.events = this.events; this.toastr.error(err.error.errors[0].msg);}
+      err => {document.getElementById("spinner").classList.replace("d-block", "d-none" );
+      document.getElementById("scheduleDiv").classList.remove("d-none");this.calendarOptions.events = this.events; this.toastr.error(err.error.errors[0].msg);}
     );
     }
   }
@@ -95,11 +104,15 @@ export class ScheduleComponent implements OnInit {
   get f() { return this.scheduleForm.controls; }
 
   deleteSchedule(){
+    document.getElementById("spinner").classList.replace("d-none", "d-block");
+    document.getElementById("scheduleDiv").classList.add("d-none");
     this.calendarOptions.events = [];
     this.scheduleService.deleteScheduleById(this.idSchedule).subscribe(
       res => {this.events.splice(this.events.findIndex(e => e._id === this.idSchedule), 1);
         this.scheduleForm.reset();
         this.scheduleForm.markAsUntouched();
+        document.getElementById("spinner").classList.replace("d-block", "d-none" );
+          document.getElementById("scheduleDiv").classList.remove("d-none");
         this.calendarOptions.events = this.events;
         this.idSchedule = ''; 
         this.toastr.success('Horario Eliminado correctamente.');},

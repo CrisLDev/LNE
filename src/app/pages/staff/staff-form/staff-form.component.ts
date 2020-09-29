@@ -72,9 +72,9 @@ export class StaffFormComponent implements OnInit {
   private createForm2(){
     this.staffForm2 = this.fb.group({
       cedula: [this.profile.cedula || '', Validators.compose([Validators.required, Validators.minLength(9)])],
-      age: [this.profile.age || '', Validators.compose([Validators.required, Validators.minLength(1)])],
-      area: [this.profile.area || '', Validators.compose([Validators.required, Validators.minLength(4)])],
-      phoneNumber: [this.profile.phoneNumber || '', Validators.compose([Validators.required, Validators.minLength(9)])],
+      age: [this.profile.age || '', Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(2)])],
+      area: [this.profile.area || '', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(15)])],
+      phoneNumber: [this.profile.phoneNumber || '', Validators.compose([Validators.required, Validators.minLength(9), Validators.maxLength(10)])],
       user_id: [this.profile.user_id || '']
     })
   }

@@ -27,11 +27,17 @@ export class StaffListComponent implements OnInit {
   }
 
   deleteUser(id){
+    document.getElementById("patientsList").classList.add("d-none");
+    document.getElementById("spinner").classList.replace("d-none", "d-block");
     if (confirm("Esta acción es irreversible")) {
       this.usersService.deleteUserById(id).subscribe(
         res => {if(this.authService.userLogged.id === id){
           this.authService.logout()
+          document.getElementById("patientsList").classList.remove("d-none");
+          document.getElementById("spinner").classList.replace("d-block", "d-none");
         }else{
+          document.getElementById("patientsList").classList.remove("d-none");
+          document.getElementById("spinner").classList.replace("d-block", "d-none");
           this.users.splice(this.users.findIndex(e => e._id === id), 1); this.toastr.error('Usuario eliminado correctamente.');
         }}
       )
