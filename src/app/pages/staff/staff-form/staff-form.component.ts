@@ -85,6 +85,10 @@ export class StaffFormComponent implements OnInit {
   get g() { return this.staffForm2.controls; }
 
   submitUser(){
+    document.getElementById("spinnerStaff").classList.replace("d-none", "d-block");
+    document.getElementById("formStaff").classList.add("d-none");
+    document.getElementById("staffButton1").setAttribute("disabled", "true");
+    document.getElementById("staffButton1").innerHTML = 'enviando';
     this.usersService.editUserById(this.id, this.staffForm1.value).subscribe(
       res => {if(this.authService.userLogged.id == this.id){
         this.router.navigate(['/user/profile']).then(() => {
@@ -93,11 +97,20 @@ export class StaffFormComponent implements OnInit {
         this.router.navigate(['/staff']).then(() => {
           this.toastr.success('Información editada correctamente.')})
       }},
-      err => {this.toastr.error(err.error.errors[0].msg);}
+      err => {
+        document.getElementById("spinnerStaff").classList.replace("d-block", "d-none");
+    document.getElementById("formStaff").classList.remove("d-none");
+      document.getElementById("staffButton1").removeAttribute("disabled");
+      document.getElementById("staffButton1").innerHTML = 'enviar';
+      this.toastr.error(err.error.errors[0].msg);}
     )
   }
 
   submitProfile(){
+    document.getElementById("spinnerStaff2").classList.replace("d-none", "d-block");
+    document.getElementById("formStaff2").classList.add("d-none");
+    document.getElementById("staffButton").setAttribute("disabled", "true");
+    document.getElementById("staffButton").innerHTML = 'enviando';
     if(this.idProfile){
       this.profileService.editProfileById(this.id, this.staffForm2.value).subscribe(
         res => {
@@ -109,7 +122,10 @@ export class StaffFormComponent implements OnInit {
               this.toastr.success('Información editada correctamente.')})
           }
       },
-      err => {this.toastr.error(err.error.errors[0].msg);}
+      err => {document.getElementById("spinnerStaff2").classList.replace("d-block", "d-none");
+      document.getElementById("formStaff2").classList.remove("d-none");
+      document.getElementById("staffButton").removeAttribute("disabled");
+      document.getElementById("staffButton").innerHTML = 'enviar'; this.toastr.error(err.error.errors[0].msg);}
       )
     }else{
       this.staffForm2.value.user_id = this.id;
