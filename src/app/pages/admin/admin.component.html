@@ -1,5 +1,16 @@
-<div class="row mt-5 mb-5 justify-content-center">
-    <div class="col-xl-8 col-lg-9 col-md-8 col-sm-9 col-12 mb-3" style="padding-top: 70px;">
+<div class="d-none" style="margin-top: 15em; margin-bottom: 15em;" id="spinner">
+    <div class="text-center" style="margin-top: 70px;">
+        <div
+          class="spinner-border"
+          style="width: 3rem; height: 3rem;"
+          role="status"
+        >
+          <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+</div>
+<div class="row mt-5 mb-5 justify-content-center" id="main">
+    <div class="col-xl-8 col-lg-9 col-md-8 col-sm-9 col-12 mb-3" style="padding-top: 50px;">
             <div class="row">
                 <h3 class="mt-2 mb-2">Testimoniales</h3>
                 <ng-container *ngIf="testimonials?.length > 0; else notestimonilas">

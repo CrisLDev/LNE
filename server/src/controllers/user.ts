@@ -2,6 +2,12 @@ import {Request, Response} from 'express';
 
 import User, {IUser} from '../models/User';
 
+import Profile from '../models/Profile';
+
+import AskUs from '../models/AskUs';
+
+import Testimonial from '../models/Testimonials';
+
 import jwt from 'jsonwebtoken';
 
 import {validationResult} from 'express-validator';
@@ -52,7 +58,7 @@ export async function createUser(req: Request, res: Response){
             });
         }
 
-        return res.status(200).header('authorization', token).json({auth: true, token});
+        return res.status(200).header('authorization', token).json({auth: true, token, savedUser});
 
     } catch (err){
         res.status(400).send(err);
@@ -168,6 +174,9 @@ export async function deleteUserById(req:Request, res: Response){
 
     try{
         const userEliminated = await User.findByIdAndRemove(req.params.id);
+        await Profile.find({user_id: req.params.id}).remove();
+        await Testimonial.find({user_id: req.params.id}).remove();
+        await AskUs.find({user_id: req.params.id}).remove();
         return res.status(200).json(userEliminated);
     } catch(err){
         return res.status(400).json({msg: "No hay datos para mostrar."});

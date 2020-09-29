@@ -43,12 +43,19 @@ export class UserComponent implements OnInit {
   get f() { return this.userForm.controls; }
 
   submitUser(){
+    document.getElementById("collapseUser").classList.add("d-none");
+    document.getElementById("userSubmit").setAttribute("disabled", "true");
+    document.getElementById("spinner").classList.replace("d-none", "d-block");
     this.usersService.editUserById(this.authService.userLogged.id, this.userForm.value).subscribe(
       res => {
+        document.getElementById("userSubmit").removeAttribute("disabled");
+        document.getElementById("collapseUser").classList.remove("d-none");
+        document.getElementById("spinner").classList.replace("d-block", "d-none");
         this.user = res.userEdited;
         this.router.navigate(['/user/profile']).then(() => {
           this.toastr.success('Información editada correctamente.')})},
-      err => {console.log(err)}
+      err => {console.log(err); document.getElementById("userSubmit").removeAttribute("disabled");
+      document.getElementById("collapseUser").classList.remove("d-none");}
     )
   }
 
@@ -57,9 +64,13 @@ export class UserComponent implements OnInit {
   }
 
   deleteUser(){
+    document.getElementById("deleteUserB").setAttribute("disabled", "true");
+    document.getElementById("deleteUserB").innerHTML = "Enviando";
     if (confirm("Esta acción es irreversible")) {
       this.usersService.deleteUserById(this.user._id).subscribe(
         res => {
+          document.getElementById("deleteUserB").removeAttribute("disabled");
+        document.getElementById("deleteUserB").innerHTML = "Enviar";
           this.authService.logout()
           this.router.navigate(['/staff']).then(() => {
             this.toastr.success('Información eliminada correctamente.')});

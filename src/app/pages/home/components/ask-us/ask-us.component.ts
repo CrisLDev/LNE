@@ -30,6 +30,8 @@ export class AskUsComponent implements OnInit {
   }
 
   submit(){
+    document.getElementById("spinner").classList.replace("d-none", "d-block");
+    document.getElementById("main").classList.add("d-none");
     this.askUsForm.value.user_id = this.authService.userLogged.id;
     document.getElementById("askUsButton").setAttribute("disabled", "true");
     document.getElementById("askUsButton").innerHTML = "Enviando";
@@ -37,6 +39,8 @@ export class AskUsComponent implements OnInit {
       res => {this.toastr.success('Pregunta enviada correctamente.');
               document.getElementById("askUsButton").removeAttribute("disabled");
               document.getElementById("askUsButton").innerHTML = "Enviar";
+              document.getElementById("spinner").classList.replace("d-block", "d-none");
+      document.getElementById("main").classList.remove("d-none");
               this.askUsForm.reset();
               this.askUsForm.markAsUntouched()},
       err => {

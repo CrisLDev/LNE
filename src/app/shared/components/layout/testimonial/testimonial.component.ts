@@ -36,6 +36,8 @@ export class TestimonialComponent implements OnInit {
   get f() { return this.testimonialForm.controls; }
 
   submit(){
+    document.getElementById("spinner").classList.replace("d-none", "d-block");
+    document.getElementById("main").classList.add("d-none");
     this.testimonialForm.value.user_id = this.authService.userLogged.id;
     document.getElementById("scheduleButton").setAttribute("disabled", "true");
     document.getElementById("scheduleButton").innerHTML = "Enviando";
@@ -43,6 +45,8 @@ export class TestimonialComponent implements OnInit {
       res => {this.toastr.success('Testimonial agregado correctamente.');
               document.getElementById("scheduleButton").removeAttribute("disabled");
               document.getElementById("scheduleButton").innerHTML = "Enviar";
+              document.getElementById("spinner").classList.replace("d-block", "d-none");
+      document.getElementById("main").classList.remove("d-none");
               this.testimonialForm.reset();
               this.testimonialForm.markAsUntouched()},
       err => {

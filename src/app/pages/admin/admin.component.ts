@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AskUsService } from '@core/services/ask-us.service';
 import { TestimonialService } from '@core/services/Testimonial.service';
 import { Testimonial } from '@shared/classes/Testimonial';
@@ -15,7 +16,7 @@ export class AdminComponent implements OnInit {
 
   questions = [];
 
-  constructor(private testimonialsService: TestimonialService, private toastr: ToastrService, private qaskusService: AskUsService) { }
+  constructor(private testimonialsService: TestimonialService, private toastr: ToastrService, private qaskusService: AskUsService, private router: Router) { }
 
   ngOnInit(): void {
     this.testimonialsService.getTestimonials().subscribe(
@@ -33,15 +34,34 @@ export class AdminComponent implements OnInit {
   }
 
   deleteTestimonial(id){
+    document.getElementById("spinner").classList.replace("d-none", "d-block");
+    document.getElementById("main").classList.add("d-none");
     this.testimonialsService.deleteTestimonial(id).subscribe(
       res => {this.testimonials.splice(this.testimonials.findIndex(e => e._id === id), 1);
-      this.toastr.success('Testimonial eliminado satisfactoriamente.')}
+      this.toastr.success('Testimonial eliminado satisfactoriamente.')
+      document.getElementById("spinner").classList.replace("d-block", "d-none");
+      document.getElementById("main").classList.remove("d-none");
+      if(this.testimonials.length <= 0){
+        this.router.navigate(['/home'])
+      }},
+      err => {
+        this.toastr.error(err.error.errors[0].msg);
+      document.getElementById("spinner").classList.replace("d-block", "d-none");
+      document.getElementById("main").classList.remove("d-none");
+      }
     )
   }
 
   deleteQuestion(id){
+    document.getElementById("spinner").classList.replace("d-none", "d-block");
+    document.getElementById("main").classList.add("d-none");
     this.qaskusService.deleteQuestion(id).subscribe(
       res => {this.questions.splice(this.questions.findIndex(e => e._id === id), 1);
+        document.getElementById("spinner").classList.replace("d-block", "d-none");
+      document.getElementById("main").classList.remove("d-none");
+      if(this.questions.length <= 0){
+        this.router.navigate(['/home'])
+      }
       this.toastr.success('Pregunta eliminada satisfactoriamente.')}
     )
   }
