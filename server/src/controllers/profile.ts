@@ -67,6 +67,11 @@ export async function getProfileById(req:Request, res: Response){
 
 export async function editProfileById(req:Request, res: Response){
 
+    const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({errors: [{msg : "Los datos contienen una estructura incorrecta."}]});
+    }
+
     const {cedula, area, age, phoneNumber} = req.body;
 
     try {
