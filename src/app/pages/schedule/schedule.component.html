@@ -10,7 +10,7 @@
                 </div>
         </div>
     </div>
-    <div class="col-xl-8"  *ngIf="authService.userLogged.role === 'user'">
+    <div class="col-xl-8"  *ngIf="authService.userLogged.role === 'user' || authService.userLogged.role === 'staff'">
       <div *ngIf="eventToEdit.title !== ''">
         <div class="card">
           <div class="card-header">
