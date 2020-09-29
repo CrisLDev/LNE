@@ -39,6 +39,9 @@ export class PatientsListComponent implements OnInit {
         res => {
           this.patients.splice(this.patients.findIndex(e => e._id === id), 1); 
           this.toastr.error('Paciente eliminado correctamente.');
+          if(this.patients.length <= 0){
+            this.router.navigate(['/home'])
+          }
           if(res){
             document.getElementById("patientLists").classList.replace("d-none", "d-flex");
           document.getElementById("spinner").classList.add("d-none");
