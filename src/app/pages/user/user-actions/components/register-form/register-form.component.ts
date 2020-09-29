@@ -36,6 +36,8 @@ export class RegisterFormComponent implements OnInit {
   get f() { return this.registerForm.controls; }
 
   submit(){
+    document.getElementById("register").classList.add("d-none");
+    document.getElementById("spinner").classList.replace("d-none", "d-block");
     this.onButtonClicked();
     this.authService.signUp(this.registerForm.value)
       .subscribe(
@@ -46,6 +48,8 @@ export class RegisterFormComponent implements OnInit {
         this.toastr.success('Te has registrado correctamente.');
         },
         err => {
+          document.getElementById("register").classList.remove("d-none");
+            document.getElementById("spinner").classList.replace("d-block", "d-none");
                 this.toastr.error(err.error.errors[0].msg);
                 this.retriveErrorsSoEnableButton()
                 }

@@ -36,6 +36,8 @@ export class LoginFormComponent implements OnInit {
 
 
   submit(){
+    document.getElementById("userSubmit").classList.add("d-none");
+    document.getElementById("spinner").classList.replace("d-none", "d-block");
     document.getElementById("loginButton").setAttribute("disabled", "true");
       this.authService.signIn(this.loginForm.value)
       .subscribe(
@@ -47,7 +49,10 @@ export class LoginFormComponent implements OnInit {
             this.toastr.success('Te has logeado correctamente.')
           });
         },
-        err => {this.toastr.error(err.error.errors[0].msg);
+        err => {
+          document.getElementById("userSubmit").classList.remove("d-none");
+            document.getElementById("spinner").classList.replace("d-block", "d-none");
+          this.toastr.error(err.error.errors[0].msg);
           document.getElementById("loginButton").removeAttribute("disabled");}
       )
   }
