@@ -45,7 +45,6 @@ export class TracingComponent implements OnInit {
                       this.tracings = res;
                       this.dismissSpinner();
                     }
-                    console.log(res)
                 },
           err => {this.router.navigate(['/home'])}
         );
