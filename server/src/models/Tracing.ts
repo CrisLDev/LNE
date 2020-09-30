@@ -4,6 +4,7 @@ const ObjectId = Schema.Types.ObjectId;
 
 const schema = new Schema({
     patient_id: {type: ObjectId, ref: 'Patient'},
+    user_id: {type: ObjectId, ref: 'User'},
     name:{
         type: String,
         required: true,

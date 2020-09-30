@@ -73,6 +73,9 @@
                       <mgl-timeline-entry-content [expandAnimationTiming]="contentAnimation ? '200ms ease' : '0ms'" [collapseAnimationTiming]="contentAnimation ? '100ms ease' : '0ms'">
                         <div>
                           <div>{{tracing.content}}</div>
+                          <div class="mt-2">
+                            <span class="font-weight-bold">Creado por: </span><span>{{tracing.user_id.username}}</span>
+                          </div>
                         </div>
                       </mgl-timeline-entry-content>
                       <mgl-timeline-entry-dot

@@ -16,7 +16,8 @@ export async function createTracing(req: Request, res: Response){
     const tracing: ITracing = new Tracing({
         name,
         content,
-        patient_id
+        patient_id,
+        user_id: req.userId
     });
 
     try {
@@ -40,7 +41,7 @@ export async function getTracingsByPatientId(req: Request, res: Response){
 
     try {
 
-        const tracings = await Tracing.find({patient_id: req.params.id});
+        const tracings = await Tracing.find({patient_id: req.params.id}).populate('user_id', 'username');
 
         if(tracings){
             return res.status(200).json(tracings);
@@ -94,7 +95,8 @@ export async function editTracingById(req: Request, res: Response){
         const tracingToEdit = {
             name,
             content,
-            patient_id
+            patient_id,
+            user_id: req.userId
         }
 
         const tracingUpdated = await Tracing.findByIdAndUpdate(req.params.tracing_id, tracingToEdit, {new: true});

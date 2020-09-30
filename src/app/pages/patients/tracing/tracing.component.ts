@@ -45,6 +45,7 @@ export class TracingComponent implements OnInit {
                       this.tracings = res;
                       this.dismissSpinner();
                     }
+                    console.log(res)
                 },
           err => {this.router.navigate(['/home'])}
         );
@@ -76,7 +77,10 @@ export class TracingComponent implements OnInit {
           document.getElementById("tracingListS").classList.remove("d-none");
     document.getElementById("spinner").classList.replace("d-block","d-none");
           this.tracings.splice(this.tracings.findIndex(e => e._id === tracing_id), 1);
-          this.toastr.error('Seguimiento eliminado correctamente');},
+          this.toastr.error('Seguimiento eliminado correctamente');
+          if(this.tracings.length <= 0){
+            this.router.navigate(['/home'])
+          }},
         err => console.log(err)
       )
   }

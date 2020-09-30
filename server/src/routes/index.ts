@@ -79,14 +79,14 @@ router.route('/tracing')
     .post([ 
         check('name').isLength({min:4, max: 20}).not().isEmpty().withMessage('El campo no puede estar vacio'),
         check('content').isLength({min:4, max: 20}).not().isEmpty().withMessage('El campo no puede estar vacio'),
-        check('patient_id').isLength({min:10, max: 40}).not().isEmpty().withMessage('El campo no puede estar vacio')],
+        check('patient_id').isLength({min:10, max: 40}).not().isEmpty().withMessage('El campo no puede estar vacio')],TokenValidation,
         createTracing);
 
 router.route('/tracing/:tracing_id')
     .get(getTracingById)
     .put([check('name').isLength({min:4, max: 20}).not().isEmpty().withMessage('El campo no puede estar vacio'),
     check('content').isLength({min:4, max: 20}).not().isEmpty().withMessage('El campo no puede estar vacio'),
-    check('patient_id').isLength({min:10, max: 40}).not().isEmpty().withMessage('El campo no puede estar vacio')],editTracingById)
+    check('patient_id').isLength({min:10, max: 40}).not().isEmpty().withMessage('El campo no puede estar vacio')],TokenValidation,editTracingById)
     .delete(deleteTracingById);
     
 router.route('/tracings/:id')
