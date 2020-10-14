@@ -2,10 +2,10 @@
     <div class="col-xl-12" style="margin-top: 70px;">
         <div class="card">
             <div class="card-header bg-white d-flex p-5">
-                <div class="col-xl-1">
+                <div class="col-xl-1 col-lg-2 col-md-2 col-sm-2 col-3">
                     <img class="img-fluid" src="./assets/logo.svg" alt="Logo">
                 </div>
-                <div class="col-xl-11 text-right">
+                <div class="col-xl-11 col-lg-10 col-md-10 col-sm-10 col-9 text-right">
                     <p class="mb-1">Babahoyo - Barreiro</p>
                     <p class="mb-1">{{date | date:'short'}}</p>
                     <p class="mb-1">La Nueva Era</p>
@@ -18,6 +18,7 @@
                 </div>
                 <div>
                     <h5>Ficha de identificación</h5>
+                    <div class="form-text">Los campos marcados con * son necesarios.</div>
                     <h5 class="pt-2 pl-5">1. Pacientes</h5>
                 </div>
                 <div class="pl-5 pr-5">
@@ -49,37 +50,114 @@
                     </div>
                 </div>
                 <div>
-                    <h5 class="pt-4 pl-5">2. Interrogatorio</h5>
+                    <h5 class="pt-4 pl-5">3. Antecedentes personales patológicos</h5>
+                </div>
+                <div class="row pl-5 pr-5">
+                    <div class="col-xl-12">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text text-wrap" id="basic-addon3">Enfermedades inflamatorias e infecciosas no transmisibles</span>
+                            <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="Puedes dejar el campo vacio, esto se entenderá como un (No aplica)">
+                          </div>
+                    </div>
+                    <div class="col-xl-12">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text text-wrap" id="basic-addon3">Enfermedades de transmición sexual</span>
+                            <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="Puedes dejar el campo vacio, esto se entenderá como un (No aplica)">
+                          </div>
+                    </div>
+                    <div class="col-xl-12">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text text-wrap" id="basic-addon3">Enfermedades degenerativas</span>
+                            <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="Puedes dejar el campo vacio, esto se entenderá como un (No aplica)">
+                          </div>
+                    </div>
+                    <div class="col-xl-12">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text text-wrap" id="basic-addon3">Otras</span>
+                            <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="Puedes dejar el campo vacio, esto se entenderá como un (No aplica)">
+                          </div>
+                    </div>
+                </div>
+                <div>
+                    <h5 class="pt-4 pl-5">4. Antecedentes personales no patológicos</h5>
+                </div>
+                <div class="row pl-5 pr-5">
+                    <div class="col-xl-4">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text text-wrap" id="basic-addon3">Grupo sanguineo*</span>
+                            <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3"
+                            placeholder="ejemplo: A+">
+                          </div>
+                    </div>
+                    <div class="col-xl-4">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text text-wrap" id="basic-addon3">Adicciones</span>
+                            <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="Puedes dejar el campo vacio, esto se entenderá como un (No aplica)">
+                          </div>
+                    </div>
+                    <div class="col-xl-4">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text text-wrap" id="basic-addon3">Alergias</span>
+                            <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="Puedes dejar el campo vacio, esto se entenderá como un (No aplica)">
+                          </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text text-wrap" id="basic-addon3">Antibioticos</span>
+                            <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="Puedes dejar el campo vacio, esto se entenderá como un (No aplica)">
+                          </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text text-wrap" id="basic-addon3">Pacedimiento actual</span>
+                            <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="Puedes dejar el campo vacio, esto se entenderá como un (No aplica)">
+                          </div>
+                    </div>
+                    <div class="col-xl-12">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text text-wrap" id="basic-addon3">Ha sido hospitalizado</span>
+                            <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" placeholder="Motivos. Puedes dejar el campo vacio, esto se entenderá como un (No aplica)">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h5 class="pt-4 pl-5">5. Interrogatorio por enfermedades en organos</h5>
                 </div>
                 <div class="row pl-5 pr-5">
                     <div class="col-xl-6">
                         <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon3">Lugar y fecha de nacimiento</span>
-                            <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                            <span class="input-group-text text-wrap" id="basic-addon3">Respiratorias</span>
+                            <textarea class="form-control" aria-label="With textarea" placeholder="Puedes dejar el campo vacio, esto se entenderá como un (No aplica)"></textarea>
                           </div>
                     </div>
-                    <div class="col-xl-3">
+                    <div class="col-xl-6">
                         <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon3">Ocupación</span>
-                            <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                            <span class="input-group-text text-wrap" id="basic-addon3">Cardiovasculares</span>
+                            <textarea class="form-control" aria-label="With textarea" placeholder="Puedes dejar el campo vacio, esto se entenderá como un (No aplica)"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text text-wrap" id="basic-addon3">Genitourinarias</span>
+                            <textarea class="form-control" aria-label="With textarea" placeholder="Puedes dejar el campo vacio, esto se entenderá como un (No aplica)"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text text-wrap" id="basic-addon3">Endócrinas</span>
+                            <textarea class="form-control" aria-label="With textarea" placeholder="Puedes dejar el campo vacio, esto se entenderá como un (No aplica)"></textarea>
                           </div>
                     </div>
-                    <div class="col-xl-3">
+                    <div class="col-xl-6">
                         <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon3">Escolaridad</span>
-                            <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                            <span class="input-group-text text-wrap" id="basic-addon3">Nervisos</span>
+                            <textarea class="form-control" aria-label="With textarea" placeholder="Puedes dejar el campo vacio, esto se entenderá como un (No aplica)"></textarea>
                           </div>
                     </div>
-                    <div class="col-xl-3">
+                    <div class="col-xl-6">
                         <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon3">Estado civil</span>
-                            <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
-                          </div>
-                    </div>
-                    <div class="col-xl-3">
-                        <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon3">Domicilio</span>
-                            <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                            <span class="input-group-text text-wrap" id="basic-addon3">Musculares</span>
+                            <textarea class="form-control" aria-label="With textarea" placeholder="Puedes dejar el campo vacio, esto se entenderá como un (No aplica)"></textarea>
                           </div>
                     </div>
                 </div>

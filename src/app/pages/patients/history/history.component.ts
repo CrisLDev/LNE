@@ -25,6 +25,7 @@ export class HistoryComponent implements OnInit {
   }
 
   addPatient(id){
+    this.patientsToSave = [];
     const patientClicked = this.patients.filter((e) => e._id === id);
     this.patientsToSave.push(patientClicked[0]);
   }

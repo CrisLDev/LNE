@@ -1,0 +1,28 @@
+.input-group-text{
+    border-radius: .25rem;
+}
+
+@media (max-width: 991.98px) {
+    .input-group-text{
+        width: 100%;
+        border-radius: 0;
+    }
+
+    .form-control{
+        border-radius: 0;
+    }
+
+    .input-group>:not(:first-child):not(.dropdown-menu) {
+        margin-left: 0!important;
+    }
+
+    .card-body{
+        padding-left: 1em!important;
+        padding-right: 1em!important;
+    }
+
+    .pl-5, pr-5{
+        padding-left: 1em!important;
+        padding-right: 1em!important;
+    }
+}
