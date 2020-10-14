@@ -11,7 +11,7 @@ export async function createSchedule(req:Request, res: Response) {
             return res.status(400).json({errors: [{msg : "Los datos contienen una estructura incorrecta."}]});
         }
 
-    const {title, date} = req.body;
+    const {title, date, participants} = req.body;
 
     try {
         
@@ -23,7 +23,8 @@ export async function createSchedule(req:Request, res: Response) {
 
         const schedule = new Schedule({
             title,
-            date
+            date,
+            participants
         });
 
         const scheduleSaved = await schedule.save();
@@ -37,7 +38,7 @@ export async function createSchedule(req:Request, res: Response) {
 }
 
 export async function getSchedules(req: Request, res: Response){
-    const schedules = await Schedule.find();
+    const schedules = await Schedule.find().populate('participants.user', ['_id', 'username']);
 
     return res.status(200).json({schedules});
 }

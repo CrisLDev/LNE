@@ -87,7 +87,7 @@ export class TracingFormComponent implements OnInit {
           })
           },
           err => {
-            this.toastr.error(err.error.errors[0].msg)
+            this.toastr.error(err.error.errors.msg)
             document.getElementById("tracingButton").removeAttribute("disabled");
             document.getElementById("tracingButton").innerHTML = 'Guardar';
             document.getElementById("formTracing").classList.remove("d-none");

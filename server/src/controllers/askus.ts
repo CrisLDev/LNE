@@ -40,8 +40,6 @@ export async function createQuestion(req: Request, res: Response) {
 export async function getQuestions(req:Request, res: Response) {
     const questions = await AskUs.find().populate('user_id');
 
-    console.log(questions)
-
     return res.status(200).json(questions)
 }
 

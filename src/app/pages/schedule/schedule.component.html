@@ -1,5 +1,21 @@
 <div class="row mt-5 mb-5 justify-content-center">
     <div class="col-xl-8 col-lg-9 col-md-8 col-sm-9 col-12 mb-3" style="padding-top: 70px;">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card">
+                  <div class="card-header bg-white">
+                    <h3>Mis tareas</h3>
+                  </div>
+                    <div class="card-body">
+                      <ng-container *ngIf="myTasks?.length > 0; else noTask">
+                        <span class="d-block" *ngFor="let myTask of myTasks">{{myTask.title}}</span>
+                      </ng-container>
+                    </div>
+                </div>
+            </div>
+      </div>
+    </div>
+    <div class="col-xl-8 col-lg-9 col-md-8 col-sm-9 col-12 mb-3">
             <div class="row">
                 <div class="col-xl-12">
                     <div class="card">
@@ -15,7 +31,7 @@
       <div *ngIf="eventToEdit.title !== ''">
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title">Tarea Seleccionado</h3>
+            <h3 class="card-title">Tarea Seleccionada</h3>
             <hr>
             <div>
               <p class="font-weight-bold">Nombre de la tarea:</p>
@@ -25,6 +41,14 @@
               <p class="font-weight-bold">Fecha de la tarea:</p>
               <p>{{eventToEdit.date | date:'medium'}}</p>
             </div>
+            <ng-container *ngIf="eventToEdit?.participants.length > 0; else noParticipants">
+              <p class="font-weight-bold">Participantes:</p>
+              <p *ngFor="let user of eventToEdit?.participants">{{user.user.username}}</p>
+            </ng-container>
+            <ng-template #noParticipants>
+              <p class="font-weight-bold">Participantes:</p>
+              Este es un evento general.
+            </ng-template>
           </div>
         </div>
       </div>
@@ -42,6 +66,24 @@
 </div>
     <div class="col-xl-8" id="scheduleDiv"  *ngIf="authService.userLogged.role === 'admin'">
         <form [formGroup]="scheduleForm" (submit)="submit()">
+
+          <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupSelect01">Participantes</label>
+            <select class="form-select" id="inputGroupSelect01" (change)="addParticipants($event.target.value)">
+              <option selected>Escoge uno...</option>
+              <option *ngFor="let user of users" value="{{user._id}}">{{user.username}}</option>
+            </select>
+          </div>
+
+          <div class="card">
+            <ng-container *ngIf="usersParticipants?.length <= 0; else existUsers">
+              <div class="card-body text-center" id="textEdit">
+                  Aún no has seleccionado ningun usuario.
+              </div>
+            </ng-container>
+          </div>
+          <div class="form-text mb-1">Para eliminar un item, solo dale click.</div>
+
             <div class="mb-3">
                 <label for="nameEvent" class="form-label">Nombre del evento</label>
                 <input type="text" class="form-control" id="nameEvent" placeholder="Nombre de la tarea" formControlName="title" minlength="4" maxlength="40" required>
@@ -77,5 +119,16 @@
             <button class="btn btn-block btn-primary" [disabled]="scheduleForm.invalid">Enviar</button>
         </form>
         <button class="btn btn-block btn-danger mt-2" *ngIf="idSchedule" (click)="deleteSchedule()">Eliminar</button>
+        <button class="btn btn-block btn-warning mt-2" *ngIf="idSchedule" (click)="resetFormIf()">Limpiar formulario</button>
     </div>
 </div>
+
+<ng-template #existUsers>
+  <div class="card-body text-center" *ngIf="usersParticipants?.length > 0">
+    <h5 style="cursor: pointer;" *ngFor="let uP of usersParticipants" (click)="deleteUser(uP._id)">{{uP.username}}</h5>
+  </div>
+</ng-template>
+
+<ng-template #noTask>
+  No tienes tareas pendientes
+</ng-template>
