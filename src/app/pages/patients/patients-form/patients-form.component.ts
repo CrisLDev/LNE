@@ -11,7 +11,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class PatientsFormComponent implements OnInit {
 
-  patient = {name: '', age: '', imgUrl: '', phoneNumber: '', email: '', entryDate: ''};
+  patient = {name: '', age: '', imgUrl: '', phoneNumber: '', email: '', entryDate: '', birthDate: '', birthPlace: '', ocupation: '', academicLevel:'', maritalStatus: '', residence:''};
 
   id: string;
 
@@ -54,6 +54,12 @@ export class PatientsFormComponent implements OnInit {
       age: [this.patient.age||'', Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(2)])],
       phoneNumber: [this.patient.phoneNumber || '', Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(10)])],
       entryDate: [this.patient.entryDate || '', Validators.compose([Validators.required])],
+      birthDate: [this.patient.birthDate || '', Validators.compose([Validators.required])],
+      birthPlace: [this.patient.birthPlace || '', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(40)])],
+      ocupation: [this.patient.ocupation || '', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(40)])],
+      academicLevel: [this.patient.academicLevel || '', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(40)])],
+      maritalStatus: [this.patient.maritalStatus || '', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(40)])],
+      residence: [this.patient.residence || '', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(40)])]
     })
   }
 

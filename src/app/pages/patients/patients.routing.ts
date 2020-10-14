@@ -4,6 +4,7 @@ import { PatientsListComponent } from './patients-list/patients-list.component';
 import { PatientsFormComponent } from './patients-form/patients-form.component';
 import { TracingComponent } from '@pages/patients/tracing/tracing.component';
 import { TracingFormComponent } from '@pages/patients/tracing-form/tracing-form.component';
+import { HistoryComponent } from './history/history.component';
 
 const routes: Routes = [
   {
@@ -29,6 +30,10 @@ const routes: Routes = [
   {
     path: 'edit/:id',
     component: PatientsFormComponent
+  },
+  {
+    path: 'view/:id/history/create',
+    component: HistoryComponent
   }
 ]
 

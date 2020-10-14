@@ -13,7 +13,19 @@ export async function createPatient(req: Request, res: Response){
             return res.status(400).json({errors: [{msg : "Los datos contienen una estructura incorrecta."}]});
         }
 
-    const {name, age, imgUrl, email, phoneNumber, entryDate} = req.body;
+    const {
+        name, 
+        age, 
+        imgUrl, 
+        email, 
+        phoneNumber, 
+        entryDate, 
+        birthDate,
+        birthPlace,
+        ocupation,
+        academicLevel,
+        maritalStatus,
+        residence} = req.body;
 
     const patient: IPatient = new Patient({
         name,
@@ -21,7 +33,13 @@ export async function createPatient(req: Request, res: Response){
         email,
         imgUrl,
         phoneNumber,
-        entryDate
+        entryDate,
+        birthDate,
+        birthPlace,
+        ocupation,
+        academicLevel,
+        maritalStatus,
+        residence
     });
 
     try{
@@ -75,14 +93,25 @@ export async function editPatientById(req: Request, res: Response){
         }
 
     try{
-        const {name, age, email, imgUrl, phoneNumber, entryDate} = req.body;
+        const {name, age, email, imgUrl, phoneNumber, entryDate, birthDate,
+            birthPlace,
+            ocupation,
+            academicLevel,
+            maritalStatus,
+            residence} = req.body;
         const editPatient = {
             name, 
             age, 
             email, 
             imgUrl, 
             phoneNumber, 
-            entryDate
+            entryDate,
+            birthDate,
+            birthPlace,
+            ocupation,
+            academicLevel,
+            maritalStatus,
+            residence
         }
 
         const updatedPatient = await Patient.findByIdAndUpdate(req.params.id, editPatient, {new: true})

@@ -1,0 +1,81 @@
+<div class="row mt-3 mb-5">
+    <div class="col-xl-12" style="margin-top: 70px;">
+        <div class="card">
+            <div class="card-header bg-white d-flex p-5">
+                <div class="col-xl-1">
+                    <img class="img-fluid" src="./assets/logo.svg" alt="Logo">
+                </div>
+                <div class="col-xl-11 text-right">
+                    <p class="mb-1">Babahoyo - Barreiro</p>
+                    <p class="mb-1">{{date | date:'short'}}</p>
+                    <p class="mb-1">La Nueva Era</p>
+                </div>
+            </div>
+            <div class="card-body p-5">
+                <div class="text-center mb-5">
+                    <h1>Formato 1</h1>
+                    <h2>Historial de Consulta</h2>
+                </div>
+                <div>
+                    <h5>Ficha de identificación</h5>
+                    <h5 class="pt-2 pl-5">1. Pacientes</h5>
+                </div>
+                <div class="pl-5 pr-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="input-group mb-3">
+                                <label class="input-group-text" for="inputGroupSelect01">Pacientes</label>
+                                <select class="form-select" id="inputGroupSelect01" (change)="addPatient($event.target.value)">
+                                  <option selected>Escoge uno...</option>
+                                  <option *ngFor="let patient of patients" value="{{patient._id}}">{{patient.name}}</option>
+                                </select>
+                              </div>
+                            <ng-container *ngIf="patientsToSave?.length > 0; else noPatients">
+                                <p class="mb-1" *ngFor="let patientSelected of patientsToSave">{{patientSelected.name}}</p>
+                            </ng-container>
+                            <ng-template #noPatients>
+                                No hay pacientes
+                            </ng-template>
+
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h5 class="pt-4 pl-5">2. Interrogatorio</h5>
+                </div>
+                <div class="row pl-5 pr-5">
+                    <div class="col-xl-6">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon3">Lugar y fecha de nacimiento</span>
+                            <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                          </div>
+                    </div>
+                    <div class="col-xl-3">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon3">Ocupación</span>
+                            <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                          </div>
+                    </div>
+                    <div class="col-xl-3">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon3">Escolaridad</span>
+                            <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                          </div>
+                    </div>
+                    <div class="col-xl-3">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon3">Estado civil</span>
+                            <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                          </div>
+                    </div>
+                    <div class="col-xl-3">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon3">Domicilio</span>
+                            <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

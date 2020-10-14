@@ -7,9 +7,10 @@ import {SharedModule} from '@shared/shared.module';
 import { TracingComponent } from './tracing/tracing.component';
 import { TracingFormComponent } from './tracing-form/tracing-form.component';
 import { MglTimelineModule } from 'angular-mgl-timeline';
+import { HistoryComponent } from './history/history.component';
 
 @NgModule({
-  declarations: [PatientsListComponent, PatientsFormComponent, TracingComponent, TracingFormComponent],
+  declarations: [PatientsListComponent, PatientsFormComponent, TracingComponent, TracingFormComponent, HistoryComponent],
   imports: [
     CommonModule,
     PatientsRoutingModule,
