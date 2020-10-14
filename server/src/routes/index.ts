@@ -62,7 +62,16 @@ router.route('/patient')
         check('age').isLength({min:1, max: 2}).not().isEmpty().withMessage('El campo no puede estar vacio'),
         check('imgUrl').isLength({min:10}).not().isEmpty().withMessage('El campo no puede estar vacio'),
         check('phoneNumber').isLength({min:9, max: 10}).not().isEmpty().withMessage('El campo no puede estar vacio'),
-        check('email').not().isEmpty().isEmail().isLength({min: 8, max: 50}).matches(/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i)],
+        check('email').not().isEmpty().isEmail().isLength({min: 8, max: 50}).matches(/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i),
+        check('entryDate').isDate().not().isEmpty().withMessage('El campo no puede estar vacio'),
+        check('birthDate').isDate().not().isEmpty().withMessage('El campo no puede estar vacio'),
+        check('birthPlace').isLength({min:4, max: 15}).not().isEmpty().withMessage('El campo no puede estar vacio'),
+        check('ocupation').isLength({min:4, max: 15}).not().isEmpty().withMessage('El campo no puede estar vacio'),
+        check('academicLevel').isLength({min:4, max: 15}).not().isEmpty().withMessage('El campo no puede estar vacio'),
+        check('maritalStatus').isLength({min:4, max: 15}).not().isEmpty().withMessage('El campo no puede estar vacio'),
+        check('residence').isLength({min:4, max: 15}).not().isEmpty().withMessage('El campo no puede estar vacio'),
+        check('genere').isLength({min:4, max: 12}).not().isEmpty().withMessage('El campo no puede estar vacio')
+    ],
         createPatient);
 
 router.route('/patient/:id')

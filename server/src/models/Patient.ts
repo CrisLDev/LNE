@@ -57,25 +57,30 @@ const schema = new Schema({
     residence: {
         type: String,
         required: true
+    },
+    genere: {
+        type: String,
+        required: true
     }
 },{
     timestamps: true
 });
 
 export interface IPatient extends Document{
-    name: string,
-    age: number,
-    phoneNumber: number,
-    email: string,
-    imgUrl: string,
-    entryDate: Date,
-    departureDate: Date,
-    birthDate: Date,
-    birthPlace: string,
-    ocupation: string,
-    academicLevel: string,
-    maritalStatus: string,
-    residence: string
+    name: string;
+    age: number;
+    phoneNumber: number;
+    email: string;
+    imgUrl: string;
+    entryDate: Date;
+    departureDate: Date;
+    birthDate: Date;
+    birthPlace: string;
+    ocupation: string;
+    academicLevel: string;
+    maritalStatus: string;
+    residence: string;
+    genere: string;
 }
 
 export default model<IPatient>('Patient', schema);

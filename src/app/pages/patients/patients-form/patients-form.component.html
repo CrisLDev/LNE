@@ -145,12 +145,37 @@
                 </div>
               </div>
               </div>
-              <div class="col-xl-12">
+              <div class="col-xl-6">
                 <div class="mb-3">
                   <label for="birthPlacePatient" class="form-label">
                     Lugar de nacimiento
                   </label><br>
                   <input type="text" class="form-control" id="birthPlacePatient" formControlName="birthPlace" placeholder="Ingrese lugar de nacimiento" required>
+                  <div *ngIf="f.birthPlace.invalid && (f.birthPlace.dirty || f.birthPlace.touched)"
+                class="alert alert-danger">
+    
+                    <div *ngIf="f.birthPlace.errors.required">
+                      Información requerida.
+                    </div>
+                    <div *ngIf="f.birthPlace.errors.minlength">
+                      El campo debe contener más de 6 caracteres.
+                    </div>
+                    <div *ngIf="f.birthPlace.pending">Validando...</div>
+    
+                </div>
+              </div>
+              </div>
+              <div class="col-xl-6">
+                <div class="mb-3">
+                  <label class="form-label">
+                    Género
+                  </label><br>
+                    <select class="form-select" formControlName="genere" required>
+                      <option selected>Escoge uno...</option>
+                      <option value="hombre">Hombre</option>
+                      <option value="mujer">Mujer</option>
+                      <option value="helicoptero">Helicoptero</option>
+                    </select>
                   <div *ngIf="f.birthPlace.invalid && (f.birthPlace.dirty || f.birthPlace.touched)"
                 class="alert alert-danger">
     

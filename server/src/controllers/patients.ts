@@ -25,7 +25,8 @@ export async function createPatient(req: Request, res: Response){
         ocupation,
         academicLevel,
         maritalStatus,
-        residence} = req.body;
+        residence,
+        genere} = req.body;
 
     const patient: IPatient = new Patient({
         name,
@@ -39,10 +40,14 @@ export async function createPatient(req: Request, res: Response){
         ocupation,
         academicLevel,
         maritalStatus,
-        residence
+        residence,
+        genere
     });
 
     try{
+
+        if(genere !== 'hombre' || genere !== 'mujer' || genere !== 'helicoptero')return res.status(400).json({errors: [{msg : "Porfavor escoge un género de la lista."}]});
+
         // Save patient
         let patientExist = await Patient.findOne({email});
 
@@ -98,7 +103,8 @@ export async function editPatientById(req: Request, res: Response){
             ocupation,
             academicLevel,
             maritalStatus,
-            residence} = req.body;
+            residence,
+            genere} = req.body;
         const editPatient = {
             name, 
             age, 
@@ -111,12 +117,19 @@ export async function editPatientById(req: Request, res: Response){
             ocupation,
             academicLevel,
             maritalStatus,
-            residence
+            residence,
+            genere
         }
 
-        const updatedPatient = await Patient.findByIdAndUpdate(req.params.id, editPatient, {new: true})
+        const genereToEvaluate = genere;
 
-        return res.status(200).json(updatedPatient);
+        if(genereToEvaluate === 'hombre' || genereToEvaluate === 'mujer' || genereToEvaluate === 'helicoptero'){
+            const updatedPatient = await Patient.findByIdAndUpdate(req.params.id, editPatient, {new: true});
+            return res.status(200).json(updatedPatient);
+        }else{
+            return res.status(400).json({errors: [{msg : "Porfavor escoge un género de la lista."}]});
+        }
+
     }catch{
         return res.status(400).json({errors: [{msg: "No hay datos para mostrar."}]})
     }
