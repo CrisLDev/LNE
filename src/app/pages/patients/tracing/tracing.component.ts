@@ -60,7 +60,7 @@ export class TracingComponent implements OnInit {
         );
     });
 
-    this.historyService.getHistoryByPatientId(this.id).subscribe(
+    this.historyService.getHistoriesByPatientId(this.id).subscribe(
       res => {this.histories = res.histories}
     );
 

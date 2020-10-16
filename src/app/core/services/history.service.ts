@@ -16,7 +16,7 @@ export class HistoryService {
     return this.http.post(this.URL + '/history', data);
   }
 
-  getHistoryByPatientId(patient_id){
+  getHistoriesByPatientId(patient_id){
     return this.http.get<any>(this.URL + '/history/' + patient_id);
   }
 

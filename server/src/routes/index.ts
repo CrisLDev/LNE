@@ -10,7 +10,7 @@ import { createQuestion, deleteQuestionById, getQuestions } from '../controllers
 import { createProfile, deleteProfileById, editProfileById, getProfile, getProfileById } from '../controllers/profile';
 import { createSchedule, deleteScheduleById, editScheduleById, getSchedules } from '../controllers/schedule';
 import { createTestimonial, deleteTestimonialById, getTestimonial, getTestimonials } from '../controllers/testimonial';
-import { createHistory, getHistoryByPatientId } from '../controllers/history';
+import { createHistory, getHistoriesByPatientId } from '../controllers/history';
 
 const router = Router();
 
@@ -142,6 +142,6 @@ router.route('/history')
     .post(createHistory);
 
 router.route('/history/:patient_id')
-    .get(getHistoryByPatientId);
+    .get(getHistoriesByPatientId);
 
 export default router;

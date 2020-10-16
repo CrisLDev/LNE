@@ -82,9 +82,9 @@ export async function createHistory(req: Request, res: Response){
 
 }
 
-export async function getHistoryByPatientId(req: Request, res: Response){
+export async function getHistoriesByPatientId(req: Request, res: Response){
     try{
-        const histories = await History.find({patient_id: req.params.patient_id});
+        const histories = await History.find({patient_id: req.params.patient_id}).sort({created_At: -1});
 
         if(histories){
             return res.status(200).json({histories});
