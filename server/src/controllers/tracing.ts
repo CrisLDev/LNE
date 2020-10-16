@@ -41,7 +41,7 @@ export async function getTracingsByPatientId(req: Request, res: Response){
 
     try {
 
-        const tracings = await Tracing.find({patient_id: req.params.id}).populate('user_id', 'username');
+        const tracings = await Tracing.find({patient_id: req.params.id}).sort({createdAt: -1}).populate('user_id', 'username');
 
         if(tracings){
             return res.status(200).json(tracings);
