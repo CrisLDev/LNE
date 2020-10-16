@@ -34,8 +34,8 @@ export async function createTestimonial(req: Request, res: Response) {
 }
 
 export async function getTestimonial(req:Request, res: Response) {
-    const testimonial = await Testimonial.findOne().populate('user_id');
-
+    const testimonial = await Testimonial.find().sort({createdAt: -1}).populate('user_id').limit(2);
+    
     return res.status(200).json({testimonial})
 }
 

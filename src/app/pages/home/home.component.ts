@@ -10,14 +10,9 @@ import { Testimonial } from '@shared/classes/Testimonial';
 })
 export class HomeComponent implements OnInit {
 
-
-
   constructor(public authService: AuthService, private testimonialsService: TestimonialService) { }
 
-  testimonial: Testimonial = {name: '', content: '', createdAt: null, user_id: {
-    username: '',
-    imgUrl:''
-  }};
+  testimonials: Testimonial[];
 
   ngOnInit(): void {
     if(localStorage.getItem('newsletter')){
@@ -26,7 +21,7 @@ export class HomeComponent implements OnInit {
       document.getElementById("newsletterHr").classList.add("d-none");
     }
     this.testimonialsService.getTestimonial().subscribe(
-      res => {this.testimonial = res.testimonial;},
+      res => {this.testimonials = res.testimonial},
       err=>{console.log(err)}
     )
   }
