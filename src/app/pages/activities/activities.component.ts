@@ -6,11 +6,11 @@ import { Testimonial } from '@shared/classes/Testimonial';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-admin',
-  templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.css']
+  selector: 'app-activities',
+  templateUrl: './activities.component.html',
+  styleUrls: ['./activities.component.css']
 })
-export class AdminComponent implements OnInit {
+export class ActivitiesComponent implements OnInit {
 
   testimonials = [];
 

@@ -38,10 +38,16 @@
                 </ng-container>
                 <div class="col-xl-12">
                   <div class="card border-0 border-bottom">
-                    <div class="card-body d-flex justify-content-between pl-0 pr-0">
-                        <h4 class="card-title">Historias clinicas</h4>
-                        <a class="btn btn-primary" routerLink="history/create">Nuevo</a>
-                </div>
+                    <div class="card-header bg-white d-flex justify-content-between pl-0 pr-0">
+                      <h4 class="card-title">Historias clinicas</h4>
+                      <a class="btn btn-primary" routerLink="history/create">Nuevo</a>
+                    </div>
+                    <div class="card-body">
+                      <div class="card" *ngFor="let history of histories">
+                        <div class="form-text pt-3 pl-3">Click en la historia clínica para más acciones.</div>
+                        <div class="card-body">Historia clínica {{history.createdAt | date:'short'}}</div>
+                      </div>
+                    </div>
                 <hr>
                 <div class="col-xl-12">
                   <div class="card border-0 border-bottom">

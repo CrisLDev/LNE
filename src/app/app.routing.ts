@@ -30,8 +30,8 @@ const routes: Routes = [
     canActivate: [AuthGuard, StaffGuard]
   },
   {
-    path: 'admin',
-    loadChildren: () => import('@pages/admin/admin.module').then(m => m.AdminModule), data: {name: 'Admin'},
+    path: 'activities',
+    loadChildren: () => import('@pages/activities/activities.module').then(m => m.ActivitiesModule), data: {name: 'Activities'},
     canActivate: [AuthGuard, RoleGuard]
   }
 ];

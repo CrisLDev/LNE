@@ -9,7 +9,7 @@
           <li class="nav-item" (click)="toHome()">
             <a class="nav-link" aria-current="page" routerLink="/home">Inicio</a>
           </li>
-          <li class="nav-item" (click)="toAskUs()">
+          <li class="nav-item" (click)="toAskUs()" *ngIf="authService.userLogged.role === 'user'">
             <a class="nav-link" routerLink="/home">Preguntanos</a>
           </li>
           <ng-container *ngIf="!authService.loggedIn(); else loggedUser">
@@ -22,10 +22,10 @@
               <a class="nav-link" routerLink="/patients">Pacientes</a>
             </li>
             <li class="nav-item" *ngIf="authService.userLogged.role === 'admin'">
-              <a class="nav-link" routerLink="/staff">Personal</a>
+              <a class="nav-link" routerLink="/staff">Usuarios</a>
             </li>
             <li class="nav-item" *ngIf="authService.userLogged.role === 'admin'">
-              <a class="nav-link" routerLink="/admin">Admin</a>
+              <a class="nav-link" routerLink="/activities">Actividades</a>
             </li>
             <li class="nav-item" *ngIf="authService.userLogged.role === 'admin' || authService.userLogged.role === 'staff'">
               <a class="nav-link" routerLink="/schedule">Horarios</a>

@@ -4,6 +4,7 @@ import { TracingsService } from '@core/services/tracings.service';
 import { ToastrService } from 'ngx-toastr';
 import { element } from 'protractor';
 import { PatientsService } from '@core/services/patients.service';
+import { HistoryService } from '@core/services/history.service';
 
 @Component({
   selector: 'app-tracing',
@@ -15,6 +16,8 @@ export class TracingComponent implements OnInit {
   id: string;
 
   tracings = [];
+
+  histories = [];
 
   alternate: boolean = true;
   toggle: boolean = true;
@@ -33,7 +36,8 @@ export class TracingComponent implements OnInit {
               private tracingsService: TracingsService,
               private patientsService: PatientsService,
               private router: Router,
-              private toastr: ToastrService) { }
+              private toastr: ToastrService,
+              private historyService: HistoryService) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
@@ -55,6 +59,11 @@ export class TracingComponent implements OnInit {
           err => {this.router.navigate(['/home'])}
         );
     });
+
+    this.historyService.getHistoryByPatientId(this.id).subscribe(
+      res => {this.histories = res.histories}
+    );
+
   }
   
   dismissSpinner(){

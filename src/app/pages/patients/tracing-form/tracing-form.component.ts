@@ -48,7 +48,7 @@ export class TracingFormComponent implements OnInit {
   private createForm(){
     this.tracingForm = this.fb.group({
       name: [this.tracing.name || '', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(20)])],
-      content: [this.tracing.content||'', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(50)])],
+      content: [this.tracing.content||'', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(255)])],
       patient_id: [this.tracing.patient_id || '']
     })
   }

@@ -111,7 +111,7 @@
 
     <hr id="newsletterHr">
 
-    <div class="col-xl-12 pt-4 pb-5" id="askUsPart">
+    <div class="col-xl-12 pt-4 pb-5" id="askUsPart" *ngIf="authService.userLogged.role === 'user'">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-xl-12 text-center mb-0 pb-0">

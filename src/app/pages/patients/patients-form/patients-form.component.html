@@ -1,5 +1,5 @@
 <div class="row mt-3 mb-4 justify-content-center">
-    <div class="col-xl-5" style="margin-top: 70px;">
+    <div class="col-xl-5 mb-5" style="margin-top: 70px;">
         <div class="text-center" style="margin-top: 70px;" id="spinnerPatient">
             <div
               class="spinner-border"
@@ -14,7 +14,7 @@
               <div class="col-xl-12">
                 <div class="mb-3">
                   <label for="namePatient" class="form-label">Nombre</label>
-                  <input type="text" class="form-control" id="namePatient" placeholder="Ingresa un nombre" formControlName="name" minlength="4" required>
+                  <input type="text" class="form-control" id="namePatient" placeholder="Ingresa un nombre" formControlName="name" minlength="4" maxlength="40" required>
                   <div *ngIf="f.name.invalid && (f.name.dirty || f.name.touched)"
                 class="alert alert-danger">
     
@@ -22,7 +22,10 @@
                       Información requerida.
                     </div>
                     <div *ngIf="f.name.errors.minlength">
-                      El nombre debe contener más de 6 caracteres.
+                      El campo debe contener más de 6 caracteres.
+                    </div>
+                    <div *ngIf="f.name.errors.maxlength">
+                      El campo debe contener menos de 40 caracteres.
                     </div>
                     <div *ngIf="f.name.pending">Validando...</div>
     
@@ -51,7 +54,7 @@
               <div class="col-xl-12">
                 <div class="mb-3">
                   <label for="emailPatient" class="form-label">Email</label>
-                  <input type="email" class="form-control" id="emailPatient" formControlName="email" placeholder="Ingresa un email" minlength="10" aria-describedby="emailHelp" required>
+                  <input type="email" class="form-control" id="emailPatient" formControlName="email" placeholder="Ingresa un email" minlength="10" maxlength="40" aria-describedby="emailHelp" required>
                   <div *ngIf="f.email.invalid && (f.email.dirty || f.email.touched)"
                   class="alert alert-danger">
       
@@ -64,6 +67,9 @@
                       <div *ngIf="f.email.errors.email">
                         El email debe contener una estructura común.
                       </div>
+                      <div *ngIf="f.email.errors.maxlength">
+                        El campo debe contener menos de 40 caracteres.
+                      </div>
                       <div *ngIf="f.email.pending">Validando...</div>
       
                   </div>
@@ -73,15 +79,18 @@
               <div class="col-xl-6">
                 <div class="mb-3">
                   <label for="agePatient" class="form-label">Edad</label>
-                  <input type="number" class="form-control" id="agePatient" formControlName="age" placeholder="Ingresa una edad" minlength="1" required>
+                  <input type="number" class="form-control" id="agePatient" formControlName="age" placeholder="Ingresa una edad" min="0" max="100" required>
                   <div *ngIf="f.age.invalid && (f.age.dirty || f.age.touched)"
                 class="alert alert-danger">
     
                     <div *ngIf="f.age.errors.required">
                       Información requerida.
                     </div>
-                    <div *ngIf="f.age.errors.minlength">
+                    <div *ngIf="f.age.errors.min">
                       La edad no debe contener más de 2 caracteres.
+                    </div>
+                    <div *ngIf="f.age.errors.max">
+                      El campo debe contener menos de 3 caracteres.
                     </div>
                     <div *ngIf="f.age.pending">Validando...</div>
     
@@ -91,15 +100,18 @@
               <div class="col-xl-6">
                 <div class="mb-3">
                   <label for="numberPatient" class="form-label">Número de teléfono</label>
-                  <input type="number" class="form-control" id="numberPatient" formControlName="phoneNumber" placeholder="Ingresa un número de teléfono" minlength="10" required>
+                  <input type="number" class="form-control" id="numberPatient" formControlName="phoneNumber" placeholder="Ingresa un número de teléfono" min="960000000" max="100000000" required>
                   <div *ngIf="f.phoneNumber.invalid && (f.phoneNumber.dirty || f.phoneNumber.touched)"
                 class="alert alert-danger">
     
                     <div *ngIf="f.phoneNumber.errors.required">
                       Información requerida.
                     </div>
-                    <div *ngIf="f.phoneNumber.errors.minlength">
-                      El número de telefono debe contener más de 6 caracteres.
+                    <div *ngIf="f.phoneNumber.errors.min">
+                      Ingresa un número de telefono válido.
+                    </div>
+                    <div *ngIf="f.phoneNumber.errors.max">
+                      Ingresa un número de telefono válido.
                     </div>
                     <div *ngIf="f.phoneNumber.pending">Validando...</div>
     

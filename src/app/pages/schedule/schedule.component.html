@@ -29,7 +29,7 @@
     </div>
     <div class="col-xl-8"  *ngIf="authService.userLogged.role === 'user' || authService.userLogged.role === 'staff'">
       <div *ngIf="eventToEdit.title !== ''">
-        <div class="card">
+        <div class="card mb-5">
           <div class="card-header">
             <h3 class="card-title">Tarea Seleccionada</h3>
             <hr>
@@ -64,7 +64,7 @@
         </div>
     </div>
 </div>
-    <div class="col-xl-8" id="scheduleDiv"  *ngIf="authService.userLogged.role === 'admin'">
+    <div class="col-xl-8 mb-5" id="scheduleDiv"  *ngIf="authService.userLogged.role === 'admin'">
         <form [formGroup]="scheduleForm" (submit)="submit()">
 
           <div class="input-group mb-3">
