@@ -12,6 +12,9 @@ import { ToastrService } from "ngx-toastr";
   styleUrls: ["./schedule.component.css"],
 })
 export class ScheduleComponent implements OnInit {
+
+  p: number = 1;
+
   event: {};
 
   eventToEdit: any = { title: "", date: null, _id: "" };
@@ -79,6 +82,7 @@ export class ScheduleComponent implements OnInit {
       this.calendarOptions.events = res.schedules;
       this.events = res.schedules;
       this.myTasks = this.events.filter((e) => e.participants.find((e) => e.user === this.authService.userLogged.id));
+      console.log(res);
       this.createForm();
     });
     this.usersService.getAllUsers().subscribe(

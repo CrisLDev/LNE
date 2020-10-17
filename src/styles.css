@@ -33,3 +33,13 @@ input{
     background-color: #0d6efd;
     color: white;
 }
+
+.ngx-pagination {
+    display: flex!important;
+    justify-content: center!important;
+    margin-bottom: 0!important;
+}
+
+.fc-col-header-cell-cushion{
+    text-decoration: none;
+}
