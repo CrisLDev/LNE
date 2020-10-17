@@ -11,6 +11,7 @@ import { createProfile, deleteProfileById, editProfileById, getProfile, getProfi
 import { createSchedule, deleteScheduleById, editScheduleById, getSchedules } from '../controllers/schedule';
 import { createTestimonial, deleteTestimonialById, getTestimonial, getTestimonials } from '../controllers/testimonial';
 import { createHistory, getHistoriesByPatientId } from '../controllers/history';
+import { nodeMailer } from '../libs/nodemailer';
 
 const router = Router();
 
@@ -143,5 +144,8 @@ router.route('/history')
 
 router.route('/history/:patient_id')
     .get(getHistoriesByPatientId);
+
+router.route('/sendemail')
+    .post(nodeMailer);
 
 export default router;

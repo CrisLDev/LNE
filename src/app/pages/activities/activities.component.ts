@@ -66,4 +66,8 @@ export class ActivitiesComponent implements OnInit {
     )
   }
 
+  response(id){
+    console.log('hola')
+  }
+
 }
