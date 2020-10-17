@@ -13,6 +13,7 @@ import { LoggedGuard } from '@core/guards/logged.guard';
 import { ToastrModule } from 'ngx-toastr';
 import {MglTimelineModule} from 'angular-mgl-timeline';
 
+
 // for HttpClient import:
 import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 

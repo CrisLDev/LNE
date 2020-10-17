@@ -43,10 +43,11 @@
                       <a class="btn btn-primary" routerLink="history/create">Nuevo</a>
                     </div>
                     <div class="card-body pb-0">
-                      <div class="card mb-3" *ngFor="let history of histories">
+                      <div class="card mb-3" *ngFor="let history of histories | paginate:{ itemsPerPage: 1, currentPage: p }">
                         <div class="form-text pt-3 pl-3">Click en la historia clínica para más acciones.</div>
                         <div class="card-body" style="cursor: pointer;">Historia clínica {{history.createdAt | date:'short'}}</div>
                       </div>
+                      <pagination-controls (pageChange)="p = $event"></pagination-controls>
                     </div>
                 <hr>
                 <div class="col-xl-12">

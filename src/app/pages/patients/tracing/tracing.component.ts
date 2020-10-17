@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TracingsService } from '@core/services/tracings.service';
 import { ToastrService } from 'ngx-toastr';
-import { element } from 'protractor';
 import { PatientsService } from '@core/services/patients.service';
 import { HistoryService } from '@core/services/history.service';
 
@@ -14,6 +13,8 @@ import { HistoryService } from '@core/services/history.service';
 export class TracingComponent implements OnInit {
 
   id: string;
+
+  p: number = 1;
 
   tracings = [];
 
