@@ -4,6 +4,7 @@ import { SharedModule } from '@shared/shared.module';
 import { ActivitiesComponent } from './activities.component';
 import { ActivitiesRoutingModule } from './activities.routing';
 
+
 @NgModule({
   declarations: [ActivitiesComponent],
   imports: [

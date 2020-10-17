@@ -12,6 +12,8 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ActivitiesComponent implements OnInit {
 
+  filterTestimonial = '';
+
   testimonials = [];
 
   questions = [];
