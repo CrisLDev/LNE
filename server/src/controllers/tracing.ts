@@ -25,15 +25,14 @@ export async function createTracing(req: Request, res: Response){
         let tracingExist = await Tracing.findOne({name});
 
         if(tracingExist){
-            return res.status(400)
-            .json({errors: [{msg: "El nombre del seguimiento ya existe."}]});
+            return res.status(400).json({errors: [{msg: "El nombre del seguimiento ya existe."}]});
         }
 
         const savedTracing = await tracing.save();
 
         return res.status(200).json({msg: "Seguimiento guardado correctamente."});
     } catch (err) {
-        res.status(400).send(err);
+        res.status(400).json({err});
     }
 }
 
