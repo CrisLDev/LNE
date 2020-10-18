@@ -16,7 +16,7 @@
                       <input type="text" class="form-control" placeholder="Buscar..." name="filterTestimonial" [(ngModel)]="filterTestimonial">
                     </div>
                 <ng-container *ngIf="testimonials?.length > 0; else notestimonilas">
-                    <div class="col-xl-12 mt-2" id="testimonials" *ngFor="let testimonial of testimonials | filterTestimonials:filterTestimonial">
+                    <div class="col-xl-12 mt-2" id="testimonials" *ngFor="let testimonial of testimonials | filter:filterTestimonial">
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">{{testimonial.name}}</h5>

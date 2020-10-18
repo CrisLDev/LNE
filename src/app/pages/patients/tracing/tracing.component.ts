@@ -16,6 +16,8 @@ export class TracingComponent implements OnInit {
 
   p: number = 1;
 
+  filterTracing = '';
+
   tracings = [];
 
   histories = [];
@@ -84,7 +86,7 @@ export class TracingComponent implements OnInit {
       .subscribe(
         res => {
           document.getElementById("tracingListS").classList.remove("d-none");
-    document.getElementById("spinner").classList.replace("d-block","d-none");
+          document.getElementById("spinner").classList.replace("d-block","d-none");
           this.tracings.splice(this.tracings.findIndex(e => e._id === tracing_id), 1);
           this.toastr.error('Seguimiento eliminado correctamente');
           if(this.tracings.length <= 0){

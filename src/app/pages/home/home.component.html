@@ -6,7 +6,7 @@
                     <div class="container">
                         <div class="row justify-content-center">
                             <div class="col-xl-2 col-5">
-                                <img class="img-fluid" src="assets/026-rainbow.svg" alt="">
+                                <img loading="lazy" class="img-fluid" src="assets/026-rainbow.svg" alt="">
                             </div>
                             <div class="col-xl-9 col-12 pt-3">
                                 <h3 class="text-dark">La nueva Era</h3>
@@ -29,21 +29,21 @@
                     <div class="col-xl-4 d-flex justify-content-center align-items-center">
                         <div class="card shadow">
                             <div class="card-body mt-5 mb-5 ml-5 mr-5">
-                                <img src="assets/skull.svg" class="w-10 h-10" alt="">
+                                <img loading="lazy" src="assets/skull.svg" class="w-10 h-10" alt="">
                             </div>
                         </div>
                     </div>
                     <div class="col-xl-4 d-flex justify-content-center align-items-center">
                         <div class="card shadow">
                             <div class="card-body mt-5 mb-5 ml-5 mr-5">
-                                <img src="assets/keep.svg" class="w-10 h-10" alt="">
+                                <img loading="lazy" src="assets/keep.svg" class="w-10 h-10" alt="">
                             </div>
                         </div>
                     </div>
                     <div class="col-xl-4 d-flex justify-content-center align-items-center">
                         <div class="card shadow">
                             <div class="card-body mt-5 mb-5 ml-5 mr-5">
-                                <img src="assets/sun.svg" class="w-10 h-10" alt="">
+                                <img loading="lazy" src="assets/sun.svg" class="w-10 h-10" alt="">
                             </div>
                         </div>
                     </div>
@@ -69,7 +69,7 @@
                         <div class="col-xl-6" *ngFor="let testimonial of testimonials">
                             <div class="row">
                                 <div class="col-xl-4 col-5 d-flex justify-content-center">
-                                    <img [src]="testimonial.user_id.imgUrl || 'assets/no-photo.jpg'" alt="{{testimonial.user_id.username}}"  class="img-fluid w-50">
+                                    <img loading="lazy" [src]="testimonial.user_id.imgUrl || 'assets/no-photo.jpg'" alt="{{testimonial.user_id.username}}"  class="img-fluid w-50">
                                 </div>
                                 <div class="col-xl-8 pt-3">
                                     <p>
@@ -84,7 +84,7 @@
                     <ng-template #noTestimoniall>
                         <div class="row justify-content-center">
                         <div class="col-xl-3 col-5 d-flex justify-content-center">
-                            <img src="assets/no-photo.jpg" class="img-fluid w-50" alt="">
+                            <img loading="lazy" src="assets/no-photo.jpg" class="img-fluid w-50" alt="">
                         </div>
                         <div class="col-xl-9 pt-3">
                             <p>

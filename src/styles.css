@@ -54,3 +54,7 @@ input{
     opacity: .5;
     outline: none!important;
 }
+
+.no-outline{
+    outline: none!important;
+}

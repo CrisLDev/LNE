@@ -57,6 +57,15 @@
                         <a class="btn btn-primary" routerLink="create">Nuevo</a>
                     </div>
                 </div>
+                <div class="d-flex align-items-baseline ml-auto mt-3 border-bottom" style="max-width: 224px;">
+                  <div style="padding: .375rem .75rem;">
+                    <svg width="1.2em" height="1.2em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
+                      <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
+                    </svg>
+                  </div>
+                  <input type="text" class="form-control shadow-none border-0" placeholder="Formato Año-Mes-Día" name="filterTracing" [(ngModel)]="filterTracing" autocomplete="none" spellcheck="false">
+                </div>
                 <ng-container *ngIf="tracings?.length > 0; else loading">
                   <div class="text-center d-none" style="margin-top: 70px;" id="spinner">
                     <div
@@ -67,8 +76,8 @@
                       <span class="sr-only">Loading...</span>
                     </div>
                   </div>
-                  <mgl-timeline id="tracingListS" class="mt-5" [toggle]="toggle" [alternate]="alternate" [side]="side">
-                    <mgl-timeline-entry *ngFor="let tracing of tracings;let i = index;" (expand)="onExpandEntry($event, i)">
+                  <mgl-timeline id="tracingListS" [toggle]="toggle" [alternate]="alternate" [side]="side" class="d-block">
+                    <mgl-timeline-entry *ngFor="let tracing of tracings | month:filterTracing;let i = index;" (expand)="onExpandEntry($event, i)">
                       <mgl-timeline-entry-header (click)="onHeaderClick($event)">
                         <div class="d-flex justify-content-between">
                           <div class="font-weight-bold d-flex align-items-center">
