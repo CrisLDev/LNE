@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators  } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AskUsService } from '@core/services/ask-us.service';
 import { TestimonialService } from '@core/services/Testimonial.service';
-import { Testimonial } from '@shared/classes/Testimonial';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -18,7 +18,12 @@ export class ActivitiesComponent implements OnInit {
 
   questions = [];
 
-  constructor(private testimonialsService: TestimonialService, private toastr: ToastrService, private qaskusService: AskUsService, private router: Router) { }
+  email = '';
+
+  questionForm: FormGroup;
+
+
+  constructor(private testimonialsService: TestimonialService, private toastr: ToastrService, private qaskusService: AskUsService, private router: Router, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.testimonialsService.getTestimonials().subscribe(
@@ -33,6 +38,7 @@ export class ActivitiesComponent implements OnInit {
         document.getElementById("noQuestionsdiv").classList.remove("d-none");
         document.getElementById("noQuestionsdiv").classList.add("d-block");}
     );
+    this.createForm();
   }
 
   deleteTestimonial(id){
@@ -68,8 +74,34 @@ export class ActivitiesComponent implements OnInit {
     )
   }
 
-  response(id){
-    console.log('hola')
+  private createForm(){
+    this.questionForm = this.fb.group({
+      title: [''],
+      content: [''],
+      email: ['']
+    })
+  }
+
+  response(email){
+    document.getElementsByClassName("modal-backdrop")[0].classList.add("d-block");
+    document.getElementById("responseModal").classList.replace("d-none", "d-block");
+    this.email = email;
+  }
+
+  closeModal(){
+    document.getElementById("closeModal").click();
+  }
+
+  submit(){
+    this.questionForm.value.email = this.email;
+    this.qaskusService.sendResponse(this.questionForm.value).subscribe(
+      res => {
+        this.questionForm.reset();
+        this.questionForm.markAsUntouched();
+        this.closeModal();
+      },
+      err => console.log('No se jue la respuesta')
+    )
   }
 
 }

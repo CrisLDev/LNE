@@ -5,10 +5,10 @@ import nodemailer from 'nodemailer';
 export const nodeMailer = (req: Request, res: Response) => {
 
     const form = {
-        name: req.body.name,
+        /*: req.body.name,*/
         content: req.body.content,
         emailToSend: req.body.email,
-        subject: req.body.subject
+        title: req.body.title
     }
 
     var transporter = nodemailer.createTransport({
@@ -20,11 +20,11 @@ export const nodeMailer = (req: Request, res: Response) => {
     });
 
     const mailOptions = {
-        from: form.name,
+        from: "Centro de Reabilitación - La Nueva Era",
         to: form.emailToSend,
-        subject: form.subject,
+        subject: form.title,
         html: `
-        <strong>Nombre:</strong> ${form.name} <br/>
+        <strong>Nombre:</strong> Centro de Reabilitación - La Nueva Era <br/>
         <strong>E-mail:</strong> ${form.emailToSend} <br/>
         <strong>Mensaje:</strong> ${form.content}
         `

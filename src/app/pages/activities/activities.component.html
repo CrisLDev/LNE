@@ -38,7 +38,7 @@
                                 <p>{{question.content}}</p>
                                 <p>Usuario: <span class="font-weight-bold">{{question.user_id.username}}</span></p>
                                 <button class="btn btn-block btn-danger" (click)="deleteQuestion(question._id)">Eliminar</button>
-                                <button class="btn btn-block btn-success" (click)="response(question._id)" data-toggle="modal" data-target="#responseModal">Responder</button>
+                                <button class="btn btn-block btn-success" id="responseButton" (click)="response(question.user_id.email)" data-toggle="modal" data-target="#responseModal">Responder</button>
                             </div>
                         </div>
                     </div>
@@ -88,11 +88,20 @@
           </svg></button>
         </div>
         <div class="modal-body">
-          ...
+          <form [formGroup]="questionForm" (submit)="submit()" novalidate>
+            <div class="mb-3">
+              <label for="subjectInput" class="form-label">Asunto</label>
+              <input type="text" class="form-control" id="subjectInput" formControlName="title">
+            </div>
+            <div class="mb-3">
+              <label for="contentTextarea" class="form-label">Conternido de la respuesta</label>
+              <textarea class="form-control" id="contentTextarea" rows="3" formControlName="content"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+          </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary mr-3" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-secondary mr-3" id="closeModal" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>

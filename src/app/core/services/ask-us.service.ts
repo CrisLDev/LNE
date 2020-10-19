@@ -23,4 +23,9 @@ export class AskUsService {
     return this.http.delete<any>(this.URL + '/askus/' + id)
   }
 
+  sendResponse(data){
+    console.log(data);
+    return this.http.post<any>(this.URL + '/sendemail', data)
+  }
+
 }
