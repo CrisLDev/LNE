@@ -2,7 +2,7 @@ import {Router} from 'express';
 import { createUser, loginUser, getUsers, getUser, getUserById, editUserById, deleteUserById} from '../controllers/user';
 import { TokenValidation } from '../libs/verifyToken';
 import { createPatient, getPatients, getPatientById, editPatientById, deletePatientById } from '../controllers/patients';
-import { createTracing, getTracingsByPatientId, getTracingById, editTracingById, deleteTracingById } from '../controllers/tracing';
+import { createTracing, getTracingsByPatientId, getTracingById, editTracingById, deleteTracingById, getTracings } from '../controllers/tracing';
 
 import {check} from 'express-validator';
 import { createNewletter } from '../controllers/newletter';
@@ -61,6 +61,7 @@ router.route('/patient')
     .get(getPatients)
     .post([ 
         check('name').isLength({min:4, max: 40}).not().isEmpty().withMessage('El campo no puede estar vacio'),
+        check('dni').isLength({min:9, max: 10}).not().isEmpty().withMessage('El campo no puede estar vacio'),
         check('age').isLength({min:1, max: 2}).not().isEmpty().withMessage('El campo no puede estar vacio'),
         check('imgUrl').isLength({min:10}).not().isEmpty().withMessage('El campo no puede estar vacio'),
         check('phoneNumber').isLength({min:9, max: 10}).not().isEmpty().withMessage('El campo no puede estar vacio'),
@@ -80,6 +81,7 @@ router.route('/patient/:id')
     .get(getPatientById)
     .put([ 
         check('name').isLength({min:4, max: 40}).not().isEmpty().withMessage('El campo no puede estar vacio'),
+        check('dni').isLength({min:9, max: 11}).not().isEmpty().withMessage('El campo no puede estar vacio'),
         check('age').isLength({min:1, max: 2}).not().isEmpty().withMessage('El campo no puede estar vacio'),
         check('imgUrl').isLength({min:10}).not().isEmpty().withMessage('El campo no puede estar vacio'),
         check('phoneNumber').isLength({min:9, max: 10}).not().isEmpty().withMessage('El campo no puede estar vacio'),
@@ -87,6 +89,7 @@ router.route('/patient/:id')
     .delete(deletePatientById);
 
 router.route('/tracing')
+    .get(getTracings)
     .post([ 
         check('name').isLength({min:4, max: 20}).not().isEmpty().withMessage('El campo no puede estar vacio'),
         check('content').isLength({min:4, max: 255}).not().isEmpty().withMessage('El campo no puede estar vacio'),

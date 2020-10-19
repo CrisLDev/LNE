@@ -1,184 +1,186 @@
-<div class="row mt-3">
-    <div class="col-xl-12" style="margin-top: 70px;">
-        <div class="card mb-5">
-            <div class="card-header bg-white d-flex p-5">
-                <div class="col-xl-1 col-lg-2 col-md-2 col-sm-2 col-3">
-                    <img class="img-fluid" src="./assets/logo.svg" alt="Logo">
-                </div>
-                <div class="col-xl-11 col-lg-10 col-md-10 col-sm-10 col-9 text-right">
-                    <p class="mb-1">Babahoyo - Barreiro</p>
-                    <p class="mb-1">{{date | date:'short'}}</p>
-                    <p class="mb-1">La Nueva Era</p>
-                </div>
-            </div>
-            <div class="card-body p-5">
-                <form [formGroup]="historyForm" (submit)="submit()" id="formHistory" novalidate>
-                    <div class="text-center mb-5">
-                        <h1>Formato 1</h1>
-                        <h2>Historial de Consulta</h2>
+<div class="container">
+    <div class="row mt-3">
+        <div class="col-xl-12" style="margin-top: 70px;">
+            <div class="card mb-5">
+                <div class="card-header bg-white d-flex p-5">
+                    <div class="col-xl-1 col-lg-2 col-md-2 col-sm-2 col-3">
+                        <img class="img-fluid" src="./assets/logo.svg" alt="Logo">
                     </div>
-                    <div>
-                        <h5>Ficha de identificación</h5>
-                        <div class="form-text">Los campos marcados con * son necesarios.</div>
-                        <div class="form-text">Separa con una "," las distintas opciones en los campos.</div>
-                        <h5 class="pt-2 pl-5">1. Pacientes</h5>
+                    <div class="col-xl-11 col-lg-10 col-md-10 col-sm-10 col-9 text-right">
+                        <p class="mb-1">Babahoyo - Barreiro</p>
+                        <p class="mb-1">{{date | date:'short'}}</p>
+                        <p class="mb-1">La Nueva Era</p>
                     </div>
-                    <div class="pl-5 pr-5">
-                        <div class="card">
-                            <div class="card-body">
+                </div>
+                <div class="card-body p-5">
+                    <form [formGroup]="historyForm" (submit)="submit()" id="formHistory" novalidate>
+                        <div class="text-center mb-5">
+                            <h1>Formato 1</h1>
+                            <h2>Historial de Consulta</h2>
+                        </div>
+                        <div>
+                            <h5>Ficha de identificación</h5>
+                            <div class="form-text">Los campos marcados con * son necesarios.</div>
+                            <div class="form-text">Separa con una "," las distintas opciones en los campos.</div>
+                            <h5 class="pt-2 pl-5">1. Pacientes</h5>
+                        </div>
+                        <div class="pl-5 pr-5">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="input-group mb-3">
+                                        <label class="input-group-text" for="inputGroupSelect01">Pacientes</label>
+                                        <select class="form-select" id="inputGroupSelect01" (change)="addPatient($event.target.value)">
+                                          <option selected>Escoge uno...</option>
+                                          <option *ngFor="let patient of patients" value="{{patient._id}}">{{patient.name}}</option>
+                                        </select>
+                                      </div>
+                                    <ng-container *ngIf="patientsToSave?.length > 0; else noPatients">
+                                        <p class="mb-1" *ngFor="let patientSelected of patientsToSave">{{patientSelected.name}}</p>
+                                    </ng-container>
+                                    <ng-template #noPatients>
+                                        No hay pacientes
+                                    </ng-template>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h5 class="pt-4 pl-5">2. Interrogatorio</h5>
+                        </div>
+                        <div class="row pl-5 pr-5">
+                            <div class="col-xl-6 pl-4">
+                                Este contenido se autocompleta con el perfil del paciente elegido.
+                            </div>
+                        </div>
+                        <div>
+                            <h5 class="pt-4 pl-5">3. Antecedentes personales patológicos</h5>
+                        </div>
+                        <div class="row pl-5 pr-5">
+                            <div class="col-xl-12">
                                 <div class="input-group mb-3">
-                                    <label class="input-group-text" for="inputGroupSelect01">Pacientes</label>
-                                    <select class="form-select" id="inputGroupSelect01" (change)="addPatient($event.target.value)">
-                                      <option selected>Escoge uno...</option>
-                                      <option *ngFor="let patient of patients" value="{{patient._id}}">{{patient.name}}</option>
-                                    </select>
+                                    <span class="input-group-text text-wrap" id="basic-app_non_communicable_diseases">Enfermedades inflamatorias e infecciosas no transmisibles</span>
+                                    <input type="text" class="form-control" aria-describedby="basic-app_non_communicable_diseases" formControlName="app_non_communicable_diseases" placeholder="Puedes dejar el campo vacio, esto se entenderá como un (No aplica)">
                                   </div>
-                                <ng-container *ngIf="patientsToSave?.length > 0; else noPatients">
-                                    <p class="mb-1" *ngFor="let patientSelected of patientsToSave">{{patientSelected.name}}</p>
-                                </ng-container>
-                                <ng-template #noPatients>
-                                    No hay pacientes
-                                </ng-template>
+                            </div>
+                            <div class="col-xl-12">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text text-wrap" id="basic-app_sexually_transmitted_diseases">Enfermedades de transmición sexual</span>
+                                    <input type="text" class="form-control" aria-describedby="basic-app_sexually_transmitted_diseases" formControlName="app_sexually_transmitted_diseases" placeholder="Puedes dejar el campo vacio, esto se entenderá como un (No aplica)">
+                                  </div>
+                            </div>
+                            <div class="col-xl-12">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text text-wrap" id="basic-app_degenerative_diseases">Enfermedades degenerativas</span>
+                                    <input type="text" class="form-control" aria-describedby="basic-app_degenerative_diseases" formControlName="app_degenerative_diseases" placeholder="Puedes dejar el campo vacio, esto se entenderá como un (No aplica)">
+                                  </div>
+                            </div>
+                            <div class="col-xl-12">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text text-wrap" id="basic-app_others">Otras</span>
+                                    <input type="text" class="form-control" aria-describedby="basic-app_others" formControlName="app_others" placeholder="Puedes dejar el campo vacio, esto se entenderá como un (No aplica)">
+                                  </div>
                             </div>
                         </div>
-                    </div>
-                    <div>
-                        <h5 class="pt-4 pl-5">2. Interrogatorio</h5>
-                    </div>
-                    <div class="row pl-5 pr-5">
-                        <div class="col-xl-6 pl-4">
-                            Este contenido se autocompleta con el perfil del paciente elegido.
+                        <div>
+                            <h5 class="pt-4 pl-5">4. Antecedentes personales no patológicos</h5>
                         </div>
-                    </div>
-                    <div>
-                        <h5 class="pt-4 pl-5">3. Antecedentes personales patológicos</h5>
-                    </div>
-                    <div class="row pl-5 pr-5">
-                        <div class="col-xl-12">
-                            <div class="input-group mb-3">
-                                <span class="input-group-text text-wrap" id="basic-app_non_communicable_diseases">Enfermedades inflamatorias e infecciosas no transmisibles</span>
-                                <input type="text" class="form-control" aria-describedby="basic-app_non_communicable_diseases" formControlName="app_non_communicable_diseases" placeholder="Puedes dejar el campo vacio, esto se entenderá como un (No aplica)">
-                              </div>
-                        </div>
-                        <div class="col-xl-12">
-                            <div class="input-group mb-3">
-                                <span class="input-group-text text-wrap" id="basic-app_sexually_transmitted_diseases">Enfermedades de transmición sexual</span>
-                                <input type="text" class="form-control" aria-describedby="basic-app_sexually_transmitted_diseases" formControlName="app_sexually_transmitted_diseases" placeholder="Puedes dejar el campo vacio, esto se entenderá como un (No aplica)">
-                              </div>
-                        </div>
-                        <div class="col-xl-12">
-                            <div class="input-group mb-3">
-                                <span class="input-group-text text-wrap" id="basic-app_degenerative_diseases">Enfermedades degenerativas</span>
-                                <input type="text" class="form-control" aria-describedby="basic-app_degenerative_diseases" formControlName="app_degenerative_diseases" placeholder="Puedes dejar el campo vacio, esto se entenderá como un (No aplica)">
-                              </div>
-                        </div>
-                        <div class="col-xl-12">
-                            <div class="input-group mb-3">
-                                <span class="input-group-text text-wrap" id="basic-app_others">Otras</span>
-                                <input type="text" class="form-control" aria-describedby="basic-app_others" formControlName="app_others" placeholder="Puedes dejar el campo vacio, esto se entenderá como un (No aplica)">
-                              </div>
-                        </div>
-                    </div>
-                    <div>
-                        <h5 class="pt-4 pl-5">4. Antecedentes personales no patológicos</h5>
-                    </div>
-                    <div class="row pl-5 pr-5">
-                        <div class="col-xl-4">
-                            <div class="input-group mb-3">
-                                <span class="input-group-text text-wrap" id="basic-apnp_blood_type">Grupo sanguineo*</span>
-                                <input type="text" class="form-control" aria-describedby="basic-apnp_blood_type" formControlName="apnp_blood_type"
-                                placeholder="ejemplo: A+">
-                              </div>
-                        </div>
-                        <div class="col-xl-4">
-                            <div class="input-group mb-3">
-                                <span class="input-group-text text-wrap" id="basic-apnp_adictions">Adicciones</span>
-                                <input type="text" class="form-control" aria-describedby="basic-apnp_adictions" formControlName="apnp_adictions" placeholder="Puedes dejar el campo vacio, esto se entenderá como un (No aplica)">
-                              </div>
-                        </div>
-                        <div class="col-xl-4">
-                            <div class="input-group mb-3">
-                                <span class="input-group-text text-wrap" id="basic-apnp_allergies">Alergias</span>
-                                <input type="text" class="form-control" aria-describedby="basic-apnp_allergies" formControlName="apnp_allergies" placeholder="Puedes dejar el campo vacio, esto se entenderá como un (No aplica)">
-                              </div>
-                        </div>
-                        <div class="col-xl-6">
-                            <div class="input-group mb-3">
-                                <span class="input-group-text text-wrap" id="basic-apnp_antibiotics">Antibioticos</span>
-                                <input type="text" class="form-control" aria-describedby="basic-apnp_antibiotics" formControlName="apnp_antibiotics" placeholder="Puedes dejar el campo vacio, esto se entenderá como un (No aplica)">
-                              </div>
-                        </div>
-                        <div class="col-xl-6">
-                            <div class="input-group mb-3">
-                                <span class="input-group-text text-wrap" id="basic-apnp_current_conditions">Pacedimiento actual</span>
-                                <input type="text" class="form-control" aria-describedby="basic-apnp_current_conditions" formControlName="apnp_current_conditions" placeholder="Puedes dejar el campo vacio, esto se entenderá como un (No aplica)">
-                              </div>
-                        </div>
-                        <div class="col-xl-12">
-                            <div class="input-group mb-3">
-                                <span class="input-group-text text-wrap" id="basic-apnp_has_been_hospitalized">Ha sido hospitalizado</span>
-                                <input type="text" class="form-control" aria-describedby="basic-apnp_has_been_hospitalized" formControlName="apnp_has_been_hospitalized" placeholder="Motivos. Puedes dejar el campo vacio, esto se entenderá como un (No aplica)">
+                        <div class="row pl-5 pr-5">
+                            <div class="col-xl-4">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text text-wrap" id="basic-apnp_blood_type">Grupo sanguineo*</span>
+                                    <input type="text" class="form-control" aria-describedby="basic-apnp_blood_type" formControlName="apnp_blood_type"
+                                    placeholder="ejemplo: A+">
+                                  </div>
+                            </div>
+                            <div class="col-xl-4">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text text-wrap" id="basic-apnp_adictions">Adicciones</span>
+                                    <input type="text" class="form-control" aria-describedby="basic-apnp_adictions" formControlName="apnp_adictions" placeholder="Puedes dejar el campo vacio, esto se entenderá como un (No aplica)">
+                                  </div>
+                            </div>
+                            <div class="col-xl-4">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text text-wrap" id="basic-apnp_allergies">Alergias</span>
+                                    <input type="text" class="form-control" aria-describedby="basic-apnp_allergies" formControlName="apnp_allergies" placeholder="Puedes dejar el campo vacio, esto se entenderá como un (No aplica)">
+                                  </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text text-wrap" id="basic-apnp_antibiotics">Antibioticos</span>
+                                    <input type="text" class="form-control" aria-describedby="basic-apnp_antibiotics" formControlName="apnp_antibiotics" placeholder="Puedes dejar el campo vacio, esto se entenderá como un (No aplica)">
+                                  </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text text-wrap" id="basic-apnp_current_conditions">Pacedimiento actual</span>
+                                    <input type="text" class="form-control" aria-describedby="basic-apnp_current_conditions" formControlName="apnp_current_conditions" placeholder="Puedes dejar el campo vacio, esto se entenderá como un (No aplica)">
+                                  </div>
+                            </div>
+                            <div class="col-xl-12">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text text-wrap" id="basic-apnp_has_been_hospitalized">Ha sido hospitalizado</span>
+                                    <input type="text" class="form-control" aria-describedby="basic-apnp_has_been_hospitalized" formControlName="apnp_has_been_hospitalized" placeholder="Motivos. Puedes dejar el campo vacio, esto se entenderá como un (No aplica)">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div>
-                        <h5 class="pt-4 pl-5">5. Interrogatorio por enfermedades en organos</h5>
-                    </div>
-                    <div class="row pl-5 pr-5">
-                        <div class="col-xl-6">
-                            <div class="input-group mb-3">
-                                <span class="input-group-text text-wrap">Respiratorias</span>
-                                <textarea class="form-control" aria-label="Respiratorias" formControlName="ipeeo_respiratory" placeholder="Puedes dejar el campo vacio, esto se entenderá como un (No aplica)"></textarea>
-                              </div>
+                        <div>
+                            <h5 class="pt-4 pl-5">5. Interrogatorio por enfermedades en organos</h5>
                         </div>
-                        <div class="col-xl-6">
-                            <div class="input-group mb-3">
-                                <span class="input-group-text text-wrap">Cardiovasculares</span>
-                                <textarea class="form-control" aria-label="Cardiovasculares" formControlName="ipeeo_cardiovascular" placeholder="Puedes dejar el campo vacio, esto se entenderá como un (No aplica)"></textarea>
+                        <div class="row pl-5 pr-5">
+                            <div class="col-xl-6">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text text-wrap">Respiratorias</span>
+                                    <textarea class="form-control" aria-label="Respiratorias" formControlName="ipeeo_respiratory" placeholder="Puedes dejar el campo vacio, esto se entenderá como un (No aplica)"></textarea>
+                                  </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text text-wrap">Cardiovasculares</span>
+                                    <textarea class="form-control" aria-label="Cardiovasculares" formControlName="ipeeo_cardiovascular" placeholder="Puedes dejar el campo vacio, esto se entenderá como un (No aplica)"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text text-wrap">Genitourinarias</span>
+                                    <textarea class="form-control" aria-label="Genitourinarias" formControlName="ipeeo_genitourinary" placeholder="Puedes dejar el campo vacio, esto se entenderá como un (No aplica)"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text text-wrap">Endócrinas</span>
+                                    <textarea class="form-control" aria-label="Endócrinas" formControlName="ipeeo_endocrine" placeholder="Puedes dejar el campo vacio, esto se entenderá como un (No aplica)"></textarea>
+                                  </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text text-wrap">Nervisos</span>
+                                    <textarea class="form-control" aria-label="Nervisos" formControlName="ipeeo_nervous" placeholder="Puedes dejar el campo vacio, esto se entenderá como un (No aplica)"></textarea>
+                                  </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text text-wrap" id="basic-addon3">Musculares</span>
+                                    <textarea class="form-control" aria-label="Musculares" formControlName="ipeeo_muscular" placeholder="Puedes dejar el campo vacio, esto se entenderá como un (No aplica)"></textarea>
+                                  </div>
                             </div>
                         </div>
-                        <div class="col-xl-6">
-                            <div class="input-group mb-3">
-                                <span class="input-group-text text-wrap">Genitourinarias</span>
-                                <textarea class="form-control" aria-label="Genitourinarias" formControlName="ipeeo_genitourinary" placeholder="Puedes dejar el campo vacio, esto se entenderá como un (No aplica)"></textarea>
+                        <div>
+                            <h5 class="pt-4 pl-5">6. Conclusiones</h5>
+                        </div>
+                        <div class="row pl-5 pr-5">
+                            <div class="col-xl-12">
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text text-wrap" id="basic-addon3">Observaciones</span>
+                                    <textarea rows="5" class="form-control" aria-label="With textarea" formControlName="conclusions" placeholder="Puedes dejar el campo vacio, esto se entenderá como un (No aplica)"></textarea>
+                                  </div>
                             </div>
                         </div>
-                        <div class="col-xl-6">
-                            <div class="input-group mb-3">
-                                <span class="input-group-text text-wrap">Endócrinas</span>
-                                <textarea class="form-control" aria-label="Endócrinas" formControlName="ipeeo_endocrine" placeholder="Puedes dejar el campo vacio, esto se entenderá como un (No aplica)"></textarea>
-                              </div>
+                        <div class="row pl-5 pr-5">
+                            <div class="col-xl-12">
+                                <button type="submit" class="btn btn-primary btn-block" id="patientButton">Enviar</button>
+                            </div>
                         </div>
-                        <div class="col-xl-6">
-                            <div class="input-group mb-3">
-                                <span class="input-group-text text-wrap">Nervisos</span>
-                                <textarea class="form-control" aria-label="Nervisos" formControlName="ipeeo_nervous" placeholder="Puedes dejar el campo vacio, esto se entenderá como un (No aplica)"></textarea>
-                              </div>
-                        </div>
-                        <div class="col-xl-6">
-                            <div class="input-group mb-3">
-                                <span class="input-group-text text-wrap" id="basic-addon3">Musculares</span>
-                                <textarea class="form-control" aria-label="Musculares" formControlName="ipeeo_muscular" placeholder="Puedes dejar el campo vacio, esto se entenderá como un (No aplica)"></textarea>
-                              </div>
-                        </div>
-                    </div>
-                    <div>
-                        <h5 class="pt-4 pl-5">6. Conclusiones</h5>
-                    </div>
-                    <div class="row pl-5 pr-5">
-                        <div class="col-xl-12">
-                            <div class="input-group mb-3">
-                                <span class="input-group-text text-wrap" id="basic-addon3">Observaciones</span>
-                                <textarea rows="5" class="form-control" aria-label="With textarea" formControlName="conclusions" placeholder="Puedes dejar el campo vacio, esto se entenderá como un (No aplica)"></textarea>
-                              </div>
-                        </div>
-                    </div>
-                    <div class="row pl-5 pr-5">
-                        <div class="col-xl-12">
-                            <button type="submit" class="btn btn-primary btn-block" id="patientButton">Enviar</button>
-                        </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

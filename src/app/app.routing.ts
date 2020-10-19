@@ -20,6 +20,11 @@ const routes: Routes = [
     canActivate: [AuthGuard, StaffGuard]
   },
   {
+    path: 'tracings',
+    loadChildren: () => import('@pages/tracings/tracings.module').then(m => m.TracingsModule), data: {name: 'Tracings'},
+    canActivate: [AuthGuard, StaffGuard]
+  },
+  {
     path: 'staff',
     loadChildren: () => import('@pages/staff/staff.module').then(m => m.StaffModule), data: {name: 'Staff'},
     canActivate: [AuthGuard, RoleGuard]

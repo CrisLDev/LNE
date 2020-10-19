@@ -6,7 +6,7 @@
                     <div class="container">
                         <div class="row justify-content-center">
                             <div class="col-xl-2 col-5">
-                                <img loading="lazy" class="img-fluid" src="assets/026-rainbow.svg" alt="">
+                                <img loading="lazy" class="img-fluid" src="assets/026-rainbow.svg" alt="foto1">
                             </div>
                             <div class="col-xl-9 col-12 pt-3">
                                 <h3 class="text-dark">La nueva Era</h3>
@@ -55,7 +55,7 @@
 
     <div class="col-xl-12">
         <div class="container">
-            <div class="card border-0">
+            <div class="card pl-5 pr-5 border-0">
                 <div class="card-header bg-white border-0">
                     <h3 class="card-title d-flex align-items-end">
                         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-card-text mr-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -68,10 +68,10 @@
                         <div class="row justify-content-between">
                         <div class="col-xl-6" *ngFor="let testimonial of testimonials">
                             <div class="row">
-                                <div class="col-xl-4 col-5 d-flex justify-content-center">
+                                <div class="col-xl-5 col-5 d-flex justify-content-center">
                                     <img loading="lazy" [src]="testimonial.user_id.imgUrl || 'assets/no-photo.jpg'" alt="{{testimonial.user_id.username}}"  class="img-fluid w-50">
                                 </div>
-                                <div class="col-xl-8 pt-3">
+                                <div class="col-xl-7 pt-3">
                                     <p>
                                         "{{testimonial.content}}"
                                     </p>

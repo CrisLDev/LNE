@@ -1,122 +1,126 @@
-<div class="row mt-3 mb-5">
-  <div class="col-xl-12" style="margin-top: 70px;">
-    <div class="card border-0">
-      <div class="card-body d-flex justify-content-between">
-          <div class="row justify-content-center">
-            <div class="col-xl-2 clo-lg-2 col-md-2 col-sm-2 text-center" *ngIf="patient.name != ''">
-              <img src="{{patient.imgUrl}}" class="img-fluid rounded-circle mw-75 mb-1" alt="Imagen de usuario">
-            </div>
-            <div class="col-xl-8 col-lg-8 col-lg-10 col-sm-10">
-              <div class="row">
-                <ng-container *ngIf="patient.name != ''; else patientLoading">
-                  <div class="col-xl-12">
-                    <div class="d-flex justify-content-between align-items-center">
-                      <h4>{{patient.name}}</h4>
-                      <button class="btn btn-warning" (click)="editPatient(patient._id)">Editar</button>
-                    </div>
-                    <div class="mt-2">
-                      <span class="text-gray">Edad</span>
-                      <p>{{patient.age}}</p>
-                    </div>
-                    <div class="mt-2">
-                      <span class="text-gray">Email</span>
-                      <p>{{patient.email}}</p>
-                    </div>
-                    <div class="mt-2">
-                      <span class="text-gray">Número de teléfono</span>
-                      <p>0{{patient.phoneNumber}}</p>
-                    </div>
-                    <div class="mt-2">
-                      <span class="text-gray">Fecha de registro</span>
-                      <p>{{patient.createdAt | date:'medium'}}</p>
-                    </div>
-                    <div class="mt-2">
-                      <span class="text-gray">Fecha de ingreso</span>
-                      <p>{{patient.entryDate.split("T")[0]}}</p>
-                    </div>
-                  </div>
-                </ng-container>
-                <div class="col-xl-12">
-                  <div class="card border-0 border-bottom">
-                    <div class="card-header bg-white d-flex justify-content-between pl-0 pr-0">
-                      <h4 class="card-title">Historias clinicas</h4>
-                      <a class="btn btn-primary" routerLink="history/create">Nuevo</a>
-                    </div>
-                    <div class="card-body pb-0">
-                      <div class="card mb-3" *ngFor="let history of histories | paginate:{ itemsPerPage: 1, currentPage: p }">
-                        <div class="form-text pt-3 pl-3">Click en la historia clínica para más acciones.</div>
-                        <div class="card-body" style="cursor: pointer;">Historia clínica {{history.createdAt | date:'short'}}</div>
+<div class="container">
+  <div class="row mt-3 mb-5">
+    <div class="col-xl-12" style="margin-top: 70px;">
+      <div class="card border-0">
+        <div class="card-body d-flex justify-content-between">
+            <div class="row justify-content-center">
+              <div class="col-xl-2 clo-lg-2 col-md-2 col-sm-2 text-center" *ngIf="patient.name != ''">
+                <img src="{{patient.imgUrl}}" class="img-fluid rounded-circle mw-75 mb-1" alt="Imagen de usuario">
+              </div>
+              <div class="col-xl-8 col-lg-8 col-lg-10 col-sm-10">
+                <div class="row">
+                  <ng-container *ngIf="patient.name != ''; else patientLoading">
+                    <div class="col-xl-12">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <h4>{{patient.name}}</h4>
+                        <button class="btn btn-warning" (click)="editPatient(patient._id)">Editar</button>
                       </div>
-                      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                      <div class="mt-2">
+                        <span class="text-gray">Edad</span>
+                        <p>{{patient.age}}</p>
+                      </div>
+                      <div class="mt-2">
+                        <span class="text-gray">Email</span>
+                        <p>{{patient.email}}</p>
+                      </div>
+                      <div class="mt-2">
+                        <span class="text-gray">Número de teléfono</span>
+                        <p>0{{patient.phoneNumber}}</p>
+                      </div>
+                      <div class="mt-2">
+                        <span class="text-gray">Fecha de registro</span>
+                        <p>{{patient.createdAt | date:'medium'}}</p>
+                      </div>
+                      <div class="mt-2">
+                        <span class="text-gray">Fecha de ingreso</span>
+                        <p>{{patient.entryDate.split("T")[0]}}</p>
+                      </div>
                     </div>
-                <hr>
-                <div class="col-xl-12">
-                  <div class="card border-0 border-bottom">
-                    <div class="card-body d-flex justify-content-between pl-0 pr-0">
-                        <h4 class="card-title">Seguimientos</h4>
-                        <a class="btn btn-primary" routerLink="create">Nuevo</a>
-                    </div>
-                </div>
-                <div class="d-flex align-items-baseline ml-auto mt-3 border-bottom" style="max-width: 224px;">
-                  <div style="padding: .375rem .75rem;">
-                    <svg width="1.2em" height="1.2em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                      <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
-                      <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
-                    </svg>
+                  </ng-container>
+                  <div class="col-xl-12">
+                    <div class="card border-0 border-bottom">
+                      <div class="card-header bg-white d-flex justify-content-between pl-0 pr-0">
+                        <h4 class="card-title">Historias clinicas</h4>
+                        <a class="btn btn-primary" routerLink="history/create">Nuevo</a>
+                      </div>
+                      <div class="card-body pb-0">
+                        <div class="card mb-3" *ngFor="let history of histories | paginate:{ itemsPerPage: 1, currentPage: p }">
+                          <div class="form-text pt-3 pl-3">Click en la historia clínica para más acciones.</div>
+                          <div class="card-body" style="cursor: pointer;">Historia clínica {{history.createdAt | date:'short'}}</div>
+                        </div>
+                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                      </div>
+                  <hr>
+                  <div class="col-xl-12">
+                    <div class="card border-0 border-bottom">
+                      <div class="card-body d-flex justify-content-between pl-0 pr-0">
+                          <h4 class="card-title">Seguimientos</h4>
+                          <a class="btn btn-primary" routerLink="create">Nuevo</a>
+                      </div>
                   </div>
-                  <input type="text" class="form-control shadow-none border-0" placeholder="Formato Año-Mes-Día" name="filterTracing" [(ngModel)]="filterTracing" autocomplete="none" spellcheck="false">
-                </div>
-                <ng-container *ngIf="tracings?.length > 0; else loading">
-                  <div class="text-center d-none" style="margin-top: 70px;" id="spinner">
-                    <div
-                      class="spinner-border"
-                      style="width: 3rem; height: 3rem;"
-                      role="status"
-                    >
-                      <span class="sr-only">Loading...</span>
+                  <div class="d-flex align-items-baseline ml-auto mt-3 border-bottom" style="max-width: 224px;">
+                    <div style="padding: .375rem .75rem;">
+                      <svg width="1.2em" height="1.2em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
+                        <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
+                      </svg>
                     </div>
+                    <input type="text" class="form-control shadow-none border-0" placeholder="Formato Año-Mes-Día" name="filterTracing" [(ngModel)]="filterTracing" autocomplete="none" spellcheck="false">
                   </div>
-                  <mgl-timeline id="tracingListS" [toggle]="toggle" [alternate]="alternate" [side]="side" class="d-block">
-                    <mgl-timeline-entry *ngFor="let tracing of tracings | month:filterTracing;let i = index;" (expand)="onExpandEntry($event, i)">
-                      <mgl-timeline-entry-header (click)="onHeaderClick($event)">
-                        <div class="d-flex justify-content-between">
-                          <div class="font-weight-bold d-flex align-items-center">
-                            {{tracing.name}}
+                  <ng-container *ngIf="tracings?.length > 0; else loading">
+                    <div class="text-center d-none" style="margin-top: 70px;" id="spinner">
+                      <div
+                        class="spinner-border"
+                        style="width: 3rem; height: 3rem;"
+                        role="status"
+                      >
+                        <span class="sr-only">Loading...</span>
+                      </div>
+                    </div>
+                    <mgl-timeline id="tracingListS" [toggle]="toggle" [alternate]="alternate" [side]="side" class="d-block">
+                      <mgl-timeline-entry *ngFor="let tracing of tracings | month:filterTracing;let i = index;" (expand)="onExpandEntry($event, i)">
+                        <mgl-timeline-entry-header (click)="onHeaderClick($event)">
+                          <div class="d-flex justify-content-between">
+                            <div class="font-weight-bold d-flex align-items-center">
+                              {{tracing.name}}
+                            </div>
+                            <div>
+                              <button class="btn btn-sm btn-warning mr-2" (click)="editTracing(tracing._id)"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pen-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M13.498.795l.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z"/>
+                              </svg></button>
+                              <button class="btn btn-sm btn-danger" (click)="deleteTracing(tracing._id)"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z"/>
+                              </svg></button>
+                            </div>
                           </div>
+                        </mgl-timeline-entry-header>
+                        <mgl-timeline-entry-content [expandAnimationTiming]="contentAnimation ? '200ms ease' : '0ms'" [collapseAnimationTiming]="contentAnimation ? '100ms ease' : '0ms'">
                           <div>
-                            <button class="btn btn-sm btn-warning mr-2" (click)="editTracing(tracing._id)"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pen-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                              <path fill-rule="evenodd" d="M13.498.795l.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z"/>
-                            </svg></button>
-                            <button class="btn btn-sm btn-danger" (click)="deleteTracing(tracing._id)"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                              <path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z"/>
-                            </svg></button>
+                            <div>{{tracing.content}}</div>
+                            <div class="mt-2">
+                              <span class="font-weight-bold">Creado por: </span><span>{{tracing.user_id.username}}</span>
+                            </div>
                           </div>
-                        </div>
-                      </mgl-timeline-entry-header>
-                      <mgl-timeline-entry-content [expandAnimationTiming]="contentAnimation ? '200ms ease' : '0ms'" [collapseAnimationTiming]="contentAnimation ? '100ms ease' : '0ms'">
-                        <div>
-                          <div>{{tracing.content}}</div>
-                          <div class="mt-2">
-                            <span class="font-weight-bold">Creado por: </span><span>{{tracing.user_id.username}}</span>
-                          </div>
-                        </div>
-                      </mgl-timeline-entry-content>
-                      <mgl-timeline-entry-dot
-                                              [size]="size"
-                                              (click)="onDotClick($event)"
-                                              [expandAnimationTiming]="dotAnimation ? '200ms ease' : '0ms'"
-                                              [collapseAnimationTiming]="dotAnimation ? '100ms ease' : '0ms'"
-                                              ></mgl-timeline-entry-dot>
-                      <mgl-timeline-entry-side><h3>{{tracing.createdAt | date:'dd/MM/yyyy hh:mm'}}</h3></mgl-timeline-entry-side>
-                    </mgl-timeline-entry>
-                  </mgl-timeline>
-                </ng-container>
+                        </mgl-timeline-entry-content>
+                        <mgl-timeline-entry-dot
+                                                [size]="size"
+                                                (click)="onDotClick($event)"
+                                                [expandAnimationTiming]="dotAnimation ? '200ms ease' : '0ms'"
+                                                [collapseAnimationTiming]="dotAnimation ? '100ms ease' : '0ms'"
+                                                ></mgl-timeline-entry-dot>
+                        <mgl-timeline-entry-side><h3>{{tracing.createdAt | date:'dd/MM/yyyy hh:mm'}}</h3></mgl-timeline-entry-side>
+                      </mgl-timeline-entry>
+                    </mgl-timeline>
+                  </ng-container>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-      </div>
+        </div>
+    </div>
+    </div>
   </div>
+    </div>
   </div>
 </div>
 <ng-template #loading>

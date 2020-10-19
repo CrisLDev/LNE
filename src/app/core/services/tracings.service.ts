@@ -30,4 +30,8 @@ export class TracingsService {
     return this.http.delete<any>(this.URL + '/' + tracing_id)
   }
 
+  getTracings(){
+    return this.http.get<any>(this.URL)
+  }
+
 }

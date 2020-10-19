@@ -22,10 +22,12 @@ import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 
 // for Core import:
 import { LoadingBarModule } from '@ngx-loading-bar/core';
+import { TracingsComponent } from './pages/tracings/tracings.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TracingsComponent
   ],
   imports: [
     BrowserModule,

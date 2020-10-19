@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="row mt-3">
+        <div class="col-xl-12 mb-3" id="homePart" style="padding-top: 70px;">
+            <div class="accordion" id="accordionTracings">
+                <div class="card" *ngFor="let tracing of tracings; let i = index">
+                  <div class="card-header p-0 bg-white" id="headingOne">
+                    <h2 class="mb-0">
+                      <button class="btn bg-white btn-block text-left p-3 rounded-0" type="button" data-toggle="collapse" [attr.data-target]="'#' + 'collapse_' + i" aria-expanded="true" [attr.aria-controls]="'collapse_' + i">
+                        {{tracing.name}}
+                      </button>
+                    </h2>
+                  </div>
+              
+                  <div [id]="'collapse_' + i" class="collapse" aria-labelledby="headingOne" data-parent="#accordionTracings">
+                    <div class="card-body bg-light">
+                      {{tracing.content}}
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>

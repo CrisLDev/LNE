@@ -11,7 +11,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class PatientsFormComponent implements OnInit {
 
-  patient = {name: '', age: '', imgUrl: '', phoneNumber: '', email: '', entryDate: '', birthDate: '', birthPlace: '', ocupation: '', academicLevel:'', maritalStatus: '', residence:'', genere: ''};
+  patient = {name: '', age: '', imgUrl: '', phoneNumber: '', email: '', entryDate: '', birthDate: '', birthPlace: '', ocupation: '', academicLevel:'', maritalStatus: '', residence:'', genere: '', dni: ''};
 
   id: string;
 
@@ -49,6 +49,7 @@ export class PatientsFormComponent implements OnInit {
   private createForm(){
     this.patientForm = this.fb.group({
       name: [this.patient.name || '', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(40)])],
+      dni: [this.patient.dni || '', Validators.compose([Validators.required, Validators.min(960000000), Validators.max(1300000000)])],
       imgUrl: [this.patient.imgUrl||'', Validators.compose([Validators.required, Validators.minLength(10)])],
       email: [this.patient.email||'', Validators.compose([Validators.required, Validators.email, Validators.minLength(10), Validators.maxLength(40)])],
       age: [this.patient.age||'', Validators.compose([Validators.required, Validators.min(0), Validators.max(100)])],
@@ -70,6 +71,7 @@ export class PatientsFormComponent implements OnInit {
     document.getElementById("patientButton").setAttribute("disabled", "true");
     document.getElementById("patientButton").innerHTML = 'Enviando';
     if(this.id){
+      console.log(this.patientForm.value);
       this.patientsService.editPatient(this.id, this.patientForm.value)
         .subscribe(
           res => {
@@ -77,6 +79,7 @@ export class PatientsFormComponent implements OnInit {
     document.getElementById("formPatient").classList.remove("d-none");
             this.router.navigate(['/patients']).then(() => {
             this.toastr.success('Paciente editado correctamente.');
+            this.id =  '';
           })},
           err => {
             this.toastr.error(err.error.errors[0].msg)
@@ -86,7 +89,6 @@ export class PatientsFormComponent implements OnInit {
     document.getElementById("formPatient").classList.remove("d-none");
           }
         );
-        this.id =  '';
     }else{
       this.patientsService.createPatient(this.patientForm.value)
       .subscribe(

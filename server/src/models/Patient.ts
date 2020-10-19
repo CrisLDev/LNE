@@ -9,6 +9,10 @@ const schema = new Schema({
         required: true,
         min: 4
     },
+    dni: {
+        type: Number,
+        required: true
+    },
     age: {
         type: Number,
         required: true
@@ -68,6 +72,7 @@ const schema = new Schema({
 
 export interface IPatient extends Document{
     name: string;
+    dni: number;
     age: number;
     phoneNumber: number;
     email: string;

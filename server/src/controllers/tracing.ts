@@ -36,6 +36,14 @@ export async function createTracing(req: Request, res: Response){
     }
 }
 
+export async function getTracings(req: Request, res: Response){
+    const tracings = await Tracing.find().populate('patient_id');
+    if(tracings.length <= 0){
+        return res.status(404).json({errors: [{msg: "No hay seguimientos para mostrar."}]});
+    }
+    return res.status(200).json({tracings})
+}
+
 export async function getTracingsByPatientId(req: Request, res: Response){
 
     try {

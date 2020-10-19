@@ -15,6 +15,7 @@ export async function createPatient(req: Request, res: Response){
 
     const {
         name, 
+        dni,
         age, 
         imgUrl, 
         email, 
@@ -30,6 +31,7 @@ export async function createPatient(req: Request, res: Response){
 
     const patient: IPatient = new Patient({
         name,
+        dni,
         age,
         email,
         imgUrl,
@@ -54,6 +56,13 @@ export async function createPatient(req: Request, res: Response){
         if(patientExist){
             return res.status(400)
             .json({errors: [{msg : "El email ya existe."}]});
+        }
+
+        let patientExistByDni = await Patient.findOne({dni});
+
+        if(patientExistByDni){
+            return res.status(400)
+            .json({errors: [{msg : "El número de cédula ya existe."}]});
         }
 
         const savedPatient = await patient.save();
@@ -98,7 +107,7 @@ export async function editPatientById(req: Request, res: Response){
         }
 
     try{
-        const {name, age, email, imgUrl, phoneNumber, entryDate, birthDate,
+        const {name, dni, age, email, imgUrl, phoneNumber, entryDate, birthDate,
             birthPlace,
             ocupation,
             academicLevel,
@@ -107,6 +116,7 @@ export async function editPatientById(req: Request, res: Response){
             genere} = req.body;
         const editPatient = {
             name, 
+            dni,
             age, 
             email, 
             imgUrl, 
@@ -119,6 +129,20 @@ export async function editPatientById(req: Request, res: Response){
             maritalStatus,
             residence,
             genere
+        }
+
+        let patientExist = await Patient.findOne({email});
+
+        if(patientExist && patientExist._id != req.params.id){
+            return res.status(400)
+            .json({errors: [{msg : "El email ya existe."}]});
+        }
+
+        let patientExistByDni = await Patient.findOne({dni});
+
+        if(patientExistByDni && patientExistByDni._id != req.params.id){
+            return res.status(400)
+            .json({errors: [{msg : "El número de cédula ya existe."}]});
         }
 
         const genereToEvaluate = genere;
