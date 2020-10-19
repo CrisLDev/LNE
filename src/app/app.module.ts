@@ -26,8 +26,7 @@ import { TracingsComponent } from './pages/tracings/tracings.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    TracingsComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
