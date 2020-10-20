@@ -1,6 +1,7 @@
 <div class="container">
   <div class="row mt-5 mb-5 justify-content-center">
-    <div class="col-xl-8 col-lg-9 col-md-8 col-sm-9 col-12 mb-3" style="padding-top: 70px;">
+    <div style="margin-top: 70px;"></div>
+    <div *ngIf="authService.userLogged.role === 'staff'" class="col-xl-12 col-lg-9 col-md-8 col-sm-9 col-12 mb-3" style="padding-top: 70px;">
         <div class="row">
             <div class="col-xl-12">
                 <div class="card">
@@ -28,7 +29,7 @@
                 </div>
         </div>
     </div>
-    <div class="col-xl-8"  *ngIf="authService.userLogged.role === 'user' || authService.userLogged.role === 'staff'">
+    <div class="col-xl-4"  *ngIf="authService.userLogged.role === 'user' || authService.userLogged.role === 'staff'">
       <div *ngIf="eventToEdit.title !== ''">
         <div class="card mb-5">
           <div class="card-header">
@@ -65,7 +66,7 @@
         </div>
     </div>
 </div>
-    <div class="col-xl-8 mb-3" id="scheduleDiv"  *ngIf="authService.userLogged.role === 'admin'">
+    <div class="col-xl-4 mb-3" id="scheduleDiv"  *ngIf="authService.userLogged.role === 'admin'">
         <form [formGroup]="scheduleForm" (submit)="submit()">
 
           <div class="input-group mb-3">
@@ -122,7 +123,8 @@
         <button class="btn btn-block btn-danger mt-2" *ngIf="idSchedule" (click)="deleteSchedule()">Eliminar</button>
         <button class="btn btn-block btn-warning mt-2" *ngIf="idSchedule" (click)="resetFormIf()">Limpiar formulario</button>
     </div>
-    <div class="col-xl-8 col-lg-9 col-md-8 col-sm-9 col-12 mb-5">
+    <div class="col-xl-12 col-lg-9 col-md-8 col-sm-9 col-12 mb-5">
+      <h3>Todas las tareas</h3>
       <div class="row">
           <div class="col-xl-12">
               <div class="card">

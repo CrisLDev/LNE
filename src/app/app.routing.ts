@@ -15,6 +15,10 @@ const routes: Routes = [
     loadChildren: () => import('@pages/user/user.module').then(m => m.UserModule), data: {name: 'UserActions'}
   },
   {
+    path: 'treatments',
+    loadChildren: () => import('@pages/treatments/treatments.module').then(m => m.TreatmentsModule), data: {name: 'Treatments'}
+  },
+  {
     path: 'patients',
     loadChildren: () => import('@pages/patients/patients.module').then(m => m.PatientsModule), data: {name: 'Patients'},
     canActivate: [AuthGuard, StaffGuard]
