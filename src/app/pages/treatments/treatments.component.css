@@ -1,0 +1,39 @@
+.m-wT{
+    min-height: 300px;
+    max-height: 300px;
+}
+
+@media (max-width: 1399.98px) {
+    .m-wT{
+        max-width: 470px;
+        min-height: 280px;
+        max-height: 280px;
+    }
+}
+
+@media (max-width: 1199.98px) {
+    .m-wT{
+        max-width: 595px;
+        min-height: 300px;
+        max-height: 300px;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .m-wT{
+        max-width: 100%;
+        min-height: 100%;
+        max-height: 100%;
+    }
+
+    #treatementsNavigation{
+        display: none;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .m-wT{
+    max-width: 100%;
+    min-height: 100%;
+    max-height: 100%;
+}}
