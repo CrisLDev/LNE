@@ -3,6 +3,10 @@
     max-height: 300px;
 }
 
+#treatmentModal{
+    padding-right: 0!important;
+}
+
 @media (max-width: 1399.98px) {
     .m-wT{
         max-width: 470px;

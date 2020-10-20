@@ -12,6 +12,7 @@ import { createSchedule, deleteScheduleById, editScheduleById, getSchedules } fr
 import { createTestimonial, deleteTestimonialById, getTestimonial, getTestimonials } from '../controllers/testimonial';
 import { createHistory, getHistoriesByPatientId } from '../controllers/history';
 import { nodeMailer } from '../libs/nodemailer';
+import { createTreatment, deleteTreatmentById, getTreatments } from '../controllers/treatment';
 
 const router = Router();
 
@@ -148,7 +149,26 @@ router.route('/history')
 router.route('/history/:patient_id')
     .get(getHistoriesByPatientId);
 
-router.route('/sendemail')
-    .post(nodeMailer);
+router.route('/sendemail/:id')
+    .post([ 
+        check('title').isLength({min:6, max: 40}).not().isEmpty().withMessage('El campo no puede estar vacio'),
+        check('content').isLength({min:6, max: 255}).not().isEmpty().withMessage('El campo no puede estar vacio'),
+        check('email').not().isEmpty().isEmail().isLength({min: 8, max: 50}).matches(/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i)], nodeMailer, deleteQuestionById);
+
+router.route('/treatment')
+    .post([ 
+        check('name').isLength({min:6, max: 60}).not().isEmpty().withMessage('El campo no puede estar vacio'),
+        check('plan').isLength({min:4, max: 10}).not().isEmpty().withMessage('El campo no puede estar vacio'),
+        check('last').isLength({min:6, max: 60}).not().isEmpty().withMessage('El campo no puede estar vacio'),
+        check('email').not().isEmpty().isEmail().isLength({min: 8, max: 50}).matches(/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i)], createTreatment)
+    .get(getTreatments);
+
+router.route('/treatment/sendemail/:id')
+    .post([check('title').isLength({min:6, max: 40}).not().isEmpty().withMessage('El campo no puede estar vacio'),
+    check('content').isLength({min:6, max: 255}).not().isEmpty().withMessage('El campo no puede estar vacio'),
+    check('email').not().isEmpty().isEmail().isLength({min: 8, max: 50}).matches(/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i)],nodeMailer, deleteTreatmentById);
+
+router.route('/treatment/:id')
+    .delete(deleteTreatmentById);
 
 export default router;

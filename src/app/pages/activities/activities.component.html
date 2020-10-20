@@ -10,14 +10,14 @@
         </div>
     </div>
 </div>
-<div class="row mb-5 justify-content-center" id="main" style="margin-top: 90px;">
+<div class="row justify-content-center" id="main" style="margin-top: 90px; margin-bottom: 10rem!important;">
     <div class="col-xl-6">
                     <h3 class="mt-2 mb-2">Testimoniales</h3>
                     <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Buscar..." name="filterTestimonial" [(ngModel)]="filterTestimonial">
+                      <input type="text" class="form-control" placeholder="Buscar por nombre..." name="filterTestimonial" [(ngModel)]="filterTestimonial" spellcheck="false" autocomplete="none">
                     </div>
                 <ng-container *ngIf="testimonials?.length > 0; else notestimonilas">
-                    <div class="col-xl-12 mt-2" id="testimonials" *ngFor="let testimonial of testimonials | filter:filterTestimonial">
+                    <div class="col-xl-12 mt-2" id="testimonials" *ngFor="let testimonial of testimonials | filter:filterTestimonial | paginate:{ itemsPerPage: 3, currentPage: p};">
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">{{testimonial.name}}</h5>
@@ -27,22 +27,30 @@
                             </div>
                         </div>
                     </div>
+                    <pagination-controls class="mt-3" (pageChange)="p = $event"></pagination-controls>
                 </ng-container>
     </div>
     <div class="col-xl-6">
+      <app-request></app-request>
+    </div>
+    <div class="col-xl-12">
                     <h3 class="mt-2 mb-2">Preguntas</h3>
                 <ng-container *ngIf="questions?.length > 0; else noQuestions">
-                    <div class="col-xl-12 mt-2" *ngFor="let question of questions">
+                  <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Buscar por nombre..." name="filterQuestion" [(ngModel)]="filterQuestion" spellcheck="false" autocomplete="none">
+                  </div>
+                    <div class="col-xl-12 mt-2" *ngFor="let question of questions | question:filterQuestion | paginate:{ itemsPerPage: 3, currentPage: q};">
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">{{question.title}}</h5>
                                 <p>{{question.content}}</p>
                                 <p>Usuario: <span class="font-weight-bold">{{question.user_id.username}}</span></p>
                                 <button class="btn btn-block btn-danger" (click)="deleteQuestion(question._id)">Eliminar</button>
-                                <button class="btn btn-block btn-success" id="responseButton" (click)="response(question.user_id.email)" data-toggle="modal" data-target="#responseModal">Responder</button>
+                                <button class="btn btn-block btn-info" id="responseButton" (click)="response(question._id,question.user_id.email)" data-toggle="modal" data-target="#responseModal">Responder</button>
                             </div>
                         </div>
                     </div>
+                    <pagination-controls class="mt-3" (pageChange)="q = $event"></pagination-controls>
                 </ng-container>
     </div>
 </div>
@@ -93,17 +101,40 @@
           <form [formGroup]="questionForm" (submit)="submit()" novalidate>
             <div class="mb-3">
               <label for="subjectInput" class="form-label">Asunto</label>
-              <input type="text" class="form-control" id="subjectInput" formControlName="title">
+              <input type="text" class="form-control" id="subjectInput" minlength="6" maxlength="40" formControlName="title">
+              <div *ngIf="f.title.invalid && (f.title.dirty || f.title.touched)"
+              class="alert alert-danger">
+              <div *ngIf="f.title.errors.required">
+                Información requerida.
+              </div>
+              <div *ngIf="f.title.errors.minlength">
+                El campo debe contener más de 6 caracteres.
+              </div>
+              <div *ngIf="f.title.errors.maxlength">
+                El campo debe contener más de 40 caracteres.
+              </div>
+              <div *ngIf="f.title.pending">Validando...</div>
+            </div>
             </div>
             <div class="mb-3">
               <label for="contentTextarea" class="form-label">Conternido de la respuesta</label>
-              <textarea class="form-control" id="contentTextarea" rows="3" formControlName="content"></textarea>
+              <textarea class="form-control" id="contentTextarea" rows="3" minlength="6" formControlName="content"></textarea>
+              <div *ngIf="f.content.invalid && (f.content.dirty || f.content.touched)"
+              class="alert alert-danger">
+              <div *ngIf="f.content.errors.required">
+                Información requerida.
+              </div>
+              <div *ngIf="f.content.errors.minlength">
+                El campo debe contener más de 6 caracteres.
+              </div>
+              <div *ngIf="f.content.pending">Validando...</div>
             </div>
-            <button type="submit" class="btn btn-primary">Enviar</button>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block" [disabled]="questionForm.invalid">Enviar</button>
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary mr-3" id="closeModal" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary btn-block mr-3" id="closeModal" data-dismiss="modal" >Cerrar</button>
         </div>
       </div>
     </div>

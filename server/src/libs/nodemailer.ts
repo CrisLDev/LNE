@@ -1,8 +1,8 @@
-import { Request, Response } from "express";
+import { Request, Response, NextFunction } from "express";
 
 import nodemailer from 'nodemailer';
 
-export const nodeMailer = (req: Request, res: Response) => {
+export const nodeMailer = (req: Request, res: Response, next: NextFunction) => {
 
     const form = {
         /*: req.body.name,*/
@@ -38,5 +38,7 @@ export const nodeMailer = (req: Request, res: Response) => {
         return res.status(200).json({msg: "Respuesta enviada correctamente."});
     }
     });
+
+    next();
 
 }

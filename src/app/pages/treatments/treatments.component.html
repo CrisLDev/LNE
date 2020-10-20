@@ -39,20 +39,19 @@
             display:inline-block;
             width: 100%;">
                 <div class="card-body">
-                    <h3>Tratamientos</h3>
+                    <h3>Atajos</h3>
                     <ul class="list-group">
-                        <li class="list-group-item">Cras justo odio</li>
-                        <li class="list-group-item">Dapibus ac facilisis in</li>
-                        <li class="list-group-item">Morbi leo risus</li>
-                        <li class="list-group-item">Porta ac consectetur ac</li>
-                        <li class="list-group-item">Vestibulum at eros</li>
+                        <li class="list-group-item">Evaluación</li>
+                        <li class="list-group-item">Planes</li>
+                        <li class="list-group-item">Informacion de los planes</li>
                     </ul>
                 </div>
             </div>
         </div>
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mt-5 mb-4">
+            <h3 class="mb-3">Planes</h3>
             <div class="row">
-                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 mb-3">
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 mb-3" (click)="initialPlan()" data-toggle="modal" data-target="#treatmentModal">
                     <div class="card hover" style="width: 100%;">
                         <div class="card-header bg-white text-center">
                             <svg width="7em" height="7em" viewBox="0 0 16 16" class="bi bi-brightness-alt-low" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -79,7 +78,7 @@
                         </div>
                       </div>
                 </div>
-                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 mb-3">
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 mb-3" (click)="basicPlan()" data-toggle="modal" data-target="#treatmentModal">
                     <div class="card hover" style="width: 100%;">
                         <div class="card-header bg-white text-center">
                             <svg width="5em" height="5em" viewBox="0 0 16 16" class="bi bi-brightness-high mt-3 mb-3 pt-2 pb-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -120,7 +119,7 @@
                         </div>
                       </div>
                 </div>
-                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 mb-3">
+                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 mb-3" (click)="completePlan()" data-toggle="modal" data-target="#treatmentModal">
                     <div class="card hover" style="width: 100%;">
                         <div class="card-header bg-white text-center">
                             <svg width="5em" height="5em" viewBox="0 0 16 16" class="bi bi-brightness-high-fill mt-3 mb-3 pt-2 pb-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -180,6 +179,7 @@
             </div>
         </div>
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <h3 class="mb-3">Información de planes</h3>
             <div class="row">
                 <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12 mb-3">
                     <div class="card shadow-sm" style="max-height: 542px; min-height: 542px;">
@@ -278,3 +278,61 @@
         </div>
     </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="treatmentModal" tabindex="-1" aria-labelledby="treatmentModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="treatmentModalLabel">Solicitar Tratamiento</h5>
+          <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"><svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-x-circle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+            <path fill-rule="evenodd" d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+          </svg></button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="treatmentForm" (submit)="submit()" novalidate>
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div id="initialPlan" class="d-none text-center">
+                            <svg _ngcontent-fhl-c65="" width="7em" height="7em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="bi bi-brightness-alt-low"><path _ngcontent-fhl-c65="" d="M8.5 5.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm5 6a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm-11 0a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm9.743-4.036a.5.5 0 1 1-.707-.707.5.5 0 0 1 .707.707zm-8.486 0a.5.5 0 1 1 .707-.707.5.5 0 0 1-.707.707z"></path><path _ngcontent-fhl-c65="" fill-rule="evenodd" d="M5.041 10.5h5.918a3 3 0 0 0-5.918 0zM4 11a4 4 0 1 1 8 0 .5.5 0 0 1-.5.5h-7A.5.5 0 0 1 4 11z"></path></svg>
+                            <h3 class="card-title">Plan Inicial</h3>
+                        </div>
+                        <div id="basicPlan" class="d-none text-center">
+                            <svg _ngcontent-fhl-c65="" width="5em" height="5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="bi bi-brightness-high mt-3 mb-3 pt-2 pb-2"><path _ngcontent-fhl-c65="" fill-rule="evenodd" d="M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"></path></svg>
+                            <h3 class="card-title">Plan Básico</h3>
+                        </div>
+                        <div id="completePlan" class="d-none text-center">
+                            <svg _ngcontent-fhl-c65="" width="5em" height="5em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="bi bi-brightness-high-fill mt-3 mb-3 pt-2 pb-2"><path _ngcontent-fhl-c65="" d="M12 8a4 4 0 1 1-8 0 4 4 0 0 1 8 0z"></path><path _ngcontent-fhl-c65="" fill-rule="evenodd" d="M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"></path></svg>
+                            <h3 class="card-title">Plan Completo</h3>
+                        </div>
+                    </div>
+                    <div class="col-xl-12">
+                        <div class="mb-3">
+                            <label for="treatmentEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="treatmentEmail" aria-describedby="emailHelp" formControlName="email">
+                            <div id="emailHelp" class="form-text">No compartiremos tu email con nadie.</div>
+                          </div>
+                    </div>
+                    <div class="col-xl-6 col-sm-6">
+                        <div class="mb-3">
+                            <label for="treatmentPersonName" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="treatmentPersonName" formControlName="name" spellcheck="false" autocomplete="none">
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-sm-6">
+                        <div class="mb-3">
+                            <label for="treatmentPersonLast" class="form-label">Apellido</label>
+                            <input type="text" class="form-control" id="treatmentPersonLast" formControlName="last" spellcheck="false" autocomplete="none">
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Enviar</button>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="closeModal" class="btn btn-secondary btn-block" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>

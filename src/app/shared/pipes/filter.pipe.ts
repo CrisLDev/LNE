@@ -5,17 +5,14 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FilterPipe implements PipeTransform {
 
-  transform(value: any, arg: any): any {
-    const resultTestimonial = [];
-
-    for(const testimonial of value){
-      if(testimonial.name.toLowerCase().indexOf(arg.toLowerCase()) > -1){
-        resultTestimonial.push(testimonial);
-      }else{
-        console.log(resultTestimonial, arg)
-      }
+  transform(value: any[], arg: any): any {
+    if(!arg)return value;
+    const exist = value.filter(testimonial => testimonial.name.toLowerCase().toString().includes(arg.toLowerCase().toString(), -1));
+    if(exist.length >= 1){
+      return value.filter(testimonial => testimonial.name.toLowerCase().toString().includes(arg.toLowerCase().toString(), -1));
+    }else{
+      return value;
     }
-    return resultTestimonial;
   }
 
 }
