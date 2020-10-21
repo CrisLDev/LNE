@@ -106,7 +106,7 @@ export class ActivitiesComponent implements OnInit {
   }
 
   closeModal(){
-    document.getElementById("closeModal").click();
+    document.getElementById("closeModalQuestion").click();
   }
 
   submit(){

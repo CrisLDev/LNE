@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row mt-5 mb-5" style="padding-top: 70px;">
-        <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+        <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12" id="eva">
             <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mb-3">
                     <div class="card shadow-sm">
@@ -41,14 +41,14 @@
                 <div class="card-body">
                     <h3>Atajos</h3>
                     <ul class="list-group">
-                        <li class="list-group-item">Evaluación</li>
-                        <li class="list-group-item">Planes</li>
-                        <li class="list-group-item">Informacion de los planes</li>
+                        <li class="list-group-item" style="cursor: pointer;" (click)="goToEva()">Evaluación</li>
+                        <li class="list-group-item" style="cursor: pointer;" (click)="goToPla()">Planes</li>
+                        <li class="list-group-item" style="cursor: pointer;" (click)="goToInf()">Informacion de los planes</li>
                     </ul>
                 </div>
             </div>
         </div>
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mt-5 mb-4">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mt-5 mb-4" id="pla">
             <h3 class="mb-3">Planes</h3>
             <div class="row">
                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col-12 mb-3" (click)="initialPlan()" data-toggle="modal" data-target="#treatmentModal">
@@ -178,7 +178,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" id="inf">
             <h3 class="mb-3">Información de planes</h3>
             <div class="row">
                 <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12 mb-3">

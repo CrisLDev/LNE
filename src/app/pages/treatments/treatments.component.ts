@@ -69,4 +69,16 @@ export class TreatmentsComponent implements OnInit {
     )
   }
 
+  goToEva(){
+    document.getElementById("eva").scrollIntoView({behavior: "smooth"});
+  }
+
+  goToPla(){
+    document.getElementById("pla").scrollIntoView({behavior: "smooth"});
+  }
+
+  goToInf(){
+    document.getElementById("inf").scrollIntoView({behavior: "smooth"});
+  }
+
 }

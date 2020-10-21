@@ -53,7 +53,7 @@ export class PatientsFormComponent implements OnInit {
       imgUrl: [this.patient.imgUrl||'', Validators.compose([Validators.required, Validators.minLength(10)])],
       email: [this.patient.email||'', Validators.compose([Validators.required, Validators.email, Validators.minLength(10), Validators.maxLength(40)])],
       age: [this.patient.age||'', Validators.compose([Validators.required, Validators.min(0), Validators.max(100)])],
-      phoneNumber: [this.patient.phoneNumber || '', Validators.compose([Validators.required, Validators.min(960000000), Validators.max(1000000000)])],
+      phoneNumber: [this.patient.phoneNumber || '', Validators.compose([Validators.required, Validators.min(760000000), Validators.max(1999999999)])],
       entryDate: [this.patient.entryDate || '', Validators.compose([Validators.required])],
       birthDate: [this.patient.birthDate || '', Validators.compose([Validators.required])],
       birthPlace: [this.patient.birthPlace || '', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(40)])],
