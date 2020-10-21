@@ -21,10 +21,3 @@ mgl-timeline-entry-header{
 .text-gray{
     color:gray;
 }
-
-@media (max-width: 575.98px) { 
-    .rounded-circle{
-        max-width: 160px;
-        margin-bottom: 2em!important;
-    }
- }

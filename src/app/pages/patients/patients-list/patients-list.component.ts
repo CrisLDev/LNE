@@ -13,6 +13,8 @@ export class PatientsListComponent implements OnInit {
 
   patients: Patient[];
 
+  q: number = 1;
+
   constructor(private patientService: PatientsService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit(): void {

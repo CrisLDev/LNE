@@ -13,5 +13,6 @@
 }
 
 .img-patient-max{
-    max-height: 192px;
+    min-height: 123px;
+    max-height: 123px;
 }

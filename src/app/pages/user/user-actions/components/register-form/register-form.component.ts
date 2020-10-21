@@ -42,7 +42,9 @@ export class RegisterFormComponent implements OnInit {
     this.authService.signUp(this.registerForm.value)
       .subscribe(
         res => {
-        this.authService.userLogged = res.savedUser;
+          console.log(res.savedUser)
+        this.authService.userLogged.role = res.savedUser.role;
+        this.authService.userLogged.id = res.savedUser._id;
         localStorage.setItem('token', res.token);
         this.router.navigate(['/home']);
         this.toastr.success('Te has registrado correctamente.');

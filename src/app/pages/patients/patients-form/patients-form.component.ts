@@ -11,7 +11,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class PatientsFormComponent implements OnInit {
 
-  patient = {name: '', age: '', imgUrl: '', phoneNumber: '', email: '', entryDate: '', birthDate: '', birthPlace: '', ocupation: '', academicLevel:'', maritalStatus: '', residence:'', genere: '', dni: ''};
+  patient = {name: '', age: '', imgUrl: '', phoneNumber: '', email: '', entryDate: '', birthDate: '', birthPlace: '', ocupation: '', academicLevel:'', maritalStatus: '', residence:'', genere: '', dni: '', plan: ''};
 
   id: string;
 
@@ -61,6 +61,7 @@ export class PatientsFormComponent implements OnInit {
       academicLevel: [this.patient.academicLevel || '', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(40)])],
       maritalStatus: [this.patient.maritalStatus || '', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(40)])],
       residence: [this.patient.residence || '', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(40)])],
+      plan: [this.patient.plan || '', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(10)])],
       genere: [this.patient.genere || 'Escoge uno...']
     })
   }

@@ -4,6 +4,8 @@ import Patient, {IPatient} from '../models/Patient';
 
 import Tracing from '../models/Tracing';
 
+import History from '../models/History';
+
 import {validationResult} from 'express-validator';
 
 export async function createPatient(req: Request, res: Response){
@@ -15,6 +17,7 @@ export async function createPatient(req: Request, res: Response){
 
     const {
         name, 
+        plan,
         dni,
         age, 
         imgUrl, 
@@ -31,6 +34,7 @@ export async function createPatient(req: Request, res: Response){
 
     const patient: IPatient = new Patient({
         name,
+        plan,
         dni,
         age,
         email,
@@ -93,6 +97,8 @@ export async function getPatientById(req: Request, res: Response){
 
         if(patient){
             return res.status(200).json(patient);
+        }else{
+            return res.status(400).json({errors: [{msg : "Usuario no existe."}]});
         }
     }catch (err){
         res.status(400).json({msg: "No hay datos para mostrar."})
@@ -107,7 +113,7 @@ export async function editPatientById(req: Request, res: Response){
         }
 
     try{
-        const {name, dni, age, email, imgUrl, phoneNumber, entryDate, birthDate,
+        const {name, plan, dni, age, email, imgUrl, phoneNumber, entryDate, birthDate,
             birthPlace,
             ocupation,
             academicLevel,
@@ -116,6 +122,7 @@ export async function editPatientById(req: Request, res: Response){
             genere} = req.body;
         const editPatient = {
             name, 
+            plan,
             dni,
             age, 
             email, 
@@ -163,7 +170,8 @@ export async function deletePatientById(req: Request, res: Response){
     try{
         const deletedPatient = await Patient.findByIdAndRemove(req.params.id);
         const deletedTracings = await Tracing.find({patient_id: req.params.id}).remove();
-        return res.status(200).json({deletedPatient, deletedTracings});
+        const deletedHistories = await History.find({patient_id: req.params.id}).remove();
+        return res.status(200).json({deletedPatient, deletedTracings, deletedHistories});
     } catch(err){
         return res.status(400).json({errors:[{mgs:"No hay datos para mostrar."}]});
     }

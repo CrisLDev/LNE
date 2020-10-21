@@ -24,7 +24,6 @@ export class TracingsComponent implements OnInit {
     this.tracingService.getTracings().subscribe(
       res => {
         this.tracings = res.tracings
-        console.log(this.tracings)
       },
       err => {
         this.toastr.error(err.error.errors[0].msg);

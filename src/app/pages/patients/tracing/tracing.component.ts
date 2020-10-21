@@ -33,7 +33,7 @@ export class TracingComponent implements OnInit {
 
   message: string;
 
-  patient = {_id: '',name: '', age: '', imgUrl: '', phoneNumber: '', email: '', createdAt: '', entryDate: ''};
+  patient = {_id: '',name: '', age: '', imgUrl: '', phoneNumber: '', email: '', createdAt: '', entryDate: '', academicLevel: '', birthDate: '', birthPlace: '', maritalStatus: '', ocupation: '', residence: '', genere: '', dni: '', plan:''};
 
   constructor(private activatedRoute: ActivatedRoute,
               private tracingsService: TracingsService,
@@ -58,22 +58,33 @@ export class TracingComponent implements OnInit {
 
         this.patientsService.getPatient(this.id)
         .subscribe(
-          res => {this.patient = res},
+          res => {this.patient = res;},
           err => {this.router.navigate(['/home'])}
         );
     });
 
     this.historyService.getHistoriesByPatientId(this.id).subscribe(
-      res => {this.histories = res.histories}
+      res => {
+        if(res){
+          this.histories = res.histories
+          this.dismissSpinnerHistory();
+        }
+        }
     );
 
   }
   
   dismissSpinner(){
-      const spinner = document.getElementById("spinnerTracing").classList.add("d-none");
-      const textNone = document.getElementById("textTracing").classList.remove("d-none");
-      const textBlock = document.getElementById("textTracing").classList.add("d-block");
+      document.getElementById("spinnerTracing").classList.add("d-none");
+      document.getElementById("textTracing").classList.remove("d-none");
+      document.getElementById("textTracing").classList.add("d-block");
   }
+
+  dismissSpinnerHistory(){
+    document.getElementById("spinnerHistories").classList.add("d-none");
+    document.getElementById("textHistories").classList.remove("d-none");
+    document.getElementById("textHistories").classList.add("d-block");
+}
 
   editTracing(tracing_id){
     this.router.navigate(['/patients/view/' + this.id + '/edit/' + tracing_id]);
@@ -118,6 +129,23 @@ export class TracingComponent implements OnInit {
 
   editPatient(id){
     this.router.navigate(['/patients/edit', id]);
+  }
+
+  deleteHistory(history_id){
+    document.getElementById("historiesCard").classList.add("d-none");
+    document.getElementById("historiesSpinner").classList.replace("d-none", "d-block");
+    this.historyService.deleteHistoryById(history_id)
+      .subscribe(
+        res => {
+          document.getElementById("historiesCard").classList.remove("d-none");
+          document.getElementById("historiesSpinner").classList.replace("d-block","d-none");
+          this.histories.splice(this.histories.findIndex(e => e._id === history_id), 1);
+          this.toastr.error('Seguimiento eliminado correctamente');
+          if(this.histories.length <= 0){
+            this.router.navigate(['/home'])
+          }},
+        err => console.log(err)
+      )
   }
 
 }

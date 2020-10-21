@@ -4,15 +4,15 @@
       <div class="card border-0">
         <div class="card-body d-flex justify-content-between">
             <div class="row justify-content-center">
-              <div class="col-xl-2 clo-lg-2 col-md-2 col-sm-2 text-center" *ngIf="patient.name != ''">
-                <img src="{{patient.imgUrl}}" class="img-fluid rounded-circle mw-75 mb-1" alt="Imagen de usuario">
+              <div class="col-xl-2 clo-lg-2 col-md-2 col-sm-2 text-center" style="max-width: 180px; overflow-y: hidden;" *ngIf="patient.name != ''">
+                <img loading="lazy" src="{{patient.imgUrl}}" class="img-fluid mb-1" alt="Imagen de usuario">
               </div>
               <div class="col-xl-8 col-lg-8 col-lg-10 col-sm-10">
                 <div class="row">
                   <ng-container *ngIf="patient.name != ''; else patientLoading">
                     <div class="col-xl-12">
                       <div class="d-flex justify-content-between align-items-center">
-                        <h4>{{patient.name}}</h4>
+                        <h4 class="text-uppercase">{{patient.name}}</h4>
                         <button class="btn btn-warning" (click)="editPatient(patient._id)">Editar</button>
                       </div>
                       <div class="mt-2">
@@ -35,6 +35,53 @@
                         <span class="text-gray">Fecha de ingreso</span>
                         <p>{{patient.entryDate.split("T")[0]}}</p>
                       </div>
+                      <div class="mt-2">
+                        <button class="btn btn-primary btn-block mb-3" type="button" data-toggle="collapse" data-target="#collapseMoreInfo" aria-expanded="false" aria-controls="collapseMoreInfo">
+                          Más Info
+                        </button>
+                        <div class="collapse mb-3" id="collapseMoreInfo">
+                          <div class="mt-2">
+                            <div class="row">
+                              <div class="col-6">
+                                <span class="text-gray">Nivel Académico</span>
+                                <p>{{patient.academicLevel}}</p>
+                              </div>
+                              <div class="col-6">
+                                <span class="text-gray">Ocupacón</span>
+                                <p>{{patient.ocupation}}</p>
+                              </div>
+                              <div class="col-6">
+                                <span class="text-gray">Fecha de nacimiento</span>
+                                <p>{{patient.birthDate.split("T")[0]}}</p>
+                              </div>
+                              <div class="col-6">
+                                <span class="text-gray">Lugar de nacimiento</span>
+                                <p>{{patient.birthPlace}}</p>
+                              </div>
+                              <div class="col-6">
+                                <span class="text-gray">Estado civil</span>
+                                <p>{{patient.maritalStatus}}</p>
+                              </div>
+                              <div class="col-6">
+                                <span class="text-gray">Direccióno</span>
+                                <p>{{patient.residence}}</p>
+                              </div>
+                              <div class="col-6">
+                                <span class="text-gray">Sexo</span>
+                                <p>{{patient.genere}}</p>
+                              </div>
+                              <div class="col-6">
+                                <span class="text-gray">Cédula de identidad</span>
+                                <p>{{patient.dni}}</p>
+                              </div>
+                              <div class="col-6" *ngIf="patient.plan">
+                                <span class="text-gray">Plan contratado</span>
+                                <p>{{patient.plan}}</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </ng-container>
                   <div class="col-xl-12">
@@ -43,13 +90,33 @@
                         <h4 class="card-title">Historias clinicas</h4>
                         <a class="btn btn-primary" routerLink="history/create">Nuevo</a>
                       </div>
-                      <div class="card-body pb-0">
-                        <div class="card mb-3" *ngFor="let history of histories | paginate:{ itemsPerPage: 1, currentPage: p }">
-                          <div class="form-text pt-3 pl-3">Click en la historia clínica para más acciones.</div>
-                          <div class="card-body" style="cursor: pointer;">Historia clínica {{history.createdAt | date:'short'}}</div>
+                      <ng-container *ngIf="histories?.length > 0; else noHistories">
+                        <div class="text-center d-none" style="margin-top: 70px;" id="historiesSpinner">
+                          <div
+                            class="spinner-border"
+                            style="width: 3rem; height: 3rem;"
+                            role="status"
+                          >
+                            <span class="sr-only">Loading...</span>
+                          </div>
                         </div>
-                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
-                      </div>
+                        <div class="card-body pb-0" id="historiesCard">
+                          <div class="card mb-3" *ngFor="let history of histories | paginate:{ itemsPerPage: 1, currentPage: p }">
+                            <div class="form-text pt-3 pl-3">Click en la historia clínica para más acciones.</div>
+                            <div class="card-body d-flex align-items-center">
+                              <span>
+                              Historia clínica {{history.createdAt | date:'short'}}
+                            </span> 
+                              <span class="mr-4 ml-4" (click)="deleteHistory(history._id)" style="cursor: pointer;">
+                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                  <path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z"/>
+                                </svg>
+                              </span>
+                            </div>
+                          </div>
+                          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                        </div>
+                      </ng-container>
                   <hr>
                   <div class="col-xl-12">
                     <div class="card border-0 border-bottom">
@@ -143,6 +210,26 @@
   </div>
 </ng-template>
 
+<ng-template #noHistories>
+  <div class="text-center" style="margin-top: 70px;" id="spinnerHistories">
+    <div
+      class="spinner-border"
+      style="width: 3rem; height: 3rem;"
+      role="status"
+    >
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+
+  <div class="d-none mt-5 mb-5 " id="textHistories">
+    <div class="row justify-content-center">
+      <div class="col-xl-5 text-center">
+        No hay datos para mostrar.
+      </div>
+    </div>
+  </div>
+</ng-template>
+
 <ng-template #patientLoading>
   <div class="text-center" style="margin-top: 70px;">
     <div
@@ -154,3 +241,4 @@
     </div>
   </div>
 </ng-template>
+

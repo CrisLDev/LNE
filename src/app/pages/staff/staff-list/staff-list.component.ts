@@ -14,6 +14,8 @@ export class StaffListComponent implements OnInit {
 
   users: User[];
 
+  q: number = 1;
+
   constructor(private usersService: UsersService, private router: Router, private authService: AuthService, private toastr: ToastrService) { }
 
   ngOnInit(): void {

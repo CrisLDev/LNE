@@ -16,8 +16,20 @@ export class HistoryService {
     return this.http.post(this.URL + '/history', data);
   }
 
+  editHistoryById(history_id, data){
+    return this.http.put(this.URL + '/history/' + history_id, data);
+  }
+
   getHistoriesByPatientId(patient_id){
-    return this.http.get<any>(this.URL + '/history/' + patient_id);
+    return this.http.get<any>(this.URL + '/history/patient/' + patient_id);
+  }
+
+  deleteHistoryById(history_id){
+    return this.http.delete<any>(this.URL + '/history/' + history_id)
+  }
+
+  getHistoriesById(history_id){
+    return this.http.get<any>(this.URL + '/history/' + history_id);
   }
 
 }

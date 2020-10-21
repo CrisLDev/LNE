@@ -82,7 +82,10 @@ export class ScheduleComponent implements OnInit {
       this.calendarOptions.events = res.schedules;
       this.events = res.schedules;
       this.myTasks = this.events.filter((e) => e.participants.find((e) => e.user === this.authService.userLogged.id));
-      console.log(res);
+      if(this.myTasks.length < 0){
+        document.getElementById("spinnerTask").classList.add("d-none");
+        document.getElementById("noTaskFinally").classList.replace("d-none", "d-block");
+      }
       this.createForm();
     });
     this.usersService.getAllUsers().subscribe(

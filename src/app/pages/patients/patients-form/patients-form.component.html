@@ -56,6 +56,27 @@
               </div>
               <div class="col-xl-12">
                 <div class="mb-3">
+                  <label for="planPatient" class="form-label">Plan contratado</label>
+                  <input type="text" class="form-control" id="planPatient" placeholder="Ingresa el tipo plan" formControlName="plan" minlength="4" maxlength="10" required>
+                  <div *ngIf="f.plan.invalid && (f.plan.dirty || f.plan.touched)"
+                class="alert alert-danger">
+    
+                    <div *ngIf="f.plan.errors.required">
+                      Información requerida.
+                    </div>
+                    <div *ngIf="f.plan.errors.minlength">
+                      El campo debe contener más de 4 caracteres.
+                    </div>
+                    <div *ngIf="f.plan.errors.maxlength">
+                      El campo debe contener menos de 10 caracteres.
+                    </div>
+                    <div *ngIf="f.plan.pending">Validando...</div>
+    
+                </div>
+              </div>
+              </div>
+              <div class="col-xl-12">
+                <div class="mb-3">
                   <label for="imgUrlPatient" class="form-label">Dirección Url de la Imagen</label>
                   <input type="text" class="form-control" id="imgUrlPatient" formControlName="imgUrl" placeholder="Ingresa una Url para la imagen" minlength="10" required>
                   <div *ngIf="f.imgUrl.invalid && (f.imgUrl.dirty || f.imgUrl.touched)"

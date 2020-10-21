@@ -10,7 +10,7 @@ import { createQuestion, deleteQuestionById, getQuestions } from '../controllers
 import { createProfile, deleteProfileById, editProfileById, getProfile, getProfileById } from '../controllers/profile';
 import { createSchedule, deleteScheduleById, editScheduleById, getSchedules } from '../controllers/schedule';
 import { createTestimonial, deleteTestimonialById, getTestimonial, getTestimonials } from '../controllers/testimonial';
-import { createHistory, getHistoriesByPatientId } from '../controllers/history';
+import { createHistory, deleteHistoryById, editHistoryById, getHistoriesById, getHistoriesByPatientId } from '../controllers/history';
 import { nodeMailer } from '../libs/nodemailer';
 import { createTreatment, deleteTreatmentById, getTreatments } from '../controllers/treatment';
 
@@ -144,10 +144,15 @@ router.route('/schedule/:id')
     .delete(deleteScheduleById);
 
 router.route('/history')
-    .post(createHistory);
+    .post([check('apnp_blood_type').isLength({min:1, max: 2}).not().isEmpty().withMessage('El campo no puede estar vacio')],createHistory);
 
-router.route('/history/:patient_id')
+router.route('/history/patient/:patient_id')
     .get(getHistoriesByPatientId);
+
+router.route('/history/:history_id')
+    .put([check('apnp_blood_type').isLength({min:1, max: 2}).not().isEmpty().withMessage('El campo no puede estar vacio')], editHistoryById)
+    .delete(deleteHistoryById)
+    .get(getHistoriesById); 
 
 router.route('/sendemail/:id')
     .post([ 
