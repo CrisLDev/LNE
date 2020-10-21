@@ -124,7 +124,9 @@ export class ActivitiesComponent implements OnInit {
         this.questionForm.markAsUntouched();
         this.closeModal();
       },
-      err => {console.log(err)}
+      err => {
+        this.toastr.error('Ha ocurrido un error')
+      this.toastr.error(err.error.errors[0].msg)}
     )
   }
 

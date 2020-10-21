@@ -5,6 +5,7 @@ import { PatientsFormComponent } from './patients-form/patients-form.component';
 import { TracingComponent } from '@pages/patients/tracing/tracing.component';
 import { TracingFormComponent } from '@pages/patients/tracing-form/tracing-form.component';
 import { HistoryComponent } from './history/history.component';
+import { HistoryViewComponent } from './history-view/history-view.component';
 
 const routes: Routes = [
   {
@@ -34,6 +35,10 @@ const routes: Routes = [
   {
     path: 'view/:id/history/create',
     component: HistoryComponent
+  },
+  {
+    path: 'view/:id/history/view/:history_id',
+    component: HistoryViewComponent
   }
 ]
 

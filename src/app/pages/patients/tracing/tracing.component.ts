@@ -131,6 +131,10 @@ export class TracingComponent implements OnInit {
     this.router.navigate(['/patients/edit', id]);
   }
 
+  viewHistory(history_id){
+    this.router.navigate(['/patients/view/' + this.id + '/history/view/' + history_id]);
+  }
+
   deleteHistory(history_id){
     document.getElementById("historiesCard").classList.add("d-none");
     document.getElementById("historiesSpinner").classList.replace("d-none", "d-block");

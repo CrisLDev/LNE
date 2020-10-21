@@ -1,0 +1,177 @@
+<div class="container">
+    <div class="row mt-3">
+        <div class="text-center" style="margin-top: 70px;" id="spinnerHistory">
+            <div
+              class="spinner-border"
+              style="width: 3rem; height: 3rem;"
+              role="status"
+            >
+              <span class="sr-only">Loading...</span>
+            </div>
+          </div>
+            <div class="col-xl-12" style="margin-top: 70px;">
+                <div class="card mb-5" id="history">
+                    <div class="card-header bg-white d-flex p-5">
+                        <div class="col-xl-1 col-lg-2 col-md-2 col-sm-2 col-3">
+                            <img class="img-fluid" src="./assets/logo.svg" alt="Logo">
+                        </div>
+                        <div class="col-xl-11 col-lg-10 col-md-10 col-sm-10 col-9 text-right">
+                            <p class="mb-1">Babahoyo - Barreiro</p>
+                            <p class="mb-1">{{date | date:'short'}}</p>
+                            <p class="mb-1">La Nueva Era</p>
+                        </div>
+                    </div>
+                    <div class="card-body p-5">
+                            <div class="text-center mb-5">
+                                <h1>Formato 1</h1>
+                                <h2>Historial de Consulta</h2>
+                            </div>
+                            <div>
+                                <h5>Ficha de identificación</h5>
+                                <div class="form-text">Los campos marcados con * son necesarios.</div>
+                                <div class="form-text">Separa con una "," las distintas opciones en los campos.</div>
+                                <h5 class="pt-2 pl-5">1. Paciente</h5>
+                            </div>
+                            <div class="row pl-5 pr-5">
+                                <div class="col-xl-6 pl-4">
+                                    <p><span class="font-weight-bold">Nombre: </span>{{history.patient_id.name}}</p>
+                                </div>
+                                <div class="col-xl-6 pl-4">
+                                    <p><span class="font-weight-bold">Edad: </span>{{history.patient_id.age}}</p>
+                                </div>
+                            </div>
+                            <div>
+                                <h5 class="pt-4 pl-5">2. Interrogatorio</h5>
+                            </div>
+                            <div class="row pl-5 pr-5">
+                                <div class="col-xl-6 pl-4">
+                                    <p><span class="font-weight-bold">Email: </span>{{history.patient_id.email}}</p>
+                                </div>
+                                <div class="col-xl-6 pl-4">
+                                    <p><span class="font-weight-bold">Número de teléfono: </span>{{history.patient_id.phoneNumber}}</p>
+                                </div>
+                                <div class="col-xl-6 pl-4">
+                                    <p><span class="font-weight-bold">Fecha de creación: </span>{{history.patient_id.createdAt | date:'medium'}}</p>
+                                </div>
+                                <div class="col-xl-6 pl-4">
+                                    <p><span class="font-weight-bold">Fecha de ingreso: </span>{{history.patient_id.entryDate | date:'medium'}}</p>
+                                </div>
+                                <div class="col-xl-6 pl-4">
+                                    <p><span class="font-weight-bold">Fecha de nacimiento: </span>{{history.patient_id.birthDate | date:'short'}}</p>
+                                </div>
+                                <div class="col-xl-6 pl-4">
+                                    <p><span class="font-weight-bold">Lugar de nacimiento: </span>{{history.patient_id.birthPlace}}</p>
+                                </div>
+                                <div class="col-xl-6 pl-4">
+                                    <p><span class="font-weight-bold">Estado civil: </span>{{history.patient_id.maritalStatus}}</p>
+                                </div>
+                                <div class="col-xl-6 pl-4">
+                                    <p><span class="font-weight-bold">Ocupación: </span>{{history.patient_id.ocupation}}</p>
+                                </div>
+                                <div class="col-xl-6 pl-4">
+                                    <p><span class="font-weight-bold">Lugar de residencia: </span>{{history.patient_id.residence}}</p>
+                                </div>
+                                <div class="col-xl-6 pl-4">
+                                    <p><span class="font-weight-bold">Sexo: </span>{{history.patient_id.genere}}</p>
+                                </div>
+                                <div class="col-xl-6 pl-4">
+                                    <p><span class="font-weight-bold">Número de cédula: </span>{{history.patient_id.dni}}</p>
+                                </div>
+                                <div class="col-xl-6 pl-4">
+                                    <p *ngIf="history.patient_id.plan"><span class="font-weight-bold">Plan contratado: </span>{{history.patient_id.plan}}</p>
+                                    <p *ngIf="!history.patient_id.plan" ><span class="font-weight-bold">Plan contratado: </span>No tiene un plan contratado</p>
+                                </div>
+                            </div>
+                            <div>
+                                <h5 class="pt-4 pl-5">3. Antecedentes personales patológicos</h5>
+                            </div>
+                            <div class="row pl-5 pr-5">
+                                <div class="col-xl-12">
+                                    <span class="input-group-text text-wrap" id="basic-app_non_communicable_diseases">Enfermedades inflamatorias e infecciosas no transmisibles</span>
+                                    <p class="font-weight-bold ml-3 mt-3" *ngFor="let app_non_communicable_disease of history.app_non_communicable_diseases; let i = index">{{i + 1}}.- {{app_non_communicable_disease}}</p>
+                                </div>
+                                <div class="col-xl-12">
+                                    <span class="input-group-text text-wrap" id="basic-app_sexually_transmitted_diseases">Enfermedades de transmición sexual</span>
+                                    <p class="font-weight-bold ml-3 mt-3" *ngFor="let app_sexually_transmitted_disease of history.app_sexually_transmitted_diseases; let i = index">{{i + 1}}.- {{app_sexually_transmitted_disease}}</p>
+                                </div>
+                                <div class="col-xl-12">
+                                    <span class="input-group-text text-wrap" id="basic-app_degenerative_diseases">Enfermedades degenerativas</span>
+                                    <p class="font-weight-bold ml-3 mt-3" *ngFor="let app_degenerative_disease of history.app_degenerative_diseases; let i = index">{{i + 1}}.- {{app_degenerative_disease}}</p>
+                                </div>
+                                <div class="col-xl-12">
+                                    <span class="input-group-text text-wrap" id="basic-app_others">Otras</span>
+                                    <p class="font-weight-bold ml-3 mt-3" *ngFor="let app_other of history.app_others; let i = index">{{i + 1}}.- {{app_other}}</p>
+                                </div>
+                            </div>
+                            <div>
+                                <h5 class="pt-4 pl-5">4. Antecedentes personales no patológicos</h5>
+                            </div>
+                            <div class="row pl-5 pr-5">
+                                <div class="col-xl-12">
+                                    <span class="input-group-text text-wrap" id="basic-apnp_blood_type">Grupo sanguineo*</span>
+                                    <p class="font-weight-bold ml-3 mt-3">{{history.apnp_blood_type}}</p>
+                                </div>
+                                <div class="col-xl-12">
+                                    <span class="input-group-text text-wrap" id="basic-apnp_adictions">Adicciones</span>
+                                    <p class="font-weight-bold ml-3 mt-3" *ngFor="let apnp_adiction of history.apnp_adictions; let i = index">{{i + 1}}.- {{apnp_adiction}}</p>
+                                </div>
+                                <div class="col-xl-12">
+                                    <span class="input-group-text text-wrap" id="basic-apnp_allergies">Alergias</span>
+                                    <p class="font-weight-bold ml-3 mt-3" *ngFor="let apnp_allergie of history.apnp_allergies; let i = index">{{i + 1}}.- {{apnp_allergie}}</p>
+                                </div>
+                                <div class="col-xl-12">
+                                    <span class="input-group-text text-wrap" id="basic-apnp_antibiotics">Antibioticos</span>
+                                    <p class="font-weight-bold ml-3 mt-3" *ngFor="let apnp_antibiotic of history.apnp_antibiotics; let i = index">{{i + 1}}.- {{apnp_antibiotic}}</p>
+                                </div>
+                                <div class="col-xl-12">
+                                    <span class="input-group-text text-wrap" id="basic-apnp_current_conditions">Pacedimiento actual</span>
+                                    <p class="font-weight-bold ml-3 mt-3" *ngFor="let apnp_current_condition of history.apnp_current_conditions; let i = index">{{i + 1}}.- {{apnp_current_condition}}</p>
+                                </div>
+                                <div class="col-xl-12">
+                                    <span class="input-group-text text-wrap" id="basic-apnp_has_been_hospitalized">Ha sido hospitalizado</span>
+                                    <p class="font-weight-bold ml-3 mt-3" *ngFor="let apnp_been_hospitalized of history.apnp_has_been_hospitalized; let i = index">{{i + 1}}.- {{apnp_been_hospitalized}}</p>
+                                </div>
+                            </div>
+                            <div>
+                                <h5 class="pt-4 pl-5">5. Interrogatorio por enfermedades en organos</h5>
+                            </div>
+                            <div class="row pl-5 pr-5">
+                                <div class="col-xl-12">
+                                    <span class="input-group-text text-wrap">Respiratorias</span>
+                                    <p class="font-weight-bold ml-3 mt-3" *ngFor="let ipeeo_respirator of history.ipeeo_respiratory; let i = index">{{i + 1}}.- {{ipeeo_respirator}}</p>
+                                </div>
+                                <div class="col-xl-12">
+                                    <span class="input-group-text text-wrap">Cardiovasculares</span>
+                                    <p class="font-weight-bold ml-3 mt-3" *ngFor="let ipeeo_cardiovascula of history.ipeeo_cardiovascular; let i = index">{{i + 1}}.- {{ipeeo_cardiovascula}}</p>
+                                </div>
+                                <div class="col-xl-12">
+                                    <span class="input-group-text text-wrap">Genitourinarias</span>
+                                    <p class="font-weight-bold ml-3 mt-3" *ngFor="let ipeeo_genitourinar of history.ipeeo_genitourinary; let i = index">{{i + 1}}.- {{ipeeo_genitourinar}}</p>
+                                </div>
+                                <div class="col-xl-12">
+                                    <span class="input-group-text text-wrap">Endócrinas</span>
+                                    <p class="font-weight-bold ml-3 mt-3" *ngFor="let ipeeo_endocrin of history.ipeeo_endocrine; let i = index">{{i + 1}}.- {{ipeeo_endocrin}}</p>
+                                </div>
+                                <div class="col-xl-12">
+                                    <span class="input-group-text text-wrap">Nervisos</span>
+                                    <p class="font-weight-bold ml-3 mt-3" *ngFor="let ipeeo_nervou of history.ipeeo_nervous; let i = index">{{i + 1}}.- {{ipeeo_nervou}}</p>
+                                </div>
+                                <div class="col-xl-12">
+                                    <span class="input-group-text text-wrap" id="basic-addon3">Musculares</span>
+                                    <p class="font-weight-bold ml-3 mt-3" *ngFor="let ipeeo_muscula of history.ipeeo_muscular; let i = index">{{i + 1}}.- {{ipeeo_muscula}}</p>
+                                </div>
+                            </div>
+                            <div>
+                                <h5 class="pt-4 pl-5">6. Conclusiones</h5>
+                            </div>
+                            <div class="row pl-5 pr-5">
+                                <div class="col-xl-12">
+                                    <span class="input-group-text text-wrap" id="basic-addon3">Observaciones</span>
+                                    <p class="font-weight-bold ml-3 mt-3" *ngFor="let conclusion of history.conclusions; let i = index">{{i + 1}}.- {{conclusion}}</p>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>

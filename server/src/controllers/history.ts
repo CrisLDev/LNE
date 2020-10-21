@@ -96,7 +96,7 @@ export async function getHistoriesByPatientId(req: Request, res: Response){
 
 export async function getHistoriesById(req: Request, res: Response){
     try{
-        const history = await History.findById(req.params.history_id);
+        const history = await History.findById(req.params.history_id).populate('patient_id');
 
         if(history){
             return res.status(200).json({history});

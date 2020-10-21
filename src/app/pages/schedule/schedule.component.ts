@@ -65,7 +65,6 @@ export class ScheduleComponent implements OnInit {
       username: user[0].username
     }
     this.usersParticipants.push(userToAdd);
-    console.log(this.usersParticipants)
   }
 
   constructor(
@@ -158,7 +157,6 @@ export class ScheduleComponent implements OnInit {
               .classList.replace("d-block", "d-none");
             document.getElementById("scheduleDiv").classList.remove("d-none");
             this.calendarOptions.events = this.events;
-            console.log(err);
             this.toastr.error(err.error.errors[0].msg);
           }
         );

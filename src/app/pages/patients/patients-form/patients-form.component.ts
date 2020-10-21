@@ -72,7 +72,6 @@ export class PatientsFormComponent implements OnInit {
     document.getElementById("patientButton").setAttribute("disabled", "true");
     document.getElementById("patientButton").innerHTML = 'Enviando';
     if(this.id){
-      console.log(this.patientForm.value);
       this.patientsService.editPatient(this.id, this.patientForm.value)
         .subscribe(
           res => {

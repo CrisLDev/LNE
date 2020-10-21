@@ -8,9 +8,10 @@ import { TracingComponent } from './tracing/tracing.component';
 import { TracingFormComponent } from './tracing-form/tracing-form.component';
 import { MglTimelineModule } from 'angular-mgl-timeline';
 import { HistoryComponent } from './history/history.component';
+import { HistoryViewComponent } from './history-view/history-view.component';
 
 @NgModule({
-  declarations: [PatientsListComponent, PatientsFormComponent, TracingComponent, TracingFormComponent, HistoryComponent],
+  declarations: [PatientsListComponent, PatientsFormComponent, TracingComponent, TracingFormComponent, HistoryComponent, HistoryViewComponent],
   imports: [
     CommonModule,
     PatientsRoutingModule,

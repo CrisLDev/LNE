@@ -52,8 +52,6 @@ export async function createPatient(req: Request, res: Response){
 
     try{
 
-        if(genere !== 'hombre' || genere !== 'mujer' || genere !== 'helicoptero')return res.status(400).json({errors: [{msg : "Porfavor escoge un género de la lista."}]});
-
         // Save patient
         let patientExist = await Patient.findOne({email});
 
