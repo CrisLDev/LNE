@@ -13,6 +13,7 @@ const HOME_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
   autoplay: true,
   slidesPerView: 3,
+  spaceBetween: 30,
   breakpoints: {
     1000: {
       slidesPerView: 3

@@ -66,12 +66,12 @@
                 <div class="card-body">
                     <ng-container *ngIf="testimonials?.length > 0; else noTestimoniall">
                         <div class="row justify-content-between">
-                        <div class="col-xl-6" *ngFor="let testimonial of testimonials">
+                        <div class="col-xl-6 col-md-12 mb-5 col-12" *ngFor="let testimonial of testimonials">
                             <div class="row">
-                                <div class="col-xl-5 col-5 d-flex justify-content-center">
-                                    <img loading="lazy" [src]="testimonial.user_id.imgUrl || 'assets/no-photo.jpg'" alt="{{testimonial.user_id.username}}"  class="img-fluid w-50">
+                                <div class="col-xl-5 col-3 d-flex justify-content-center">
+                                    <img loading="lazy" [src]="testimonial.user_id.imgUrl || 'assets/no-photo.jpg'" alt="{{testimonial.user_id.username}}"  class="img-fluid user-img w-50">
                                 </div>
-                                <div class="col-xl-7 pt-3">
+                                <div class="col-xl-7 col-12 pt-3">
                                     <p>
                                         "{{testimonial.content}}"
                                     </p>
@@ -139,6 +139,77 @@
     </div>
 
     <hr class="mb-0">
+
+    <div class="col-xl-12 bg-light pt-3 pb-5">
+        <div class="container">
+            <swiper class="row">
+                <div class="col-xl-4">
+                    <div class="card" style="max-height: 500px;">
+                        <div class="card-body">
+                            <img loading="lazy" class="img-fluid" src="./assets/centro.jpg" alt="Centro">
+                            <h3 class="mt-2">Adicciones</h3>
+                            <div style="max-height: 10em; overflow: auto; overflow-y: auto;">
+                                <p>La función de un centro de rehabilitación es proporcionar los medios y el espacio para ayudar en el proceso de recuperación. Este proceso varía dependiendo de la rehabilitación que se necesita. Los centros de rehabilitación utilizan una combinación de terapia, grupos pequeños, sesiones individuales y de vida muy estructurada. La función de un centro de rehabilitación es tanto aumentar la calidad de vida y para ayudar al paciente a integrar en la comunidad.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4">
+                    <div class="card">
+                        <div class="card-body" style="max-height: 500px;">
+                            <img loading="lazy" class="img-fluid" src="./assets/adiccion.jpg" alt="Centro">
+                            <h3 class="mt-2">Nuestra Función</h3>
+                            <div style="max-height: 10em; overflow: auto; overflow-y: auto;">
+                                <p>Los centros de rehabilitación también trabajan con aquellos que tienen problemas de adicción. centros de rehabilitación de adicciones proporcionan tanto hospitalario y ambulatorio programas. Los centros de rehabilitación son una parte importante del tratamiento de los adictos a las drogas y el alcohol. Sin embargo, los centros de rehabilitación también pueden tratar los trastornos alimentarios y otras adicciones, como el juego, el sexo y las compras.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4">
+                    <div class="card" style="max-height: 500px;">
+                        <div class="card-body">
+                            <img loading="lazy" class="img-fluid" src="./assets/desintoxicacion2.jpg" alt="Centro">
+                            <h3 class="mt-2">La desintoxicación</h3>
+                            <div style="max-height: 10em; overflow: auto; overflow-y: auto;">
+                                <p>En este primer paso muchas personas adictas deben ingresar en el centro. Se trata de eliminar el alcohol u otras drogas fuera del organismo y conseguir la estabilidad física, sin que el organismo eche ya en falta la sustancia. Siempre se debe llevar a cabo bajo la atenta mirada del médico y del psiquiatra, puesto que puede aparecer un malestar intenso y llegar a ser peligroso. De esta manera, la desintoxicación se efectuará de forma segura.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </swiper>
+        </div>
+    </div>
+
+    <hr class="mb-0">
+
+    <div class="col-xl-12 pt-3 pb-5">
+        <div class="container">
+            <div class="row pb-3">
+                <div class="col-xl-12 col-12">
+                    <h4>NUESTRA MISIÓN</h4>
+                </div>
+                <div class="col-xl-12 col-12">
+                    <p>Nuestra <b>MISIÓN</b>, es el abordaje integral de las adicciones, a través de la prevención, el tratamiento y reducción de daños. Atendiendo tanto a las personas con dicha problemática, como a sus familias, desde el enfoque bio-psico-social y partiendo de la capacidad que tiene la persona para hacerse cargo de su vida y tomar decisiones de forma autónoma; fomentando además un cambio en la percepción social de las adicciones.</p>
+                </div>
+                <div class="col-xl-12 col-12">
+                    <h4>NUESTRA VISIÓN</h4>
+                </div>
+                <div class="col-xl-12 col-12">
+                    <p>
+                        Nuestra <b>VISIÓN</b>, es la de ser una organización de referencia en el ámbito de las adicciones y la exclusión social, trabajando para mejorar y ampliar nuestras intervenciones, tanto en Prevención como en la Rehabilitación, reforzando la Reinserción Socio-Laboral de las personas con problemas de adicción, comprometida y abierta a los cambios sociales.
+                    </p>
+                </div>
+                <div class="col-xl-12 col-12">
+                    <h4>NUESTROS VALORES</h4>
+                </div>
+                <div class="col-xl-12 col-12">
+                    <p>
+                        Los <b>VALORES</b> en los que fundamentamos nuestro trabajo se basan en el Humanismo, la <b>Responsabilidad</b>, el <b>Respeto</b>, la <b>Dignidad</b>, la <b>Solidaridad</b>, la   <b>Igualdad</b>, la <b>Profesionalidad</b> y el <b>Compromiso</b>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>
 
