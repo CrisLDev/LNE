@@ -24,7 +24,7 @@
             <li class="nav-item" *ngIf="authService.userLogged.role === 'admin' || authService.userLogged.role === 'staff'">
               <a class="nav-link" routerLink="/patients">Pacientes</a>
             </li>
-            <li class="nav-item" *ngIf="authService.userLogged.role === 'admin' || authService.userLogged.role === 'staff'">
+            <li class="nav-item" *ngIf="authService.userLogged.role === 'admin'">
               <a class="nav-link" routerLink="/tracings">Seguimientos</a>
             </li>
             <li class="nav-item" *ngIf="authService.userLogged.role === 'admin'">
