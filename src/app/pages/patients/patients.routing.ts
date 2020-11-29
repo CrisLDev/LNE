@@ -6,6 +6,7 @@ import { TracingComponent } from '@pages/patients/tracing/tracing.component';
 import { TracingFormComponent } from '@pages/patients/tracing-form/tracing-form.component';
 import { HistoryComponent } from './history/history.component';
 import { HistoryViewComponent } from './history-view/history-view.component';
+import { RoleGuard } from '@core/guards/role.guard';
 
 const routes: Routes = [
   {
@@ -26,11 +27,13 @@ const routes: Routes = [
   },
   {
     path: 'create',
-    component: PatientsFormComponent
+    component: PatientsFormComponent,
+    canActivate: [RoleGuard]
   },
   {
     path: 'edit/:id',
-    component: PatientsFormComponent
+    component: PatientsFormComponent,
+    canActivate: [RoleGuard]
   },
   {
     path: 'view/:id/history/create',

@@ -61,8 +61,8 @@ export class PatientsFormComponent implements OnInit {
       academicLevel: [this.patient.academicLevel || '', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(40)])],
       maritalStatus: [this.patient.maritalStatus || '', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(40)])],
       residence: [this.patient.residence || '', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(40)])],
-      plan: [this.patient.plan || '', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(10)])],
-      genere: [this.patient.genere || 'Escoge uno...']
+      plan: [this.patient.plan || 'Escoge uno...', Validators.compose([Validators.required])],
+      genere: [this.patient.genere || 'Escoge uno...', Validators.compose([Validators.required])]
     })
   }
 

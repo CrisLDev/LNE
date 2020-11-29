@@ -100,9 +100,9 @@
         </div>
     </div>
 
-    <hr class="mb-0">
+    <hr class="mb-0" id="newsletterHr2">
 
-    <div class="col-xl-12 bg-light" id="newsletter" *ngIf="authService.userLogged.role === 'user' || authService.userLogged.role === ''">
+    <div class="col-xl-12 bg-light border-bottom" id="newsletter">
         <div class="container">
             <div class="row justify-content-center align-items-center mt-5 mb-5">
                 <div class="col-xl-2">
@@ -114,8 +114,6 @@
             </div>
         </div>
     </div>
-
-    <hr *ngIf="authService.userLogged.role === 'user' || authService.userLogged.role === ''" id="newsletterHr">
 
     <div class="col-xl-12 pt-4 pb-5" id="askUsPart" *ngIf="authService.userLogged.role === 'user' || authService.userLogged.role === ''">
         <div class="container">
@@ -132,7 +130,7 @@
                       </svg>
                 </div>
                 <ng-container *ngIf="!authService.loggedIn(); else loggedUser">
-                    ¡Logeate para enviarnos tu regunta!
+                    ¡Logeate para enviarnos tu pregunta!
                 </ng-container>
             </div>
         </div>
