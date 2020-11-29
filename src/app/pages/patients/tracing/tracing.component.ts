@@ -4,6 +4,7 @@ import { TracingsService } from '@core/services/tracings.service';
 import { ToastrService } from 'ngx-toastr';
 import { PatientsService } from '@core/services/patients.service';
 import { HistoryService } from '@core/services/history.service';
+import { AuthService } from '@core/services/auth.service';
 
 @Component({
   selector: 'app-tracing',
@@ -19,6 +20,8 @@ export class TracingComponent implements OnInit {
   filterTracing = '';
 
   tracings = [];
+
+  theTracings = [];
 
   histories = [];
 
@@ -40,7 +43,8 @@ export class TracingComponent implements OnInit {
               private patientsService: PatientsService,
               private router: Router,
               private toastr: ToastrService,
-              private historyService: HistoryService) { }
+              private historyService: HistoryService,
+              public authService: AuthService) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
@@ -49,7 +53,10 @@ export class TracingComponent implements OnInit {
         .subscribe(
           res => {
                     if(res){
-                      this.tracings = res;
+                      this.theTracings = res;
+                      if(this.theTracings){
+                        this.tracings = this.theTracings.filter(tracing => tracing.user_id._id == this.authService.userLogged.id);
+                      }
                       this.dismissSpinner();
                     }
                 },

@@ -102,7 +102,7 @@
 
     <hr class="mb-0">
 
-    <div class="col-xl-12 bg-light" id="newsletter" *ngIf="authService.userLogged.role === 'user'">
+    <div class="col-xl-12 bg-light" id="newsletter" *ngIf="authService.userLogged.role === 'user' || authService.userLogged.role === ''">
         <div class="container">
             <div class="row justify-content-center align-items-center mt-5 mb-5">
                 <div class="col-xl-2">
@@ -115,9 +115,9 @@
         </div>
     </div>
 
-    <hr *ngIf="authService.userLogged.role === 'user'" id="newsletterHr">
+    <hr *ngIf="authService.userLogged.role === 'user' || authService.userLogged.role === ''" id="newsletterHr">
 
-    <div class="col-xl-12 pt-4 pb-5" id="askUsPart" *ngIf="authService.userLogged.role === 'user'">
+    <div class="col-xl-12 pt-4 pb-5" id="askUsPart" *ngIf="authService.userLogged.role === 'user' || authService.userLogged.role === ''">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-xl-12 text-center mb-0 pb-0">

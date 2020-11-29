@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from '@core/services/auth.service';
 import { TracingsService } from '@core/services/tracings.service';
 import { ToastrService } from 'ngx-toastr';
 
@@ -15,7 +16,7 @@ export class TracingFormComponent implements OnInit {
 
   tracing_id: string;
 
-  tracing = {name: '', content: '', patient_id: ''};
+  tracing = {name: '', content: '', patient_id: '', user_id: ''};
 
   tracingForm: FormGroup;
 
@@ -23,7 +24,8 @@ export class TracingFormComponent implements OnInit {
               private tracingsService: TracingsService,
               private router: Router,
               private toastr: ToastrService,
-              private fb: FormBuilder) { }
+              private fb: FormBuilder,
+              public authService: AuthService) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => 
@@ -34,6 +36,11 @@ export class TracingFormComponent implements OnInit {
         this.tracingsService.getTracingById(this.tracing_id)
         .subscribe(
           res => {this.tracing = res;
+                  if(this.tracing.user_id !== this.authService.userLogged.id){
+                    this.router.navigate(['/patients'], ).then(() => {
+                      this.toastr.error('No tienes permisos de edicion para este paciente.');
+                    })
+                  }
                   document.getElementById("formTracing").classList.remove("d-none");
                   document.getElementById("spinnerTracing").classList.add("d-none"); this.createForm();},
           err => {this.router.navigate(['/home'])}
