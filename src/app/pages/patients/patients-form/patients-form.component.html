@@ -56,8 +56,15 @@
               </div>
               <div class="col-xl-12">
                 <div class="mb-3">
-                  <label for="planPatient" class="form-label">Plan contratado</label>
-                  <input type="text" class="form-control" id="planPatient" placeholder="Ingresa el tipo plan" formControlName="plan" minlength="4" maxlength="10" required>
+                  <label class="form-label">
+                    Plan
+                  </label><br>
+                    <select class="form-select" formControlName="plan" required>
+                      <option selected>Escoge uno...</option>
+                      <option value="Inicial">Inicial</option>
+                      <option value="Basico">Basico</option>
+                      <option value="Completo">Completo</option>
+                    </select>
                   <div *ngIf="f.plan.invalid && (f.plan.dirty || f.plan.touched)"
                 class="alert alert-danger">
     
@@ -65,10 +72,7 @@
                       Información requerida.
                     </div>
                     <div *ngIf="f.plan.errors.minlength">
-                      El campo debe contener más de 4 caracteres.
-                    </div>
-                    <div *ngIf="f.plan.errors.maxlength">
-                      El campo debe contener menos de 10 caracteres.
+                      El campo debe contener más de 10 caracteres.
                     </div>
                     <div *ngIf="f.plan.pending">Validando...</div>
     
@@ -230,16 +234,16 @@
                       <option value="hombre">Hombre</option>
                       <option value="mujer">Mujer</option>
                     </select>
-                  <div *ngIf="f.birthPlace.invalid && (f.birthPlace.dirty || f.birthPlace.touched)"
+                  <div *ngIf="f.genere.invalid && (f.genere.dirty || f.genere.touched)"
                 class="alert alert-danger">
     
-                    <div *ngIf="f.birthPlace.errors.required">
+                    <div *ngIf="f.genere.errors.required">
                       Información requerida.
                     </div>
-                    <div *ngIf="f.birthPlace.errors.minlength">
+                    <div *ngIf="f.genere.errors.minlength">
                       El campo debe contener más de 6 caracteres.
                     </div>
-                    <div *ngIf="f.birthPlace.pending">Validando...</div>
+                    <div *ngIf="f.genere.pending">Validando...</div>
     
                 </div>
               </div>

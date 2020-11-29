@@ -1,6 +1,6 @@
 .m-wT{
     min-height: 300px;
-    max-height: 300px;
+    max-height: 294px!important;
 }
 
 #treatmentModal{
@@ -38,6 +38,50 @@
 @media (max-width: 575.98px) {
     .m-wT{
     max-width: 100%;
-    min-height: 100%;
-    max-height: 100%;
-}}
+    min-height: 182px;
+    max-height: 210px!important;
+}
+#apo{
+    max-height: 16em!important;
+}
+
+#card{
+    min-height: 1em!important;
+}
+
+#content{
+    padding-bottom: 0!important;
+}
+}
+
+@media (max-width: 767.98px) {
+    #card{
+        min-height: 8em!important;
+    }
+}
+
+@media (max-width: 991.98px) {
+    #content{
+        margin-bottom: 6em;
+    }
+    /*
+    #viv{
+        max-height: 10em!important;
+    }
+
+    #esp{
+        max-height: 4em!important;
+    }
+
+    #mot{
+        max-height: 12em!important;
+    }
+
+    #ocu{
+        max-height: 5em!important;
+    }
+
+    #apo{
+        max-height: 6em!important;
+    }*/
+}

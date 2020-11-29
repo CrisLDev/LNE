@@ -15,7 +15,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class StaffFormComponent implements OnInit {
 
-  constructor(private profileService: ProfileService, private usersService: UsersService, private activatedRoute: ActivatedRoute, private fb: FormBuilder, private authService: AuthService, private toastr: ToastrService, private router: Router) { }
+  constructor(private profileService: ProfileService, private usersService: UsersService, private activatedRoute: ActivatedRoute, private fb: FormBuilder, public authService: AuthService, private toastr: ToastrService, private router: Router) { }
 
   id: string;
 

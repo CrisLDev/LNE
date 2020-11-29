@@ -44,35 +44,29 @@
               <div *ngIf="f.username.pending">Validando...</div>
             </div>
           </div>
-          <div class="mb-3">
-            <label for="staffRol" class="form-label">Rol de usuario</label>
-            <input
-              type="text"
-              class="form-control"
-              formControlName="role"
-              id="staffRol"
-              placeholder="Rol del usuario"
-              minlength="4"
-              maxlength="20"
-              required
-            />
+          <div class="mb-3" *ngIf="authService.userLogged.role === 'admin'">
+            <label class="form-label">
+              Rol de usuario
+            </label><br>
+              <select class="form-select" formControlName="role" id="staffRol" required>
+                <option selected>Escoge uno...</option>
+                <option value="user">Usuario</option>
+                <option value="staff">Personal</option>
+                <option value="admin">Administrador</option>
+              </select>
+            <div *ngIf="f.role.invalid && (f.role.dirty || f.role.touched)"
+          class="alert alert-danger">
 
-            <div
-              *ngIf="f.role.invalid && (f.role.dirty || f.role.touched)"
-              class="alert alert-danger"
-            >
               <div *ngIf="f.role.errors.required">
                 Información requerida.
               </div>
               <div *ngIf="f.role.errors.minlength">
-                El rol debe contener más de 4 caracteres.
-              </div>
-              <div *ngIf="f.role.errors.maxlength">
-                El rol debe contener menos de 4 caracteres.
+                El campo debe contener más de 6 caracteres.
               </div>
               <div *ngIf="f.role.pending">Validando...</div>
-            </div>
+
           </div>
+        </div>
           <div class="mb-3">
             <label for="staffimgUrl" class="form-label">Url de la imagen</label>
             <input
