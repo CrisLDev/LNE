@@ -1,10 +1,14 @@
-<div class="container-fluid bg-light pb-3 fixed-bottom">
+<div class="container-fluid bg-light pb-3">
     <div class="row pt-3">
-        <div class="col-xl-1 col-2 mr-auto">
+        <div class="col-xl-1 col-2 mr-auto d-flex align-items-center justify-content-end">
             <img loading="lazy" class="img-fluid" src="assets/logo.svg" alt="Logo">
         </div>
         <div class="col-xl-3 col-10 d-flex align-items-center justify-content-end">
-            <span *ngIf="authService.userLogged.role === 'admin' || authService.userLogged.role === 'staff'">Todos los derechos reservados.</span>
+            <div *ngIf="authService.userLogged.role === 'admin' || authService.userLogged.role === 'staff'">
+                <h6>Todos los derechos reservados.</h6>
+                <p class="text-right">lanuevaera@asistencia.com</p>
+                <p class="text-right">0963256256</p>
+            </div>
         </div>
     </div>
 </div>

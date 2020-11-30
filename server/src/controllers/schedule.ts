@@ -27,7 +27,9 @@ export async function createSchedule(req:Request, res: Response) {
             participants
         });
 
-        const scheduleSaved = await schedule.save();
+        const scheduleSaved = await schedule.save().then(
+            schedules => schedules.populate('participants.user').execPopulate()
+        );
 
         return res.status(200).json(scheduleSaved);
 

@@ -3,7 +3,7 @@
     <app-navbar></app-navbar>
 </header>
 <main>
-    <div class="container-fluid" style="margin-bottom: 5em;">
+    <div class="container-fluid bg-white">
         <router-outlet></router-outlet>
     </div>
     <app-testimonial *ngIf="authService.loggedIn() && authService.userLogged.role === 'user'"></app-testimonial>
