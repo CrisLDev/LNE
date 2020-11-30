@@ -12,15 +12,27 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class StaffListComponent implements OnInit {
 
-  users: User[];
+  users=[];
+  admin=[];
+  user=[];
+  staff =[];
 
   q: number = 1;
+  l: number = 1;
+  a: number = 1;
 
   constructor(private usersService: UsersService, private router: Router, private authService: AuthService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.usersService.getAllUsers().subscribe(
-      res => {this.users = res.users;}
+      res => {
+        this.users = res.users;
+        if(this.users){
+          this.admin = this.users.filter(user => user.role == 'admin')
+          this.user = this.users.filter(user => user.role == 'user');
+          this.staff = this.users.filter(user => user.role == 'staff');
+        }
+      }
     )
   }
 

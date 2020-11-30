@@ -20,9 +20,7 @@ export class HomeComponent implements OnInit {
       err=>{console.log(err)}
     )
     if(this.authService.userLogged.id){
-      document.getElementById("newsletter").classList.add("d-none");
-      document.getElementById("newsletterHr2").classList.add("d-none");
-      document.getElementById("newsletterHr").classList.add("d-none");
+      localStorage.setItem('newsletter', 'true');
     }
     if(localStorage.getItem('newsletter')){
       document.getElementById("newsletter").classList.add("d-none");

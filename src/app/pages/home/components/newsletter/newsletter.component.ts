@@ -38,6 +38,7 @@ export class NewsletterComponent implements OnInit {
               document.getElementById("newsletter").classList.add("d-none");
             },
       err => {this.toastr.error(err.error.errors[0].msg);
+              document.getElementById("newsletterButton").innerHTML = "Enviar";
               document.getElementById("newsletterButton").removeAttribute("disabled")}
     )
   }
