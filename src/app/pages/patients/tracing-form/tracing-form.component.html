@@ -10,6 +10,10 @@
               <span class="sr-only">Loading...</span>
             </div>
           </div>
+          <h4 class="text-center mb-3">Nuevo seguimiento</h4>
+          <div class="d-flex">
+            <h6>Tipo de plan:</h6><h6 class="ml-1">{{patient.plan}}</h6>
+          </div>
         <form class="mb-4" [formGroup]="tracingForm" (ngSubmit)="submit()" id="formTracing" novalidate>
             <div class="mb-3">
                 <label for="nameTracing" class="form-label">Nombre</label>

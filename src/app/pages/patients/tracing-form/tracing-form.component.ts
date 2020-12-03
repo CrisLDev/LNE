@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '@core/services/auth.service';
+import { PatientsService } from '@core/services/patients.service';
 import { TracingsService } from '@core/services/tracings.service';
 import { ToastrService } from 'ngx-toastr';
 
@@ -20,11 +21,14 @@ export class TracingFormComponent implements OnInit {
 
   tracingForm: FormGroup;
 
+  patient: {plan:''};
+
   constructor(private activatedRoute: ActivatedRoute,
               private tracingsService: TracingsService,
               private router: Router,
               private toastr: ToastrService,
               private fb: FormBuilder,
+              private patientService: PatientsService,
               public authService: AuthService) { }
 
   ngOnInit(): void {
@@ -47,6 +51,16 @@ export class TracingFormComponent implements OnInit {
         );
     }
     this.activatedRoute.params.subscribe(params => this.id = params['id']);
+    if(this.id){
+      this.patientService.getPatient(this.id).subscribe(
+        res => {
+          if(res){
+            this.patient = res;
+          }
+      },
+      err => {this.router.navigate(['/patients'])}
+      )
+    }
     this.createForm();
   }
 
