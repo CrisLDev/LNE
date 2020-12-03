@@ -95,7 +95,7 @@ export async function loginUser(req: Request, res: Response){
 }
 
 export async function getUsers(req: Request, res: Response){
-    const users = await User.find();
+    const users = await User.find().sort({createdAt: -1});
 
     return res.status(200).json({users});
 }

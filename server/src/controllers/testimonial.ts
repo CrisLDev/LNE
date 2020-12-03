@@ -34,13 +34,13 @@ export async function createTestimonial(req: Request, res: Response) {
 }
 
 export async function getTestimonial(req:Request, res: Response) {
-    const testimonial = await Testimonial.find().sort({createdAt: -1}).populate('user_id').limit(2);
+    const testimonial = await Testimonial.find().populate('user_id').limit(2);
     
     return res.status(200).json({testimonial})
 }
 
 export async function getTestimonials(req:Request, res: Response) {
-    const testimonials = await Testimonial.find().populate('user_id');
+    const testimonials = await Testimonial.find().populate('user_id').sort({createdAt: -1});
 
     return res.status(200).json(testimonials)
 }

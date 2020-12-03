@@ -37,7 +37,7 @@ export async function createTracing(req: Request, res: Response){
 }
 
 export async function getTracings(req: Request, res: Response){
-    const tracings = await Tracing.find().populate('patient_id');
+    const tracings = await Tracing.find().sort({createdAt: -1}).populate('patient_id');
     if(tracings.length <= 0){
         return res.status(404).json({errors: [{msg: "No hay seguimientos para mostrar."}]});
     }

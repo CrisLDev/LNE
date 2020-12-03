@@ -78,7 +78,7 @@ export async function createPatient(req: Request, res: Response){
 
 export async function getPatients(req: Request, res: Response){
     try {
-        const patients = await Patient.find();
+        const patients = await Patient.find().sort({createdAt: -1});
 
         if(patients){
             return res.status(200).json(patients);

@@ -39,7 +39,7 @@ export async function createTreatment(req: Request, res: Response) {
 }
 
 export async function getTreatments(req:Request, res: Response) {
-    const treatments = await Treatment.find();
+    const treatments = await Treatment.find().sort({createdAt: -1});
 
     return res.status(200).json(treatments)
 }

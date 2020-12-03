@@ -40,7 +40,7 @@ export async function createSchedule(req:Request, res: Response) {
 }
 
 export async function getSchedules(req: Request, res: Response){
-    const schedules = await Schedule.find().populate('participants.user', ['_id', 'username']);
+    const schedules = await Schedule.find().sort({createdAt: -1}).populate('participants.user', ['_id', 'username']);
 
     return res.status(200).json({schedules});
 }

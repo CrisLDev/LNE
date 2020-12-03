@@ -38,7 +38,7 @@ export async function createQuestion(req: Request, res: Response) {
 }
 
 export async function getQuestions(req:Request, res: Response) {
-    const questions = await AskUs.find().populate('user_id');
+    const questions = await AskUs.find().populate('user_id').sort({createdAt: -1});
 
     return res.status(200).json(questions)
 }
