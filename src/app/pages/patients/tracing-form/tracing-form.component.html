@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row mt-3 mb-5 justify-content-center">
+  <div class="row mt-3 justify-content-center">
     <div class="col-xl-5" style="margin-top: 70px;">
         <div class="text-center d-none" style="margin-top: 70px;" id="spinnerTracing">
             <div
@@ -10,7 +10,7 @@
               <span class="sr-only">Loading...</span>
             </div>
           </div>
-        <form [formGroup]="tracingForm" (ngSubmit)="submit()" id="formTracing" novalidate>
+        <form class="mb-4" [formGroup]="tracingForm" (ngSubmit)="submit()" id="formTracing" novalidate>
             <div class="mb-3">
                 <label for="nameTracing" class="form-label">Nombre</label>
                 <input type="text" class="form-control" id="nameTracing" formControlName="name" placeholder="Nombre del seguimiento" minlength="4" required>

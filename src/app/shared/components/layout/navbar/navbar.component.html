@@ -31,10 +31,10 @@
               <a class="nav-link" routerLink="/staff">Usuarios</a>
             </li>
             <li class="nav-item" *ngIf="authService.userLogged.role === 'admin'">
-              <a class="nav-link" routerLink="/activities">Actividades</a>
+              <a class="nav-link" routerLink="/comments">Comentarios</a>
             </li>
             <li class="nav-item" *ngIf="authService.userLogged.role === 'admin' || authService.userLogged.role === 'staff'">
-              <a class="nav-link" routerLink="/schedule">Horarios</a>
+              <a class="nav-link" routerLink="/activities">Actividades</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" routerLink="/user/profile">Perfil</a>

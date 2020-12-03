@@ -26,7 +26,7 @@ const routes: Routes = [
   {
     path: 'tracings',
     loadChildren: () => import('@pages/tracings/tracings.module').then(m => m.TracingsModule), data: {name: 'Tracings'},
-    canActivate: [AuthGuard, StaffGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'staff',
@@ -34,13 +34,13 @@ const routes: Routes = [
     canActivate: [AuthGuard, RoleGuard]
   },
   {
-    path: 'schedule',
-    loadChildren: () => import('@pages/schedule/schedule.module').then(m => m.ScheduleModule), data: {name: 'Schedule'},
+    path: 'activities',
+    loadChildren: () => import('@pages/schedule/schedule.module').then(m => m.ScheduleModule), data: {name: 'Activities'},
     canActivate: [AuthGuard, StaffGuard]
   },
   {
-    path: 'activities',
-    loadChildren: () => import('@pages/activities/activities.module').then(m => m.ActivitiesModule), data: {name: 'Activities'},
+    path: 'comments',
+    loadChildren: () => import('@pages/activities/activities.module').then(m => m.ActivitiesModule), data: {name: 'Comments'},
     canActivate: [AuthGuard, RoleGuard]
   }
 ];

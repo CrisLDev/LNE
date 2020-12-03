@@ -3,6 +3,7 @@ import { PatientsService } from '@core/services/patients.service';
 import { Router } from '@angular/router';
 import { Patient } from '@shared/classes/Patient';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '@core/services/auth.service';
 
 @Component({
   selector: 'app-patients-list',
@@ -15,7 +16,9 @@ export class PatientsListComponent implements OnInit {
 
   q: number = 1;
 
-  constructor(private patientService: PatientsService, private router: Router, private toastr: ToastrService) { }
+  filterPatient = '';
+
+  constructor(private patientService: PatientsService, private router: Router, private toastr: ToastrService, public authService: AuthService) { }
 
   ngOnInit(): void {
     this.patientService.getPatients()

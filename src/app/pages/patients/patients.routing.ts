@@ -23,7 +23,8 @@ const routes: Routes = [
   },
   {
     path: 'view/:id/edit/:tracing_id',
-    component: TracingFormComponent
+    component: TracingFormComponent,
+    canActivate: [RoleGuard]
   },
   {
     path: 'create',

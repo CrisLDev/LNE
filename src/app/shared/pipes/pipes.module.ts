@@ -5,15 +5,16 @@ import { MonthPipe } from './month.pipe';
 import { DniPipe } from './dni.pipe';
 import { TreatmentPipe } from './treatment.pipe';
 import { QuestionPipe } from './question.pipe';
+import { PatientsPipe } from './patients.pipe';
 
 
 @NgModule({
-  declarations: [FilterPipe, MonthPipe, DniPipe, TreatmentPipe, QuestionPipe],
+  declarations: [FilterPipe, MonthPipe, DniPipe, TreatmentPipe, QuestionPipe, PatientsPipe],
   imports: [
     CommonModule
   ],
   exports:[
-    FilterPipe, MonthPipe, DniPipe, TreatmentPipe, QuestionPipe
+    FilterPipe, MonthPipe, DniPipe, TreatmentPipe, QuestionPipe, PatientsPipe
   ]
 })
 export class PipesModule { }
