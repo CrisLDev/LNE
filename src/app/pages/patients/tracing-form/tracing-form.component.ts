@@ -21,7 +21,7 @@ export class TracingFormComponent implements OnInit {
 
   tracingForm: FormGroup;
 
-  patient: {plan:''};
+  patient = {plan: ''};
 
   constructor(private activatedRoute: ActivatedRoute,
               private tracingsService: TracingsService,

@@ -22,6 +22,7 @@ import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 
 // for Core import:
 import { LoadingBarModule } from '@ngx-loading-bar/core';
+import { OnlySGuard } from '@core/guards/only-s.guard';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,7 @@ import { LoadingBarModule } from '@ngx-loading-bar/core';
     LoadingBarRouterModule,
     LoadingBarModule
   ],
-  providers: [AuthGuard, LoggedGuard, {
+  providers: [AuthGuard, LoggedGuard, OnlySGuard, {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptorService,
     multi: true
