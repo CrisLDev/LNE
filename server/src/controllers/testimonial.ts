@@ -40,7 +40,7 @@ export async function getTestimonial(req:Request, res: Response) {
 }
 
 export async function getTestimonials(req:Request, res: Response) {
-    const testimonials = await Testimonial.find().populate('user_id').sort({createdAt: -1});
+    const testimonials = await Testimonial.find().sort({createdAt: -1}).populate('user_id');
 
     return res.status(200).json(testimonials)
 }

@@ -66,6 +66,48 @@ export async function createUser(req: Request, res: Response){
 
 }
 
+export async function createStaffUser(req: Request, res: Response){
+
+    const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({errors: [{msg : "Los datos contienen una estructura incorrecta."}]});
+        }
+
+    const {username, email, email2, password, password2} = req.body;
+
+    const user: IUser = new User({
+        username,
+        email,
+        password,
+        role: 'staff'
+    });
+
+    try{
+
+        if(req.body.email != req.body.email2 || req.body.password != req.body.password2){
+            return res.status(400).json({errors: [{msg: "Los emails o las contraseñas no coinciden."}]})
+        }
+
+        // Save User
+        let userExist = await User.findOne({email});
+
+        if(userExist){
+            return res.status(400)
+            .json({errors: [{msg : "El email ya existe."}]});
+        }
+
+        user.password = await user.encryptPassword(user.password);
+
+        const savedUser = await user.save();
+
+        return res.status(200).json({msg: [{msg: "Staff agregado correctamente."}]});
+
+    } catch (err){
+        res.status(400).send(err);
+    }
+
+}
+
 export async function loginUser(req: Request, res: Response){
 
     const errors = validationResult(req);

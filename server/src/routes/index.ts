@@ -1,5 +1,5 @@
 import {Router} from 'express';
-import { createUser, loginUser, getUsers, getUser, getUserById, editUserById, deleteUserById} from '../controllers/user';
+import { createUser, loginUser, getUsers, getUser, getUserById, editUserById, deleteUserById, createStaffUser} from '../controllers/user';
 import { TokenValidation } from '../libs/verifyToken';
 import { createPatient, getPatients, getPatientById, editPatientById, deletePatientById } from '../controllers/patients';
 import { createTracing, getTracingsByPatientId, getTracingById, editTracingById, deleteTracingById, getTracings } from '../controllers/tracing';
@@ -22,6 +22,13 @@ router.route('/signup')
     check('email2').not().isEmpty().isEmail().isLength({min: 8, max: 50}).matches(/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i),
     check('password').not().isEmpty().isLength({min:6, max: 20}),
     check('password2').not().isEmpty().isLength({min:6, max: 20})], createUser);
+
+router.route('/staffcreate')
+    .post([check('username').not().isEmpty().isLength({min:4, max: 20}),
+    check('email').not().isEmpty().isEmail().isLength({min: 8, max: 50}).matches(/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i),
+    check('email2').not().isEmpty().isEmail().isLength({min: 8, max: 50}).matches(/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i),
+    check('password').not().isEmpty().isLength({min:6, max: 20}),
+    check('password2').not().isEmpty().isLength({min:6, max: 20})], createStaffUser);
 
 router.route('/signin')
     .post([ 

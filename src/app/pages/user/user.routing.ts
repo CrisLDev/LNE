@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { UserActionsComponent } from './user-actions/user-actions.component';
 import { LoggedGuard } from '@core/guards/logged.guard';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { StaffComponent } from './staff/staff.component';
+import { RoleGuard } from '@core/guards/role.guard';
 
 const routes: Routes = [
   {
@@ -13,6 +15,11 @@ const routes: Routes = [
   {
     path: 'profile',
     component: UserProfileComponent
+  },
+  {
+    path: 'create',
+    component: StaffComponent,
+    canActivate: [RoleGuard]
   }
 ]
 

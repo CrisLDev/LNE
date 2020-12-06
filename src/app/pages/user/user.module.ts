@@ -12,9 +12,10 @@ import { LoggedGuard } from '@core/guards/logged.guard';
 import {HTTP_INTERCEPTORS} from '@angular/common/http';
 import { UserComponent } from './user-profile/components/user/user.component';
 import { ProfileComponent } from './user-profile/components/profile/profile.component';
+import { StaffComponent } from './staff/staff.component';
 
 @NgModule({
-  declarations: [UserActionsComponent, LoginFormComponent, RegisterFormComponent, UserProfileComponent, UserComponent, ProfileComponent],
+  declarations: [UserActionsComponent, LoginFormComponent, RegisterFormComponent, UserProfileComponent, UserComponent, ProfileComponent, StaffComponent],
   imports: [
     CommonModule,
     UserRoutingModule,
