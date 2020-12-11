@@ -166,7 +166,7 @@ export class ScheduleComponent implements OnInit {
       this.scheduleService.createSchedule(this.scheduleForm.value).subscribe(
         (res) => {
           this.event = res;
-          this.events.push(this.event);
+          this.events.unshift(this.event);
           this.calendarOptions.events = this.events;
           this.scheduleForm.reset();
           document
