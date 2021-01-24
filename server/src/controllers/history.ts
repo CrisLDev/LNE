@@ -31,23 +31,23 @@ export async function createHistory(req: Request, res: Response){
         conclusions,
         patient_id
     } = req.body;
-
-    const app_non_communicable_diseases_array = app_non_communicable_diseases.split(",");
-    const app_sexually_transmitted_diseases_array = app_sexually_transmitted_diseases.split(",");
-    const app_degenerative_diseases_array = app_degenerative_diseases.split(",");
-    const app_others_array = app_others.split(",");
-    const apnp_adictions_array = apnp_adictions.split(",");
-    const apnp_allergies_array = apnp_allergies.split(",");
-    const apnp_antibiotics_array = apnp_antibiotics.split(",");
-    const apnp_current_conditions_array = apnp_current_conditions.split(",");
-    const apnp_has_been_hospitalized_array = apnp_has_been_hospitalized.split(",");
-    const ipeeo_respiratory_array = ipeeo_respiratory.split(",");
-    const ipeeo_cardiovascular_array = ipeeo_cardiovascular.split(",");
-    const ipeeo_genitourinary_array = ipeeo_genitourinary.split(",");
-    const ipeeo_endocrine_array = ipeeo_endocrine.split(",");
-    const ipeeo_nervous_array = ipeeo_nervous.split(",");
-    const ipeeo_muscular_array = ipeeo_muscular.split(",");
-    const conclusions_array = conclusions.split(",");
+    
+    const app_non_communicable_diseases_array = app_non_communicable_diseases <= 0 ? 'No aplica' : app_non_communicable_diseases.split(",");
+    const app_sexually_transmitted_diseases_array = app_sexually_transmitted_diseases <= 0 ? 'No aplica' : app_sexually_transmitted_diseases.split(",");
+    const app_degenerative_diseases_array = app_degenerative_diseases <= 0 ? 'No aplica' : app_degenerative_diseases.split(",");
+    const app_others_array = app_others <= 0 ? 'No aplica' : app_others.split(",");
+    const apnp_adictions_array = apnp_adictions <= 0 ? 'No aplica' : apnp_adictions.split(",");
+    const apnp_allergies_array = apnp_allergies <= 0 ? 'No aplica' : apnp_allergies.split(",");
+    const apnp_antibiotics_array = apnp_antibiotics <= 0 ? 'No aplica' : apnp_antibiotics.split(",");
+    const apnp_current_conditions_array = apnp_current_conditions <= 0 ? 'No aplica' : apnp_current_conditions.split(",");
+    const apnp_has_been_hospitalized_array = apnp_has_been_hospitalized <= 0 ? 'No aplica' : apnp_has_been_hospitalized.split(",");
+    const ipeeo_respiratory_array = ipeeo_respiratory <= 0 ? 'No aplica' : ipeeo_respiratory.split(",");
+    const ipeeo_cardiovascular_array = ipeeo_cardiovascular <= 0 ? 'No aplica' : ipeeo_cardiovascular.split(",");
+    const ipeeo_genitourinary_array = ipeeo_genitourinary <= 0 ? 'No aplica' : ipeeo_genitourinary.split(",");
+    const ipeeo_endocrine_array = ipeeo_endocrine <= 0 ? 'No aplica' : ipeeo_endocrine.split(",");
+    const ipeeo_nervous_array = ipeeo_nervous <= 0 ? 'No aplica' : ipeeo_nervous.split(",");
+    const ipeeo_muscular_array = ipeeo_muscular <= 0 ? 'No aplica' : ipeeo_muscular.split(",");
+    const conclusions_array = conclusions <= 0 ? 'No aplica' : conclusions.split(",");
 
     const history = new History({
         app_non_communicable_diseases: app_non_communicable_diseases_array,
